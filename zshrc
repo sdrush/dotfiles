@@ -19,16 +19,16 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
 
 # Source our OS-specific files here
-if [[ $OSTYPE == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   #source $DOTFILES/macos/macos.zshrc
-elif [[ $OSTYPE == "linux-gnu"* ]]; then
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   source $DOTFILES/linux/linux.zshrc
-elif [[ $OSTYPE == "cygwin" ]]; then
+elif [[ "$OSTYPE" == "cygwin" ]]; then
   # I'm not even sure I'm going to do the work for Cygwin.  This is 
   # mostly for historical purposes
-elif [[ $OSTYPE == "msys" ]]; then
+elif [[ "$OSTYPE" == "msys" ]]; then
   # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-elif [[ $OSTYPE == "win32" ]]; then
+elif [[ "$OSTYPE" == "win32" ]]; then
   # I'm not sure this can happen.
 fi
 
