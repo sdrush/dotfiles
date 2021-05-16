@@ -50,7 +50,7 @@ zplug "djui/alias-tips"
 zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc"
 
 if [[ $OSTYPE == darwin* ]]; then
-  zplug "${HOME}", from:local, use:".iterm2_shell_integration.zsh"
+  zplug "${HOME}", from:local, use:"${DOTFILES}/macos/iterm2_shell_integration.zsh"
 fi
 
 # zplug check returns true if all packages are installed
