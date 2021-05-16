@@ -3,8 +3,6 @@
 
 color=on
 
-data.location=~/dotfiles/task
-
 # Here is an example of entries that use the default, override and blank values
 #   variable=foo   -- By specifying a value, this overrides the default
 #   variable=      -- By specifying no value, this means no default
