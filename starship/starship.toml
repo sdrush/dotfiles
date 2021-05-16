@@ -13,7 +13,6 @@
   shell = ["bash", "--noprofile", "--norc"]
   symbol = "📥 "
   style = "bold fg:green"
-
 [gcloud]
   format = 'on [$symbol$account(\($project@$region\))]($style) '
   symbol = "☁️ " 
