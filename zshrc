@@ -49,8 +49,7 @@ zplug "junegunn/fzf", from:gh-r, as:command, rename-to:fzf, use:"*${(L)$(uname -
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
 zplug "larkery/zsh-histdb", from:github, as:plugin, rename-to:histdb, use:"*.zsh"
 zplug "skywind3000/z.lua", from:github, as:plugin
-zplug "djui/alias-tips", from:gh-r, as:command, rename-to:alias-tips
-zplug "djui/alias-tips"
+zplug "djui/alias-tips", from:github, as:plugin
 
 # ZPlug Local Modules
 zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc"
