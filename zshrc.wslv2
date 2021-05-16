@@ -1,0 +1,255 @@
+# Uncomment the following line to enable the native zsh profiling tool
+#export ZPROF=true
+if [ $ZPROF ]; then
+  zmodload zsh/zprof
+fi
+
+# Source our environment first
+source ~/.zshenv
+
+################################################
+# ZPlug Configuration
+################################################
+source $ZPLUG_HOME/init.zsh
+
+# Make sure our path is straight
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+if [[ $OSTYPE == darwin* ]]; then
+  export ZPLUG_HOME=/usr/local/opt/zplug
+elif [[ $OSTYPE == linux-gnu* ]]; then
+  export ZPLUG_HOME=$HOME/.zplug
+fi
+
+# Set up ZPlug to manage itself
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# Oh-my-zsh Plugins
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/kubectl", from:oh-my-zsh
+zplug "plugins/gcloud", from:oh-my-zsh
+zplug "plugins/alias-finder", from:oh-my-zsh
+zplug "plugins/bgnotify", from:oh-my-zsh
+zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
+zplug "lib/*.zsh", from:oh-my-zsh
+
+if [[ $OSTYPE == darwin* ]]; then
+  zplug "plugins/iterm", from:oh-my-zsh
+  zplug "plugins/brew", from:oh-my-zsh
+  zplug "plugins/osx", from:oh-my-zsh
+fi
+
+# ZPlug External Modules
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+# ZPlug GitHub Modules
+if [[ $OSTYPE == darwin* ]]; then
+    zplug "junegunn/fzf", from:gh-r, as:command, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
+fi
+zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
+zplug "larkery/zsh-histdb", from:github, as:plugin, rename-to:histdb, use:"*.zsh"
+zplug "skywind3000/z.lua", from:github, as:plugin
+zplug "djui/alias-tips", from:github
+
+# ZPlug Local Modules
+zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc"
+
+if [[ $OSTYPE == darwin* ]]; then
+  zplug "${HOME}", from:local, use:".iterm2_shell_integration.zsh"
+fi
+
+# zplug check returns true if all packages are installed
+# Therefore, when it returns false, run zplug install
+if ! zplug check; then
+    zplug install
+fi
+
+# source plugins and add commands to the PATH
+zplug load # --verbose
+
+# Set up Google Application Creds env variable
+  #export GOOGLE_APPLICATION_CREDENTIALS = your/path/to/service_account_cred.json
+
+# Path to your oh-my-zsh installation.
+if [[ $OSTYPE == darwin* ]]; then
+  export ZSH="/Users/shannon.rush/.oh-my-zsh"
+fi
+
+# Disable fuzzy search for kubens and kubectx
+export KUBECTX_IGNORE_FZF=1
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Disable marking untracked files under VCS as dirty. This makes repository 
+# status check for large repositories much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+HIST_STAMPS="mm/dd/yyyy"
+
+# User added settings
+
+# Zsh Autosuggest strategy using histdb
+#  ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
+
+# Uncomment the following line to disable 'column' command 2048 limit workaround
+HISTDB_TABULATE_CMD=(sed -e $'s/\x1f/\t/g')
+
+# Source oh-my-zsh because we like the aliases, and we arent using a theme - for now
+  #source $ZSH/oh-my-zsh.sh
+
+  autoload -Uz add-zsh-hook
+
+  # export MANPATH="/usr/local/man:$MANPATH"
+
+# You may want to manually set your language environment and compilation flags
+# export LANG=en_US.UTF-8
+# export ARCHFLAGS="-arch x86_64"
+
+# Preferred editor for local and remote sessions
+  if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+  else
+    export EDITOR='vscode -w'
+  fi
+
+# Personal aliases.  Overrides omzsh plugins/libs
+  if [[ $OSTYPE == darwin* ]]; then
+    alias chrome="open -a 'Google Chrome'"
+    alias code="open -a 'Visual Studio Code.app'"
+  fi
+  alias vscode='code'
+  alias vsc='code'
+  alias scode='sudo code'
+  alias svscode'sudo vscode'
+  alias svsc='sudo vsc'
+  alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+  alias kctx='kubectx'
+  alias kns='kubens'
+  alias mp='man-preview'
+  alias myip="curl http://ipecho.net/plain; echo"
+  alias satom='sudo atom'
+  alias ffs='sudo !!'
+  alias zshcfg='vscode $HOME/.zshrc'
+  alias starshipcfg='vscode $HOME/.config/starship.toml'
+  alias omzcfg='vscode ~/.oh-my-zsh'
+  alias in='task add +in'
+  alias think='tickle +1d'
+  alias rnd='task add +rnd +next +@computer +@online'
+
+#Global Aliases
+  alias -g L='| less'
+  alias -g G='| grep'
+
+# Suffix Aliases
+  alias -s {zip,ZIP}="unzip -l"
+  alias -s {md,MD,txt,TXT}='code'
+
+# enable color support of ls and also add handy aliases
+  export CLICOLOR=1
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+  alias ll='ls -alF'
+  alias la='ls -A'
+  alias l='ls -CF'
+
+# This keeps our history a little bit cleaner by leaving out commands we dont
+# care about.
+  zshaddhistory() {
+    local line=${1%%$'\n'}
+    local cmd=${line%% *}
+    # Only those that satisfy all of the following conditions are added to the history
+    [[ ${#line} -ge 5
+        && ${cmd} != ll
+        && ${cmd} != ls
+        && ${cmd} != la
+        && ${cmd} != cd
+        && ${cmd} != man
+        && ${cmd} != scp
+        && ${cmd} != vim
+        && ${cmd} != nvim
+        && ${cmd} != less
+        && ${cmd} != ping
+        && ${cmd} != open
+        && ${cmd} != file
+        && ${cmd} != which
+        && ${cmd} != whois
+        && ${cmd} != drill
+        && ${cmd} != uname
+        && ${cmd} != md5sum
+        && ${cmd} != pacman
+        && ${cmd} != xdg-open
+        && ${cmd} != traceroute
+        && ${cmd} != speedtest-cli
+    ]]
+  }
+
+# I can call timezsh() any time I want to evaluate zsh's performance
+  timezsh() {
+    shell=${1-$SHELL}
+    for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+  }
+
+# Open Google search from the terminal
+  google() {
+    open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1";
+  }
+
+# Tickle function to add tickle metadata for tasks and tick alias
+  tickle () {
+    deadline=$1
+    shift
+    in +tickle wait:$deadline $@
+  }
+  alias tick=tickle
+
+  webpage_title (){
+    wget -qO- "$*" | hxselect -s '\n' -c  'title' 2>/dev/null
+  }
+
+  read_and_review (){
+    link="$1"
+    title=$(webpage_title $link)
+    echo $title
+    descr="\"Read and review: $title\""
+    id=$(task add +next +rnr "$descr" | sed -n 's/Created task \(.*\)./\1/p')
+    task "$id" annotate "$link"
+  }
+  alias rnr=read_and_review
+
+# This query will find the most frequently issued command that is issued in the
+# current directory or any subdirectory. From https://github.com/larkery/zsh-histdb
+#   _zsh_autosuggest_strategy_histdb_top_here() {
+#     local query="select commands.argv from 
+#     history left join commands on history.command_id = commands.rowid 
+#     left join places on history.place_id = places.rowid 
+#     where places.dir LIKE '$(sql_escape $PWD)%'
+#     and commands.argv LIKE '$(sql_escape $1)%'
+#     group by commands.argv order by count(*) desc limit 1"
+#     suggestion=$(_histdb_query "$query")
+#   }
+
+# This will find the most frequently issued command issued exactly in this
+# directory, or if there are no matches it will find the most frequently issued
+# command in any directory. From https://github.com/larkery/zsh-histdb
+# _zsh_autosuggest_strategy_histdb_top() {
+#   local query="select commands.argv from
+#     history left join commands on history.command_id = commands.rowid
+#     left join places on history.place_id = places.rowid
+#     where commands.argv LIKE '$(sql_escape $1)%'
+#     group by commands.argv
+#     order by places.dir != '$(sql_escape $PWD)', count(*) desc limit 1"
+#     suggestion=$(_histdb_query "$query")
+# }
+
+# Enable starship prompt
+  eval "$(starship init zsh)"
+
+#Comment/uncomment the following to enable shell profiling
+  #zprof

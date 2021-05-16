@@ -1,0 +1,68 @@
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+color=on
+
+data.location=~/dotfiles/task
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Required by Asanawarrior.
+uda.xid.type=string
+
+#=========================
+# User Defined Attributes
+#=========================
+# Brainpower UDA
+    uda.brainpower.type=string
+    uda.brainpower.label=Brainpower
+    uda.brainpower.values=H,M,L
+    uda.brainpower.default=M
+# Estimate UDA
+    uda.estimate.type=numeric
+    uda.estimate.label=Estimate
+
+# Use the command 'task show' to see all defaults and overrides
+    context.work=+@computer or +@phone or +@online
+    context.home=+@home
+
+# Configuration for inthe.am synchronization
+    taskd.certificate=~/.config/intheam/private.certificate.pem
+    taskd.key=~/.config/intheam/private.key.pem
+    taskd.ca=~/.config/intheam/ca.cert.pem
+    taskd.server=inthe.am:53589
+    taskd.credentials=inthe_am/shannon.rush/704868ab-f6d3-4a86-aa21-86749e5463ab
+    taskd.trust=ignore hostname
+
+# Create the 'Inbox' report
+    report.in.columns           = id,description
+    report.in.description       = Inbox
+    report.in.filter            = status:pending limit:page (+in)
+    report.in.labels            = ID,Description
+# Create the 'Next' report
+    report.next.description     = Most urgent tasks
+    report.next.columns         = id,start,urgency,depends,priority,project,tags,recur,scheduled.countdown,due.remaining,until.remaining,description,estimate,brainpower
+    report.next.filter          = status:pending and +next
+    report.next.labels          = ID,Start,Urgency,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Estimate,Brainpower
+    report.next.sort            = brainpower-,priority-,urgency-
+# Files
+    data.location=~/.task
+
+# Color theme (uncomment one to use)
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/light-16.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/light-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-16.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-red-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-green-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-blue-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-violets-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-yellow-green.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-gray-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/dark-gray-blue-256.theme
+include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/solarized-dark-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/solarized-light-256.theme
+#include /usr/local/Cellar/task/2.5.3/share/doc/task/rc/no-color.theme

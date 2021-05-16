@@ -1,0 +1,106 @@
+time 1602980089
+new [description:"Install new toilet in gameroom bathroom" entry:"1602980089" modified:"1602980089" status:"pending" uuid:"959730bc-77bd-4752-96d6-02c6fe0e558e"]
+---
+time 1602983341
+new [description:"Configure Taskwarrior application for android to sync with inthe.am" entry:"1602983341" modified:"1602983341" status:"pending" uuid:"f678c53e-f058-49e8-bf23-854662a36955"]
+---
+time 1602985988
+old [description:"Install new toilet in gameroom bathroom" entry:"1602980089" modified:"1602980089" status:"pending" uuid:"959730bc-77bd-4752-96d6-02c6fe0e558e"]
+new [description:"Install new toilet in gameroom bathroom" entry:"1602980089" modified:"1602985988" status:"pending" tags:"in" uuid:"959730bc-77bd-4752-96d6-02c6fe0e558e"]
+---
+time 1602986000
+old [description:"Configure Taskwarrior application for android to sync with inthe.am" entry:"1602983341" modified:"1602983341" status:"pending" uuid:"f678c53e-f058-49e8-bf23-854662a36955"]
+new [description:"Configure Taskwarrior application for android to sync with inthe.am" entry:"1602983341" modified:"1602986000" status:"pending" tags:"in" uuid:"f678c53e-f058-49e8-bf23-854662a36955"]
+---
+time 1602988609
+new [description:"Configure custom starship module to display inbox count in shell prompt" entry:"1602988609" modified:"1602988609" status:"pending" tags:"in" uuid:"696b8216-9ef4-4a7c-a93b-0082f860bfd7"]
+---
+time 1602990573
+old [description:"Configure custom starship module to display inbox count in shell prompt" entry:"1602988609" modified:"1602988609" status:"pending" tags:"in" uuid:"696b8216-9ef4-4a7c-a93b-0082f860bfd7"]
+new [description:"Configure custom starship module to display inbox count in shell prompt" end:"1602990573" entry:"1602988609" modified:"1602990573" status:"completed" tags:"in" uuid:"696b8216-9ef4-4a7c-a93b-0082f860bfd7"]
+---
+time 1602991312
+new [description:"Install new toilet in the gameroom bathroom" entry:"1602991312" modified:"1602991312" project:"new.project" status:"pending" tags:"next" uuid:"258532fe-5506-4011-9eb9-940247ce1a2e"]
+---
+time 1602991428
+new [description:"Unpack new toilet" entry:"1602991428" modified:"1602991428" project:"Toilet" status:"pending" tags:"next,@home" uuid:"faf00ce9-432b-4061-bfd8-7edca24570e3"]
+---
+time 1602991470
+new [description:"Remove broken toilet" entry:"1602991470" modified:"1602991470" project:"Toilet" status:"pending" tags:"next,@home" uuid:"44c9ff3b-e406-4a39-bac6-515677622aa5"]
+---
+time 1602991540
+old [description:"Remove broken toilet" entry:"1602991470" modified:"1602991470" project:"Toilet" status:"pending" tags:"next,@home" uuid:"44c9ff3b-e406-4a39-bac6-515677622aa5"]
+new [description:"Remove broken toilet" entry:"1602991470" modified:"1602991540" project:"Toilet" status:"pending" tags:"@home" uuid:"44c9ff3b-e406-4a39-bac6-515677622aa5"]
+---
+time 1602991627
+new [description:"Inspect subfloor" entry:"1602991627" modified:"1602991627" project:"Toilet" status:"pending" tags:"@home" uuid:"3a8b10c2-ce22-48d8-b69b-7b18a0a6635d"]
+---
+time 1602991652
+new [description:"Install new wax ring" entry:"1602991652" modified:"1602991652" project:"Toilet" status:"pending" tags:"@home" uuid:"4467ecaa-27f1-4113-bd13-49435da8c44d"]
+---
+time 1602991657
+old [description:"Install new toilet in gameroom bathroom" entry:"1602980089" modified:"1602985988" status:"pending" tags:"in" uuid:"959730bc-77bd-4752-96d6-02c6fe0e558e"]
+new [description:"Install new toilet in gameroom bathroom" end:"1602991655" entry:"1602980089" modified:"1602991657" status:"deleted" tags:"in" uuid:"959730bc-77bd-4752-96d6-02c6fe0e558e"]
+---
+time 1602991847
+new [description:"Install new toilet" entry:"1602991847" modified:"1602991847" project:"Toilet" status:"pending" tags:"@home" uuid:"c24b6dc0-b32c-4d4f-8364-2a829182f215"]
+---
+time 1602991861
+new [description:"Bolt new toilet to floor" entry:"1602991861" modified:"1602991861" project:"Toilet" status:"pending" tags:"@home" uuid:"1b448b6d-5274-4234-922a-0d986e777ff9"]
+---
+time 1602991884
+new [description:"Hook up water line" entry:"1602991884" modified:"1602991884" project:"Toilet" status:"pending" tags:"@home" uuid:"e0481eb1-f43a-40bc-a012-5e88825d4515"]
+---
+time 1602991995
+new [description:"Test water line hookup and tank" entry:"1602991995" modified:"1602991995" project:"Toilet" status:"pending" tags:"@home" uuid:"bfd4f667-0ef9-435a-8887-812a25865cac"]
+---
+time 1602992016
+new [description:"Install new seat.  TIGHTEN" entry:"1602992016" modified:"1602992016" project:"Toilet" status:"pending" tags:"@home" uuid:"0796a95e-c409-48f5-bc65-1ed62efea888"]
+---
+time 1602992097
+new [description:"Dispose of broken toilet in box" entry:"1602992097" modified:"1602992097" project:"Toilet" status:"pending" tags:"@home" uuid:"ddcc0703-7804-4e03-8575-ca61b0b970b7"]
+---
+time 1602992139
+old [description:"Install new toilet in the gameroom bathroom" entry:"1602991312" modified:"1602991312" project:"new.project" status:"pending" tags:"next" uuid:"258532fe-5506-4011-9eb9-940247ce1a2e"]
+new [description:"Install new toilet in the gameroom bathroom" end:"1602992139" entry:"1602991312" modified:"1602992139" project:"new.project" status:"completed" tags:"next" uuid:"258532fe-5506-4011-9eb9-940247ce1a2e"]
+---
+time 1602996195
+old [description:"Configure Taskwarrior application for android to sync with inthe.am" entry:"1602983341" modified:"1602986000" status:"pending" tags:"in" uuid:"f678c53e-f058-49e8-bf23-854662a36955"]
+new [description:"Configure Taskwarrior application for android to sync with inthe.am" end:"1602996173" entry:"1602983341" modified:"1602996173" status:"completed" tags:"in" uuid:"f678c53e-f058-49e8-bf23-854662a36955"]
+---
+time 1602997791
+new [brainpower:"M" description:"Set up project for Secrets Management Contest" entry:"1602997791" modified:"1602997791" status:"pending" tags:"in" uuid:"2462f9b5-7c1b-4cbc-8d8c-5f9cf814245a"]
+---
+time 1603052404
+new [brainpower:"M" description:"Get time with Brian, Mike, David, and ...? For contest planning" entry:"1603052404" modified:"1603052404" project:"secman.contest" status:"pending" tags:"next" uuid:"43554b51-93f9-4396-8980-3ed358043dda"]
+---
+time 1603076170
+new [brainpower:"M" description:"X-acto knife for Andreas's Coat of Arms" entry:"1603076170" modified:"1603076170" status:"pending" tags:"in,@errands" uuid:"f2708048-3af5-4567-8480-f5fa797dc2e7"]
+---
+time 1603076386
+new [brainpower:"M" description:"Screen wipes" entry:"1603076386" modified:"1603076386" status:"pending" tags:"in,@errands" uuid:"6aa56e73-2d5d-4b3c-a32e-62fdd3acc400"]
+---
+time 1603076502
+new [brainpower:"M" description:"Wrap mom's bithday presents" entry:"1603076502" modified:"1603076502" status:"pending" tags:"in,@home" uuid:"5241eee0-18d8-40e8-8486-2506340647e0"]
+---
+time 1603076589
+new [brainpower:"M" description:"Find a cleaning service that can come this week" entry:"1603076589" modified:"1603076589" project:"home.cleanup" status:"pending" tags:"next" uuid:"34106ccc-26f1-4793-a8d2-1c957f460547"]
+---
+time 1603118922
+new [brainpower:"M" description:"Bill 5 hours for State of RI for week of 10\/16" entry:"1603118922" modified:"1603118922" status:"pending" tags:"in" uuid:"e60311ff-6fb2-4642-bde7-ee2fe3d89d54"]
+---
+time 1603123369
+new [brainpower:"M" description:"Create project to track Andreas todos" entry:"1603123369" modified:"1603123369" status:"pending" tags:"in" uuid:"0fbbda0e-257e-42b2-a40a-329567ef6869"]
+---
+time 1603140062
+old [brainpower:"M" description:"X-acto knife for Andreas's Coat of Arms" entry:"1603076170" modified:"1603076170" status:"pending" tags:"in,@errands" uuid:"f2708048-3af5-4567-8480-f5fa797dc2e7"]
+new [brainpower:"M" description:"X-acto knife for Andreas's Coat of Arms" end:"1603140062" entry:"1603076170" modified:"1603140062" status:"completed" tags:"in,@errands" uuid:"f2708048-3af5-4567-8480-f5fa797dc2e7"]
+---
+time 1603140067
+old [brainpower:"M" description:"Wrap mom's bithday presents" entry:"1603076502" modified:"1603076502" status:"pending" tags:"in,@home" uuid:"5241eee0-18d8-40e8-8486-2506340647e0"]
+new [brainpower:"M" description:"Wrap mom's bithday presents" end:"1603140067" entry:"1603076502" modified:"1603140067" status:"completed" tags:"in,@home" uuid:"5241eee0-18d8-40e8-8486-2506340647e0"]
+---
+time 1603292551
+old [brainpower:"M" description:"Screen wipes" entry:"1603076386" modified:"1603076386" status:"pending" tags:"in,@errands" uuid:"6aa56e73-2d5d-4b3c-a32e-62fdd3acc400"]
+new [brainpower:"M" description:"Screen wipes" end:"1603292551" entry:"1603076386" modified:"1603292551" status:"completed" tags:"in,@errands" uuid:"6aa56e73-2d5d-4b3c-a32e-62fdd3acc400"]
+---
