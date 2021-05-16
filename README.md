@@ -66,5 +66,17 @@ has some great documentation about this process.
 
     ```bash
     git clone git@p.github.com:<your_gh_repo>/dotfiles.git \
-        .dotfiles
+        ~/.dotfiles
     ```
+
+1. Now we just cd into the directory and run our bootstrap.sh to set up
+   our symlinks
+
+   ```bash
+    cd ~/.dotfiles
+    ./bootstrap.sh
+   ```
+
+### Windows (WSLv2)
+
+1. TBD
