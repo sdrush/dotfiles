@@ -77,6 +77,27 @@ has some great documentation about this process.
     ./bootstrap.sh
    ```
 
+### Linux
+
+I don't generally have to interact with my work github repo from
+VMs, so the general steps are as above just skipping the second
+key and ~/.ssh/config alias.
+
+1. Set up personal ssh-key and alias (See Above)
+1. Clone the repo
+
+   ```bash
+    git clone git@p.github.com:<your_gh_repo>/dotfiles.git \
+        ~/.dotfiles
+   ```
+
+1. Run the bootstrap
+
+    ```bash
+        cd ~/.dotfiles
+        ./bootstrap.sh
+    ```
+
 ### Windows (WSLv2)
 
 1. TBD
