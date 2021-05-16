@@ -20,9 +20,9 @@ zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
 
 # Source our OS-specific files here
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  source $DOTFILES/macos/macos.zshrc
+  source $DOTFILES/macos/zshrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  source $DOTFILES/linux/linux.zshrc
+  source $DOTFILES/linux/zshrc
 elif [[ "$OSTYPE" == "cygwin" ]]; then
   # I'm not even sure I'm going to do the work for Cygwin.  This is 
   # mostly for historical purposes
