@@ -88,7 +88,7 @@ key and ~/.ssh/config alias.
 
    ```bash
     git clone git@p.github.com:<your_gh_repo>/dotfiles.git \
-        ~/.dotfiles
+        ~/.dotfiles --recurse-submodules
    ```
 
 1. Run the bootstrap
