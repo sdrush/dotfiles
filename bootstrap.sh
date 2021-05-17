@@ -22,3 +22,4 @@ ln -sf "$HOME/.dotfiles/vimrc" "$HOME/.vimrc"
 # Have to use ln -sfn for idempotency with directories 
 ln -sfn "$HOME/.dotfiles/oh-my-zsh/" "$HOME/.oh-my-zsh"
 ln -sfn "$HOME/.dotfiles/vim/" "$HOME/.vim"
+ln -sfn "$HOME/.dotfiles/zplug" "$HOME/.zplug"
