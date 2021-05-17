@@ -20,9 +20,9 @@ zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
 
 # Source our OS-specific files here
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  source $DOTFILES/macos/macos.zshrc
+  source $DOTFILES/macos/zshrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  source $DOTFILES/linux/linux.zshrc
+  source $DOTFILES/linux/zshrc
 elif [[ "$OSTYPE" == "cygwin" ]]; then
   # I'm not even sure I'm going to do the work for Cygwin.  This is 
   # mostly for historical purposes
@@ -49,8 +49,7 @@ zplug "junegunn/fzf", from:gh-r, as:command, rename-to:fzf, use:"*${(L)$(uname -
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
 zplug "larkery/zsh-histdb", from:github, as:plugin, rename-to:histdb, use:"*.zsh"
 zplug "skywind3000/z.lua", from:github, as:plugin
-zplug "djui/alias-tips", from:gh-r, as:command, rename-to:alias-tips
-zplug "djui/alias-tips"
+zplug "djui/alias-tips", from:github, as:plugin
 
 # ZPlug Local Modules
 zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc"

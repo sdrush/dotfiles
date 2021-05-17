@@ -1,27 +1,40 @@
-# Personal aliases.  Overrides omzsh plugins/libs
-if [[ $OSTYPE == darwin* ]]; then
-    alias chrome="open -a 'Google Chrome'"
-    alias code="open -a 'Visual Studio Code.app'"
+################################################
+# Filename: $DOTFILES/zsh/aliases
+################################################
+
+# Source our os-specific aliases first
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    source $DOTFILES/macos/aliases
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    source $DOTFILES/linux/aliases
 fi
-alias vscode='code'
-alias vsc='code'
-alias scode='sudo code'
-alias svscode'sudo vscode'
-alias svsc='sudo vsc'
+
+# Some useful aliases
+
+# These make it marginally more difficult to shoot myself in the foot
+
+alias rm='rm -i'
+alias cp='cp -i'
+
+# Default to df being human readable
+alias df='df -h'
+
+alias dotcfg='$EDITOR $DOTFILES'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias kctx='kubectx'
 alias kns='kubens'
 alias mp='man-preview'
 alias myip="curl http://ipecho.net/plain; echo"
+alias ports='netstat -tulanp'
 alias ffs='sudo !!'
-alias zshcfg='vscode $HOME/.zshrc'
-alias starshipcfg='vscode $HOME/.config/starship.toml'
-alias omzcfg='vscode ~/.oh-my-zsh'
 alias in='task add +in'
 alias think='tickle +1d'
 alias tick='tickle'
 alias rnr='read_and_review'
 alias rnd='task add +rnd +next +@computer +@online'
+alias h='history'
+alias j='jobs -l'
 
 #Global Aliases
 alias -g L='| less'
@@ -41,3 +54,11 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....'cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
