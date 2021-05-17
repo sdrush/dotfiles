@@ -50,17 +50,17 @@ uda.xid.type=string
     data.location=~/.dotfiles/task
 
 # Color theme (uncomment one to use)
-#include task/themes/2.5.3/light-16.theme
-#include task/themes/2.5.3/light-256.theme
-#include task/themes/2.5.3/dark-16.theme
-#include task/themes/2.5.3/dark-256.theme
-#include task/themes/2.5.3/dark-red-256.theme
-#include task/themes/2.5.3/dark-green-256.theme
-#include task/themes/2.5.3/dark-blue-256.theme
-#include task/themes/2.5.3/dark-violets-256.theme
-#include task/themes/2.5.3/dark-yellow-green.theme
-#include task/themes/2.5.3/dark-gray-256.theme
-#include task/themes/2.5.3/dark-gray-blue-256.theme
-include task/themes/2.5.3/solarized-dark-256.theme
-#include task/themes/2.5.3/solarized-light-256.theme
-#include task/themes/2.5.3/no-color.theme
+#include ~/.dotfiles/task/themes/2.5.3/light-16.theme
+#include ~/.dotfiles/task/themes/2.5.3/light-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-16.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-red-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-green-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-blue-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-violets-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-yellow-green.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-gray-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/dark-gray-blue-256.theme
+include  ~/.dotfiles/task/themes/2.5.3/solarized-dark-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/solarized-light-256.theme
+#include ~/.dotfiles/task/themes/2.5.3/no-color.theme

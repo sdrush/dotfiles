@@ -23,13 +23,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   source $DOTFILES/macos/zshrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   source $DOTFILES/linux/zshrc
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-  # I'm not even sure I'm going to do the work for Cygwin.  This is 
-  # mostly for historical purposes
-elif [[ "$OSTYPE" == "msys" ]]; then
-  # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-elif [[ "$OSTYPE" == "win32" ]]; then
-  # I'm not sure this can happen.
 fi
 
 # Oh-my-zsh Plugins
