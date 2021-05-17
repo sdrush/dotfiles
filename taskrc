@@ -47,7 +47,7 @@ uda.xid.type=string
     report.next.labels          = ID,Start,Urgency,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Estimate,Brainpower
     report.next.sort            = brainpower-,priority-,urgency-
 # Files
-    data.location=~/.task
+    data.location=~/.dotfiles/task
 
 # Color theme (uncomment one to use)
 #include task/themes/2.5.3/light-16.theme
