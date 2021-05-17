@@ -1,3 +1,8 @@
+# Create a directory and immediately cd to it
+take() {
+  mkdir -p $@ && cd ${@:$#}
+}
+
 # I can call timezsh() any time I want to evaluate zsh's performance
 timezsh() {
     shell=${1-$SHELL}
