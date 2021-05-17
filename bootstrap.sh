@@ -5,16 +5,9 @@ mkdir -p $HOME/.dotfiles
 
 # Run our os-specific dependency installations
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  source $DOTFILES/macos/macos.bootstrap.sh
+  source $DOTFILES/macos/bootstrap.sh
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  source $DOTFILES/linux/linux.bootstrap.sh
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-  # I'm not even sure I'm going to do the work for Cygwin.  This is 
-  # mostly for historical purposes
-elif [[ "$OSTYPE" == "msys" ]]; then
-  # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-elif [[ "$OSTYPE" == "win32" ]]; then
-  # I'm not sure this can happen.
+  source $DOTFILES/linux/bootstrap.sh
 fi
 
 # Set up all our file symlinks

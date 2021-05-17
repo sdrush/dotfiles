@@ -10,4 +10,6 @@ if [[ "$distro" == "debian" ]]; then
   source $DOTFILES/linux/debian.bootstrap.sh
 elif [[ "$distro" == "centos" ]]; then
   source $DOTFILES/linux/centos.bootstrap.sh
+[[ "$distro" == "fedora" ]]; then
+  source $DOTFILES/linux/fedora.bootstrap.sh 
 fi
