@@ -17,7 +17,7 @@ has some great documentation about this process.
         -f ~/.ssh/id_ed25519_personal_email_example_com \
         -C "personal.email@example.com"
     ssh-keygen -t ed25519 \
-        -f ~/.ssh/id_ed22519_work_email_example_com \
+        -f ~/.ssh/id_ed25519_work_email_example_com \
         -C "work.email@example.com"
     ```
 
