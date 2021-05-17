@@ -87,7 +87,7 @@ key and ~/.ssh/config alias.
 1. Clone the repo
 
    ```bash
-    git clone git@p.github.com:<your_gh_repo>/dotfiles.git \
+    git clone git@p.github.com:sdrush/dotfiles.git \
         ~/.dotfiles --recurse-submodules
    ```
 
