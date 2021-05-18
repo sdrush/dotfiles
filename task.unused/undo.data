@@ -164,3 +164,6 @@ time 1621270598
 old [brainpower:"M" description:"Find a cleaning service that can come this week" entry:"1603076589" modified:"1603076589" project:"home.cleanup" status:"pending" tags:"next" uuid:"34106ccc-26f1-4793-a8d2-1c957f460547"]
 new [brainpower:"M" description:"Find a cleaning service that can come this week" end:"1621270597" entry:"1603076589" modified:"1621270598" project:"home.cleanup" status:"deleted" tags:"next" uuid:"34106ccc-26f1-4793-a8d2-1c957f460547"]
 ---
+time 1621290416
+new [brainpower:"M" description:"Clean up back-side yard" entry:"1621290416" modified:"1621290416" status:"pending" uuid:"a292eac2-121f-471f-9d2d-3f8d8d193791"]
+---
