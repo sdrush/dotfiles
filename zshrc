@@ -1,5 +1,15 @@
+#!/usr/bin/env zsh
+
+# vim:syntax=zsh
+# vim:filetype=zsh
+
+# for profiling zsh
+# https://unix.stackexchange.com/a/329719/27109
+#
+################################################
 # Uncomment the following line to enable the native zsh profiling tool
 #export ZPROF=true
+################################################
 if [ $ZPROF ]; then
   zmodload zsh/zprof
 fi
@@ -18,11 +28,11 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # Set up our Cobalt theme
 zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
 
-# Source our OS-specific files here
+# Source our OS-specific files here.  Using zplug to manage it all
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  source $DOTFILES/macos/zshrc
+  zplug "${DOTFILES}/macos", from:local, use:"*.zshrc"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  source $DOTFILES/linux/zshrc
+  zplug "${DOTFILES}/linux", from:local, use:"*.zshrc"
 fi
 
 # Oh-my-zsh Plugins
@@ -34,22 +44,23 @@ zplug "plugins/bgnotify", from:oh-my-zsh
 zplug "lib/*.zsh", from:oh-my-zsh
 
 # ZPlug External Modules
-zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # ZPlug GitHub Modules
 zplug "junegunn/fzf", from:gh-r, as:command, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
 zplug "larkery/zsh-histdb", from:github, as:plugin, rename-to:histdb, use:"*.zsh"
-zplug "skywind3000/z.lua", from:github, as:plugin
+zplug "skywind3000/z.lua", from:github, as:plugin, defer:2
 zplug "djui/alias-tips", from:github, as:plugin
 
 # ZPlug Local Modules
-zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc"
+zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc", defer:2
+zplug "${DOTFILES}/macos", from:local, use:"*.zshenv", defer:2
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
-if ! zplug check; then
+if ! zplug check ; then
     zplug install
 fi
 
@@ -63,6 +74,9 @@ source $DOTFILES/zsh/functions
 
 # Enable starship prompt
 eval "$(starship init zsh)"
+
+# Hook the shell for direnv
+eval "$(direnv hook zsh)"
 
 #################################################################
 # DO NOT ADD LINES BELOW THIS SECTION
