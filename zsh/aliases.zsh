@@ -1,19 +1,17 @@
-################################################
-# Filename: $DOTFILES/zsh/aliases
-################################################
+#!/usr/bin/env zsh
 
-# Source our os-specific aliases first
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    source $DOTFILES/macos/aliases
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    source $DOTFILES/linux/aliases
-fi
-
-# Some useful aliases
+########################################################################
+#
+# Filename: .dotfiles/zsh/aliases.zsh
+#
+# Tl;dr Common aliases.  Run by zshrc as a zplug local module
+#
+# Author: Shannon Rush (shannondotrushatgmaildotcom)
+# Date: May 2021
+#
+########################################################################
 
 # These make it marginally more difficult to shoot myself in the foot
-
 alias rm='rm -i'
 alias cp='cp -i'
 
@@ -51,6 +49,8 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+# A couple of useful ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'

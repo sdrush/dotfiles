@@ -1,17 +1,25 @@
+#!/usr/bin/env zsh
+
+########################################################################
+#
+# Filename: .dotfiles/zsh/functions.zsh
+#
+# Tl;dr Common functions file.  Run from zshrc by zplug
+#
+# Author: Shannon Rush (shannondotrushatgmaildotcom)
+# Date: May 2021
+#
+########################################################################
+
 # Create a directory and immediately cd to it
 take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
-# I can call timezsh() any time I want to evaluate zsh's performance
+# timezsh() gives me a snapshot of zsh load times and performance
 timezsh() {
     shell=${1-$SHELL}
     for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-
-# Open Google search from the terminal
-google() {
-    open /Applications/Google\ Chrome.app/ "http://www.google.com/search?q= $1"
 }
 
 # Tickle function to add tickle metadata for tasks and tick alias

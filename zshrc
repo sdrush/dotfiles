@@ -1,25 +1,38 @@
 #!/usr/bin/env zsh
 
-# vim:syntax=zsh
-# vim:filetype=zsh
-
-# for profiling zsh
-# https://unix.stackexchange.com/a/329719/27109
+########################################################################
 #
-################################################
-# Uncomment the following line to enable the native zsh profiling tool
-#export ZPROF=true
-################################################
+# Filename: .dotfiles/zshrc
+#
+# Tl;dr ~/.zshrc symlinked to ~/.dotfiles/zshrc.  Main zshrc file
+#
+# Author: Shannon Rush (shannondotrushatgmaildotcom)
+# Date: May 2021
+#
+# Description: 
+#   This is the primary .zshrc file and gets symlinked to ~/.zshrc. By the
+#   bootstrap script.  This script loads all of our common zplug 
+#   configuration, aliases and functions.  It also uses zplug local modules
+#   to load all of the *.zsh files in the zsh (common), linux, and macos
+#   directories.  
+#
+########################################################################
+#
+# For profiling zsh: https://unix.stackexchange.com/a/329719/27109
+#
+# Uncomment the following line to enable the native zsh profiling tool:
+# export ZPROF=true
+#
+########################################################################
+
 if [ $ZPROF ]; then
   zmodload zsh/zprof
 fi
 
-# Source our environment first
+# Source our local environment first
 source ~/.zshenv
 
-################################################
 # ZPlug Configuration
-################################################
 source $ZPLUG_HOME/init.zsh
 
 # Set up ZPlug to manage itself
@@ -28,12 +41,14 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # Set up our Cobalt theme
 zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
 
-# Using zplug to load all our os-specific zshrc, functions and aliases
+# Using zplug to load our zshrc, functions and aliases
+zplug "${DOTFILES}/zsh", from:local, use:"*.zsh"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   zplug "${DOTFILES}/macos", from:local, use:"*.zsh"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   zplug "${DOTFILES}/linux", from:local, use:"*zsh"
 fi
+
 
 # Oh-my-zsh Plugins
 zplug "plugins/git", from:oh-my-zsh
@@ -57,8 +72,7 @@ zplug "djui/alias-tips", from:github, as:plugin
 # ZPlug Local Modules
 zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc", defer:2
 
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
+# zplug check returns true if all packages are installed, so run install if false
 if ! zplug check ; then
     zplug install
 fi
