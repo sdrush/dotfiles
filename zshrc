@@ -28,11 +28,11 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # Set up our Cobalt theme
 zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
 
-# Source our OS-specific files here.  Using zplug to manage it all
+# Using zplug to load all our os-specific zshrc, functions and aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  zplug "${DOTFILES}/macos", from:local, use:"*.zshrc"
+  zplug "${DOTFILES}/macos", from:local, use:"*.zsh"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  zplug "${DOTFILES}/linux", from:local, use:"*.zshrc"
+  zplug "${DOTFILES}/linux", from:local, use:"*zsh"
 fi
 
 # Oh-my-zsh Plugins
@@ -56,7 +56,6 @@ zplug "djui/alias-tips", from:github, as:plugin
 
 # ZPlug Local Modules
 zplug "${HOME}/google-cloud-sdk", from:local, use:"*.zsh.inc", defer:2
-zplug "${DOTFILES}/macos", from:local, use:"*.zshenv", defer:2
 
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
@@ -67,10 +66,6 @@ fi
 # source plugins 
 zplug load # --verbose
 autoload -Uz add-zsh-hook
-
-# Aliases and Functions from dotfiles directory
-source $DOTFILES/zsh/aliases
-source $DOTFILES/zsh/functions
 
 # Enable starship prompt
 eval "$(starship init zsh)"
