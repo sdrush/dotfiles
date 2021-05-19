@@ -74,6 +74,7 @@ zshaddhistory() {
     local cmd=${line%% *}
     # Only those that satisfy all of the following conditions are added to the history
     [[ ${#line} -ge 5 && \
+    ${cmd} != l && \
     ${cmd} != ll && \
     ${cmd} != ls && \
     ${cmd} != la && \
