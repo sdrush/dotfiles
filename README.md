@@ -30,7 +30,23 @@ has some great documentation about this process.
         -C "work.email@example.com"
     ```
 
-1. Open  ~/.ssh/config file, then add the following lines.
+   1. Update for using yubikey 2fa signed keys.
+
+    The `-O verify-required` flag forced a pin check and the
+    `-O resident` flag stores the keyref in my yubikey so I can take it to another 
+    machine should I so desire.
+
+    ```bash
+        ssh-keygen -t ed25519-sk -O verify-required -O resident \
+            -f ~/.ssh/id_ed25519_sk_personal_email_example_com \
+            -C "personal.email@.example.com"
+
+        ssh-keygen -t ed25519-sk -O verify-required -O resident \
+            -f ~/.ssh/id_ed25519_sk_work_email_example_com \
+            -C "work.email@.example.com"
+    ```
+
+2. Open  ~/.ssh/config file, then add the following lines.
 
     If the SSH keyfile has a different name or path than the example
     code, modify the filename or path to match your current setup.
@@ -51,7 +67,7 @@ has some great documentation about this process.
         UseKeychain yes
     ```
 
-1. While we are in ~/.ssh/config, lets set up our GitHub aliases.
+3. While we are in ~/.ssh/config, lets set up our GitHub aliases.
 
     There is probably a better way to do this but this works for now and
     forces me to intentionally use the right alias for each one instead
@@ -72,12 +88,12 @@ has some great documentation about this process.
     IdentityFile ~/.ssh/id_ed25519_personal_email_example_com
     ```
 
-1. Copy our public keys into our two GitHub accounts.  
+4. Copy our public keys into our two GitHub accounts.  
     Log in and go to the account bubble and select  
     Settings->SSH and GPG Keys->New SSH Key
     Give the new key a name that identifies the type and system on which
     it was generated like "Macbook ed25519 Personal Key"
-1. Time to clone our repo.
+5. Time to clone our repo.
     I store my dotfiles in my personal github repo.  I use the same repo
     on pretty much every device I own - Windows (WSLv2), MacOS, Linux,
     Raspberry Pi(WIP) and I didn't want it tied to my employers account.
@@ -88,7 +104,7 @@ has some great documentation about this process.
         ~/.dotfiles
     ```
 
-1. Now we just cd into the directory and run our bootstrap.sh to set up
+6. Now we just cd into the directory and run our bootstrap.sh to set up
    our symlinks
 
    ```bash
