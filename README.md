@@ -1,5 +1,14 @@
 # My dotfiles Repository
 
+## Features (aka what works so far)
+
+- Common zshrc, aliases and functions
+- ZPlug
+- zsh-histdb
+- zlua
+- bgnotify (only tested on iterm2)
+- 
+
 ## Set up for a new machine
 
 The first thing we need to do is make sure our ssh keys are set up
@@ -28,8 +37,18 @@ has some great documentation about this process.
 
     ```bash
     Host *
-    AddKeysToAgent yes
-    UseKeychain yes
+        AddKeysToAgent yes
+        UseKeychain yes
+    ```
+
+    At some point this changed and you might eed to add the following line 
+    to the ssh config *before* the above lines.
+
+    ```bash
+    Host *
+        IgnoreUnknown AddKeysToAgent,UseKeychain
+        AddKeysToAgent yes
+        UseKeychain yes
     ```
 
 1. While we are in ~/.ssh/config, lets set up our GitHub aliases.
