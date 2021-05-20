@@ -61,6 +61,6 @@ uda.xid.type=string
 #include task/themes/2.5.3/dark-yellow-green.theme
 #include task/themes/2.5.3/dark-gray-256.theme
 #include task/themes/2.5.3/dark-gray-blue-256.theme
-include solarized-dark-256.theme
+include task/themes/2.5.3/solarized-dark-256.theme
 #include task/themes/2.5.3/solarized-light-256.theme
 #include task/themes/2.5.3/no-color.theme
