@@ -28,11 +28,11 @@ uda.xid.type=string
     context.home=+@home
 
 # Configuration for inthe.am synchronization
-    taskd.certificate=~/.config/intheam/private.certificate.pem
-    taskd.key=~/.config/intheam/private.key.pem
-    taskd.ca=~/.config/intheam/ca.cert.pem
+    taskd.certificate=~/.task/creds/private.certificate.pem
+    taskd.key=~/.task/creds/private.key.pem
+    taskd.ca=~/.task/creds/ca.cert.pem
     taskd.server=inthe.am:53589
-    taskd.credentials=inthe_am/shannon.rush/704868ab-f6d3-4a86-aa21-86749e5463ab
+    taskd.credentials=inthe_am/shannon.rush3d92d96665a64a6e/92e54c5f-300f-4814-9ff1-bdd0fce533e5
     taskd.trust=ignore hostname
 
 # Create the 'Inbox' report
