@@ -1,3 +1,4 @@
+#!/bin/sh
 ################################################
 # Default file name $DOTFILES/linux/fedora.bootstrap.sh
 ################################################
@@ -9,4 +10,4 @@ sudo dnf install lua5.3 -y
 sudo dnf install taskwarrior -y
 
 # Install or update starship
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"%
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
