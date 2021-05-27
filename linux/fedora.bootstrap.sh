@@ -3,7 +3,6 @@
 # Default file name $DOTFILES/linux/fedora.bootstrap.sh
 ################################################
 
-
 # First lets install any local packages we need
 sudo dnf upgrade -y
 sudo dnf install lua5.3 -y
