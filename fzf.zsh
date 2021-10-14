@@ -1,7 +1,7 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+if [[ ! "$PATH" == */usr/local/opt/zplug/bin/fzf* ]]; then
+  export PATH="${PATH:+${PATH}:}/usr/local/opt/zplug/bin/fzf"
 fi
 
 # Auto-completion

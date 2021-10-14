@@ -87,6 +87,9 @@ eval "$(starship init zsh)"
 # Hook the shell for direnv
 eval "$(direnv hook zsh)"
 
+# Set up our envvar for Docker
+eval $(minikube docker-env)
+
 #################################################################
 # DO NOT ADD LINES BELOW THIS SECTION
 # This needs to be the final section for zprof to work correctly
