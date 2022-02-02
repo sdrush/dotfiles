@@ -19,6 +19,7 @@ sudo pacman install taskwarrior
 sudo wget -O /tmp/starship-install.sh https://starship.rs/install.sh
 sudo chmod 755 /tmp/starship-install.sh
 /tmp/starship-install.sh -f
+rm -f /tmp/starship-install.sh
 
 # Figure out what distro we are running (centos, debian, fedora)
 #distro=`cat /etc/*-release | awk -F= '/^ID=/ {gsub(/"/, ""); print $2}'`
