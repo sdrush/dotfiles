@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/zsh
 
 # Create our dotfiles directory
 mkdir -p $HOME/.dotfiles
