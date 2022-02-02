@@ -15,7 +15,7 @@ sudo pacman install lua5.3
 sudo pacman install taskwarrior
 
 # Install or update starship
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+sh -c "$(curl -fsSL https://starship.rs/install.sh) -f"
 
 # Figure out what distro we are running (centos, debian, fedora)
 #distro=`cat /etc/*-release | awk -F= '/^ID=/ {gsub(/"/, ""); print $2}'`
