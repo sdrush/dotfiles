@@ -64,7 +64,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # ZPlug GitHub Modules
 zplug "junegunn/fzf/releases", from:gh-r, as:command, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
-zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
+# zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
 zplug "larkery/zsh-histdb", from:github, as:plugin, rename-to:histdb, use:"*.zsh"
 zplug "skywind3000/z.lua", from:github, as:plugin, defer:2
 zplug "djui/alias-tips", from:github, as:plugin

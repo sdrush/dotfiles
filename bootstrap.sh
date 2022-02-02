@@ -23,3 +23,6 @@ ln -sf "$HOME/.dotfiles/vimrc" "$HOME/.vimrc"
 ln -sfn "$HOME/.dotfiles/oh-my-zsh/" "$HOME/.oh-my-zsh"
 ln -sfn "$HOME/.dotfiles/vim/" "$HOME/.vim"
 ln -sfn "$HOME/.dotfiles/zplug" "$HOME/.zplug"
+
+# Run a zplug install here so we dont have to wait for it on first login
+zplug install
