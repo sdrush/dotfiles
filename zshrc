@@ -10,7 +10,7 @@
 # Date: May 2021
 #
 # Description: 
-#   This is the primary .zshrc file and gets symlinked to ~/.zshrc. By the
+#   This is the primary .zshrc file and gets symlinked to ~/.zshrc by the
 #   bootstrap script.  This script loads all of our common zplug 
 #   configuration, aliases and functions.  It also uses zplug local modules
 #   to load all of the *.zsh files in the zsh (common), linux, and macos
@@ -63,7 +63,7 @@ zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # ZPlug GitHub Modules
-zplug "junegunn/fzf", from:gh-r, as:command, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
+zplug "junegunn/fzf/releases", from:gh-r, as:command, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
 zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
 zplug "larkery/zsh-histdb", from:github, as:plugin, rename-to:histdb, use:"*.zsh"
 zplug "skywind3000/z.lua", from:github, as:plugin, defer:2
@@ -88,7 +88,7 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
 # Set up our envvar for Docker
-eval $(minikube docker-env)
+eval $(minikube -p minikube docker-env)
 
 #################################################################
 # DO NOT ADD LINES BELOW THIS SECTION
