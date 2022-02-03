@@ -19,4 +19,4 @@ sudo pacman install taskwarrior
 sudo wget -O /tmp/starship-install.sh https://starship.rs/install.sh
 sudo chmod 755 /tmp/starship-install.sh
 /tmp/starship-install.sh -f
-rm -f /tmp/starship-install.sh
+sudo rm -f /tmp/starship-install.sh
