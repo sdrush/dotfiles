@@ -11,8 +11,7 @@ sudo ln -sv /usr/local/bin/pacapt /usr/local/bin/pacman || true
 # Install our packaged dependencies
 sudo pacman update
 sudo pacman upgrade
-sudo pacman install -y \
-    lua5.3 \
+sudo pacman install lua5.3 \
     taskwarrior \
     zplug
 
