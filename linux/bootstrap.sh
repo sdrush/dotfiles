@@ -9,11 +9,10 @@ sudo chmod 755 /usr/local/bin/pacapt
 sudo ln -sv /usr/local/bin/pacapt /usr/local/bin/pacman || true
 
 # Install our packaged dependencies
-sudo pacman update
-sudo pacman upgrade
-sudo pacman install lua5.3 \
-    taskwarrior \
-    zplug
+sudo pacman -Syu
+sudo pacman -S lua5.3
+sudo pacman -S taskwarrior
+sudo pacman -S zplug
 
 # Install or update starship
 #sh -c "$(curl -fsSL https://starship.rs/install.sh) -f"
