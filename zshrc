@@ -88,7 +88,10 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
 # Set up our envvar for Docker
-eval $(minikube -p minikube docker-env)
+if [ 'command -v minikube' ]; then
+  eval $(minikube -p minikube docker-env)
+fi
+
 
 #################################################################
 # DO NOT ADD LINES BELOW THIS SECTION
