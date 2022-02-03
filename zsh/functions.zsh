@@ -42,6 +42,10 @@ read_and_review() {
     task "$id" annotate "$link"
 }
 
+command_exists() {
+    type "$1" &> /dev/null ;
+}
+
 # This query will find the most frequently issued command that is issued in the
 # current directory or any subdirectory. From https://github.com/larkery/zsh-histdb
 _zsh_autosuggest_strategy_histdb_top_here() {

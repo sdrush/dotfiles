@@ -11,8 +11,9 @@ sudo ln -sv /usr/local/bin/pacapt /usr/local/bin/pacman || true
 # Install our packaged dependencies
 sudo pacman update
 sudo pacman upgrade
-sudo pacman install lua5.3
-sudo pacman install taskwarrior
+sudo pacman install lua5.3 \
+    taskwarrior \
+    zplug
 
 # Install or update starship
 #sh -c "$(curl -fsSL https://starship.rs/install.sh) -f"
