@@ -17,7 +17,6 @@ sudo pacman --noconfirm -S lua5.3 \
     direnv \
     sqlite3 \
     fzf \
-    kubectx \
     fonts-powerline
 
 # Clean up some permissions issues with zplug on debian
@@ -25,6 +24,19 @@ if [[ -d "/usr/share/zplug" ]]; then
     sudo chmod 775 /usr/share/zplug
     sudo chown root:$USER /usr/share/zplug
 fi
+
+# Install krew
+# leaving this in the linux bootstrap for now because I dont have
+# time to test on macos.
+(
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+  ./"${KREW}" install krew
+)
 
 # Install or update starship
 sudo wget -O /tmp/starship-install.sh https://starship.rs/install.sh
