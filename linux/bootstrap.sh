@@ -9,14 +9,15 @@ sudo chmod 755 /usr/local/bin/pacapt
 sudo ln -sv /usr/local/bin/pacapt /usr/local/bin/pacman || true
 
 # Install our packaged dependencies
+export DEBIAN_FRONTEND=noninteractive
 sudo pacman -Syu
-sudo pacman -S lua5.3
-sudo pacman -S taskwarrior
-sudo pacman -S zplug
-sudo pacman -S direnv
-sudo pacman -S sqlite3
-sudo pacman -S fzf
-sudo pacman -S fonts-powerline
+sudo pacman -S --assume-yes --no-install-recommends lua5.3 \
+    taskwarrior \
+    zplug \
+    direnv \
+    sqlite3 \
+    fzf \
+    fonts-powerline
 
 # Clean up some permissions issues with zplug on debian
 if [[ -f "/usr/share/zplug" ]]; then
