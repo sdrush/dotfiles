@@ -20,7 +20,7 @@ sudo pacman --noconfirm -S lua5.3 \
     fonts-powerline
 
 # Clean up some permissions issues with zplug on debian
-if [[ -f "/usr/share/zplug" ]]; then
+if [[ -d "/usr/share/zplug" ]]; then
     sudo chmod 775 /usr/share/zplug
     sudo chown root:$USER /usr/share/zplug
 fi
