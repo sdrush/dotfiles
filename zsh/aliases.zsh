@@ -65,3 +65,6 @@ alias .5='cd ../../../../..'
 
 ### Python Related Aliases
 alias pip='python -m pip'
+
+### Minikube mount command for docker
+alias mkmount='minikube mount "$(pwd)":"$(pwd)"'
