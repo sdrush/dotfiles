@@ -11,7 +11,7 @@ sudo ln -sv /usr/local/bin/pacapt /usr/local/bin/pacman || true
 # Install our packaged dependencies
 export DEBIAN_FRONTEND=noninteractive
 sudo pacman -Syu
-sudo pacman -S --assume-yes --no-install-recommends lua5.3 \
+sudo pacman -S lua5.3 \
     taskwarrior \
     zplug \
     direnv \
