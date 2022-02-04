@@ -17,6 +17,7 @@ sudo pacman --noconfirm -S lua5.3 \
     direnv \
     sqlite3 \
     fzf \
+    kubectx \
     fonts-powerline
 
 # Clean up some permissions issues with zplug on debian
