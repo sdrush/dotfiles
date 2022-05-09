@@ -39,7 +39,10 @@ source $ZPLUG_HOME/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # Set up our Cobalt theme
-zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
+#zplug "wesbos/Cobalt2-iterm", from:github, as:theme, use:"cobalt2.zsh-theme"
+
+# Set up our theme
+zplug '~/.dracula-pro.zsh-theme', from:local, as:theme
 
 # Using zplug to load our zshrc, functions and aliases
 zplug "${DOTFILES}/zsh", from:local, use:"*.zsh"
