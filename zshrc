@@ -58,6 +58,7 @@ zplug "plugins/aliases", from:oh-my-zsh
 zplug "plugins/brew", from:oh-my-zsh
 zplug "plugins/direnv", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/httpie", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
 zplug "plugins/gcloud", from:oh-my-zsh
 zplug "plugins/alias-finder", from:oh-my-zsh

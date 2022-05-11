@@ -64,3 +64,4 @@ uda.xid.type=string
 include ~/.dotfiles/task/themes/2.5.3/solarized-dark-256.theme
 #include task/themes/2.5.3/solarized-light-256.theme
 #include task/themes/2.5.3/no-color.theme
+news.version=2.6.0
