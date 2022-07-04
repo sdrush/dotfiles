@@ -5,8 +5,6 @@
   # $ nix-env -qaP | grep <packagename>
   environment.systemPackages =
     [ 
-      pkgs.python2
-      pkgs.wget
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -125,6 +123,7 @@
       unibilium
       unbound
       vim
+      wget
       wget2
       yubico-piv-tool
       yubikey-agent
@@ -364,6 +363,11 @@
           credential.helper = "osxkeychain";
           #credential.helper = 
         };
+    };
+    programs.gh = {
+        enable = true;
+        enableGitCredentialHelper = true;
+        package = pkgs.gh;
     };
   };
 }
