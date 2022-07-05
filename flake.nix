@@ -2,11 +2,11 @@
   description = "Shannon's Darwin Flake";
 
   inputs = {
-    # Package sets
+    # Nix package sets
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-22.05-darwin";
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
 
-    # Environment/system management
+    # Nix-darwin and home-manager
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
@@ -21,6 +21,7 @@
 
     # Configuration for `nixpkgs`
     nixpkgsConfig = {
+      # Forgive me RMS, for I have sinned
       config = { allowUnfree = true; };
       overlays = attrValues self.overlays ++ singleton (
         # Sub in x86 version of packages that don't build on Apple Silicon yet
@@ -32,7 +33,7 @@
     }; 
   in
   {
-    # My `nix-darwin` configs
+    # My 'nix-darwin' configs
       
     darwinConfigurations = rec {
       hyperion = darwinSystem {
