@@ -1,5 +1,8 @@
 { pkgs, lib, ... }:
 {
+  imports = [
+    ./modules/homebrew.nix
+  ];
   # Nix configuration ------------------------------------------------------------------------------
 
   nix.binaryCaches = [

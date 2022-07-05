@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./modules/zsh.nix
     ./modules/starship.nix
+    ./modules/zsh.nix
   ];
   programs.home-manager.enable = true;
   home.stateVersion = "22.05";
@@ -13,7 +13,7 @@
 
   # Autojump: a cd command that learns.
   # https://github.com/wting/autojump
-  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.autojump.enable
+  # https://rycee.gitlab.io/home-manager/optio/ns.html#opt-programs.autojump.enable
   programs.autojump = {
     enable = true;
     enableZshIntegration = true;
@@ -29,6 +29,8 @@
   };
 
   # FZF: Fuzzy search
+  # https://github.com/junegunn/fzf
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.fzf.enable
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -36,6 +38,8 @@
   };
 
   # GH: The github cli
+  # https://cli.github.com/
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.gh.enable
   programs.gh = {
     enable = true;
     enableGitCredentialHelper = true;
