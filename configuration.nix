@@ -18,11 +18,11 @@
   nix.extraOptions = ''
     auto-optimise-store = true
     experimental-features = nix-command flakes
-  '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-    extra-platforms = x86_64-darwin aarch64-darwin
+  '' + lib.optionalString (pkgs.system == "x86_64-darwin") ''
+    extra-platforms = x86_64-darwin x86_64-linux
   '';
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
+  # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
   # Auto upgrade nix package and the daemon service.
@@ -32,21 +32,25 @@
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
-    kitty
-    terminal-notifier
+
   ];
 
   # https://github.com/nix-community/home-manager/issues/423
   environment.variables = {
-    TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
+    
   };
   programs.nix-index.enable = true;
 
+  # User(s)
+  users.users."shannon.rush" = {
+    name = "shannon.rush";
+    home = "/Users/shannon.rush";
+  };
   # Fonts
-  fonts.enableFontDir = true;
+  fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
      recursive
-     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+     (nerdfonts.override { fonts = [ "FiraCode" ]; })
    ];
 
   # Keyboard
