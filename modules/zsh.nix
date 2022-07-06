@@ -72,7 +72,7 @@
         { name = "djui/alias-tips"; tags = [ from:github as:plugin]; }
 
         # ZPlug Local Modules
-        { name = "\${HOME}/.nix-profile/google-cloud-sdk"; tags = [ from:local "use:'*.zsh.inc'" defer:2 ]; }
+        # { name = "\${HOME}/.nix-profile/google-cloud-sdk"; tags = [ from:local "use:'*.zsh.inc'" defer:2 ]; }
       ];
     };
   };
