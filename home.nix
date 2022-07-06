@@ -61,9 +61,17 @@
   };
 
   home.packages = with pkgs; [
+    # Some basic tools and utilities
+    coreutils
+    direnv
+    nix-direnv
+    jq
+    wget2
+
     # Languages, Language Tools, and Language Packages/Modules
     git
     gh
+    bfg-repo-cleaner
     go_1_18
     lua5_4
     nodejs
@@ -75,13 +83,17 @@
     tcl
     tk
 
-    # Shells and Shell Customizations
+    # Shells, utilities, customizations and terminals
+    # byobu # need a nix-y way of getting libnewt
+    iterm2
+    oh-my-zsh
+    starship
+    terminal-notifier
+    tmux
+    zplug
     zsh
     zsh-completions
-    starship
     nix-zsh-completions
-    oh-my-zsh
-    zplug
 
     # Container Stuff
     docker-compose
@@ -95,60 +107,57 @@
     popeye
     stern
 
-    autoconf
-    autojump
-    bfg-repo-cleaner
-    bitwarden-cli
-    # byobu need to find newtlib for macos outside of brew
-    coreutils
-    direnv
-    nix-direnv
-
+    # Cloud stuff
     google-cloud-sdk
-    gnupg
-    gnutls
-    htop
-    httpie
-    iterm2
-    jq
-    ldns # DNS Library and drill
-    lsd
-    ncurses
-    nghttp2
-    neovim
-    nmap
-    oath-toolkit
-
-    openssh
-    openssl
-    pinentry
-    pinentry_mac
     pulumi-bin
-    ripgrep-all
-    readline
-    sops
-    speedtest-cli
-    sqlite
-    taskwarrior
-    terminal-notifier
     terraform
     terraformer
     terragrunt
     tflint
-    tmux
-    unibilium
+
+    # Useful CLI utilities
+    autojump
+    bitwarden-cli
+    lsd
+    htop
+    httpie
+
+    # Other Applications
+    neovim
+    vim
+    nmap
+    openssh
+    ripgrep-all
+    sops
+    speedtest-cli
+    sqlite
+    taskwarrior
     unbound
     vim
-    wget
-    wget2
+
+    # yubikey related tools and utilities
+    pinentry
+    pinentry_mac
     yubico-piv-tool
     yubikey-agent
     yubikey-manager
     yubikey-personalization
 
-    # Useful nix related tools
+    # Libraries
+    autoconf
+    gnupg
+    gnutls
+    ldns # DNS Library and drill
+    ncurses
+    nghttp2
+    oath-toolkit
+    openssl
+    readline
+    unibilium
+
+    # Some useful nix related tools
     cachix # adding/managing alternative binary caches hosted by Cachix
-    # comma # run software from without installing it
+    # comma # run software without installing it
     niv # easy dependency management for nix projects
     nodePackages.node2nix
 

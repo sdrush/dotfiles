@@ -2,6 +2,7 @@
 {
   imports = [
     ./modules/homebrew.nix
+    ./modules/aliases.nix
   ];
   # Nix configuration ------------------------------------------------------------------------------
 

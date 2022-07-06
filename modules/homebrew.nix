@@ -22,21 +22,19 @@
   # Commented apps suffer continual update issue:
   # https://github.com/malob/nixpkgs/issues/9
   homebrew.masApps = {
-    BitWarden = 1352778147;
-    CopyClip = 595191960;
-    # "Dark Mode for Safari" = 1397180934;
-    # Deliveries = 290986013;
+    # BitWarden = 1352778147;
+    "CopyClip - Clipboard History" = 595191960;
+    "HP Smart" = 1474276998;
     iMovie = 408981434;
     Keynote = 409183694;
+    "Microsoft Remote Desktop" = 1295203466;
     # MindNode = 1289197285;
     Numbers = 409203825;
     OneNote = 784801555;
     Pages = 409201541;
-    # Patterns = 429449079; # the regex app
     "Save to Raindrop.io" = 1549370672;
     Securid = 318038618;
     Slack = 803453959;
-    # "Yubico Authenticator" = 1497506650;
   };
 
   # If an app isn't available in the Mac App Store, or the version in the App Store has
@@ -58,7 +56,6 @@
     "keybase"
     "lens" # kubernetes tool
     "meld" # file/folder comparison tool
-    "microsoft-remote-desktop"
     "numi" # calculator
     "obsidian" # open source knowledge base
     "postman"
@@ -85,6 +82,5 @@
   # For cli packages that aren't currently available for macOS in `nixpkgs`.Packages should be
   # installed in `../home/default.nix` whenever possible.
   homebrew.brews = [
-
   ];
 }
