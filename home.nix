@@ -101,7 +101,7 @@
     docker-machine-hyperkit
     dive
     kubectl
-    kubectx
+    #kubectx #broken with latest nix-pkgs.  Looking at kubie as a replacement so did not look too deeply.
     kops
     kubernetes-helm
     popeye
