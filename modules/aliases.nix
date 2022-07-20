@@ -61,7 +61,7 @@
     alias rnr="read_and_review"
     alias rnd="task add +rnd +next +@computer +@online"
     alias h="history"
-    alias j="jobs -l"
+    # alias j="jobs -l" seems to be making autojump not work
 
     # enable color support of ls and also add handy aliases
     alias dir="dir --color=auto"

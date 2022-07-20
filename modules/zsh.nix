@@ -14,6 +14,10 @@
         export EDITOR='code -w'
       fi
     ";
+    initExtraBeforeCompInit = ''
+      fpath+=( /etc/profiles/per-user/shannon.rush/share/zsh/site-functions \
+      /etc/profiles/per-user/shannon.rush/share/zsh/vendor-completions )
+    '';
     initExtra = ''
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     '';
