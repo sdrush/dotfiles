@@ -78,6 +78,7 @@
     nodePackages.npm
     python310
     python310Packages.numpy
+
     # pipenv # Is this even needed in nix?
     pylint
     tcl
@@ -122,7 +123,13 @@
     htop
     httpie
 
+    # Building a second Brain
+    obsidian
+    pandoc
+    #pandoc-drawio-filter
+
     # Other Applications
+    navi # command line cheatsheets
     neovim
     vim
     nmap

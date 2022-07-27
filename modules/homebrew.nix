@@ -57,7 +57,7 @@
     "lens" # kubernetes tool
     "meld" # file/folder comparison tool
     "numi" # calculator
-    "obsidian" # open source knowledge base
+    # "obsidian" # open source knowledge base -> migrated to nixpkg version
     "postman"
     "rancher"
     "raindropio" # bookmark manager
