@@ -2,10 +2,10 @@
 
 {
   homebrew.enable = true;
-  homebrew.autoUpdate = true;
-  homebrew.cleanup = "zap";
+  homebrew.onActivation.autoUpdate = true;
+  homebrew.onActivation.cleanup = "zap";
   homebrew.global.brewfile = true;
-  homebrew.global.noLock = true;
+  homebrew.global.lockfiles = true;
 
   homebrew.taps = [
     "homebrew/cask"
@@ -22,8 +22,8 @@
   # Commented apps suffer continual update issue:
   # https://github.com/malob/nixpkgs/issues/9
   homebrew.masApps = {
-    BitWarden = 1352778147;
-    "CopyClip - Clipboard History" = 595191960;
+    # BitWarden = 1352778147;
+    # "CopyClip - Clipboard History" = 595191960;
     "HP Smart" = 1474276998;
     iMovie = 408981434;
     Keynote = 409183694;
@@ -53,6 +53,7 @@
     "gpg-suite"
     # "hammerspoon"# Lua Automation engine for macos
     "insomnia" # api client
+    "iterm2"
     "keybase"
     "lens" # kubernetes tool
     "meld" # file/folder comparison tool

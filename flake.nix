@@ -48,7 +48,7 @@
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users."shannon.rush" = import ./home.nix;            
+            home-manager.users."sdrush" = import ./home.nix;            
           }
         ];
       };
