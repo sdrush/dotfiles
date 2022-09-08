@@ -14,6 +14,7 @@
     "homebrew/cask-versions"
     "homebrew/core"
     "homebrew/services"
+    "microsoft/git"
     "nrlquaker/createzap"
   ];
 
@@ -24,10 +25,10 @@
   homebrew.masApps = {
     # BitWarden = 1352778147;
     # "CopyClip - Clipboard History" = 595191960;
-    "HP Smart" = 1474276998;
+    # "HP Smart" = 1474276998;
     iMovie = 408981434;
-    Keynote = 409183694;
-    "Microsoft Remote Desktop" = 1295203466;
+    # Keynote = 409183694;
+    # "Microsoft Remote Desktop" = 1295203466;
     MindNode = 1289197285;
     Numbers = 409203825;
     OneNote = 784801555;
@@ -48,6 +49,7 @@
     "discord"
     "dropbox"
     "github"
+    "git-credential-manager-core"
     # "google-chrome" need to uninstall and reinstall via brew
     "google-drive"
     "gpg-suite"
