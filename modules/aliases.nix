@@ -65,7 +65,7 @@
 
     # enable color support of ls and also add handy aliases
     alias dir="dir --color=auto"
-    alias ls="ls --color=auto -F"
+    alias ls="lsd"
     alias vdir="vdir --color=auto"
     alias grep="grep --color=auto"
     alias fgrep="fgrep --color=auto"
@@ -74,7 +74,8 @@
     ## A couple of useful ls aliases
     alias ll="ls -al"
     alias la="ls -A"
-    alias l="ls -C"
+    alias l="ls"
+    alias lt="lsd --tree"
 
     ## a quick way to get out of current directory ##
     alias ".."="cd .."

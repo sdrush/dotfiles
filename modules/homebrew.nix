@@ -23,14 +23,14 @@
   # Commented apps suffer continual update issue:
   # https://github.com/malob/nixpkgs/issues/9
   homebrew.masApps = {
-    BitWarden = 1352778147;
+    # BitWarden = 1352778147;
     # "CopyClip - Clipboard History" = 595191960;
     # "HP Smart" = 1474276998;
     iMovie = 408981434;
     # Keynote = 409183694;
     # "Microsoft Remote Desktop" = 1295203466;
     # MindNode = 1289197285;
-    Numbers = 409203825;
+    # Numbers = 409203825;
     OneNote = 784801555;
     Pages = 409201541;
     "Save to Raindrop.io" = 1549370672;

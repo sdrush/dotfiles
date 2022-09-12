@@ -139,6 +139,7 @@
     speedtest-cli
     sqlite
     taskwarrior
+    tealdeer
     unbound
     vim
 
