@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./modules/navi.nix
     ./modules/starship.nix
     ./modules/zsh.nix
   ];
@@ -129,7 +130,6 @@
     #pandoc-drawio-filter
 
     # Other Applications
-    navi # command line cheatsheets
     neovim
     vim
     nmap
