@@ -134,7 +134,7 @@
     vim
     nmap
     openssh
-    ripgrep-all
+    ripgrep
     sops
     speedtest-cli
     sqlite
