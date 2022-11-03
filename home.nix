@@ -86,7 +86,7 @@
     tk
 
     # Shells, utilities, customizations and terminals
-    # byobu # need a nix-y way of getting libnewt
+    #byobu # need a nix-y way of getting libnewt
     iterm2
     oh-my-zsh
     starship
@@ -103,7 +103,7 @@
     docker-machine-hyperkit
     dive
     kubectl
-    #kubectx #broken with latest nix-pkgs.  Looking at kubie as a replacement so did not look too deeply.
+    kubectx #broken with latest nix-pkgs.  Looking at kubie as a replacement so did not look too deeply.
     kops
     kubernetes-helm
     popeye
@@ -119,7 +119,7 @@
 
     # Useful CLI utilities
     autojump
-    bitwarden-cli
+    # bitwarden-cli # npm throws error on build
     lsd
     htop
     httpie
@@ -165,7 +165,7 @@
 
     # Some useful nix related tools
     cachix # adding/managing alternative binary caches hosted by Cachix
-    # comma # run software without installing it
+    comma # run software without installing it
     niv # easy dependency management for nix projects
     nodePackages.node2nix
 
