@@ -119,7 +119,7 @@
 
     # Useful CLI utilities
     autojump
-    # bitwarden-cli # npm throws error on build
+    bitwarden-cli
     lsd
     htop
     httpie
