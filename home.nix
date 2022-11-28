@@ -67,6 +67,7 @@
     direnv
     nix-direnv
     jq
+    yq
     wget2
 
     # Languages, Language Tools, and Language Packages/Modules
