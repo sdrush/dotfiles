@@ -74,6 +74,7 @@
     "steam"
     "ubar"
     # "superhuman" # cool looking gmail client
+    "virtualbox"
     "visual-studio-code"
     "vnc-viewer"
     "zotero"
