@@ -42,6 +42,7 @@
   # limitiations, e.g., Transmit, install the Homebrew Cask.
   homebrew.casks = [
     "amethyst" # tiling window manager a la xmonad
+    # "alacritty" # terminal emulator - maybe a better way to do this with nix
     "anki" # flashcards
     "authy" # multiplatform token generator
     # "arq" # cloud backups
@@ -77,6 +78,7 @@
     "virtualbox"
     "visual-studio-code"
     "vnc-viewer"
+    "warp"
     "zotero"
     # "yubico-yubikey-manager"
     # "yubico-yubikey-personalization-gui"
