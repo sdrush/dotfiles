@@ -12,6 +12,15 @@
   # Man pages
   manual.manpages.enable = true;
 
+  # Alacritty
+  # https://github.com/alacritty/alacritty
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.alacritty.enable
+  programs.alacritty = {
+    enable = true;
+    package = pkgs.alacritty;
+  };
+
+
   # Autojump: a cd command that learns.
   # https://github.com/wting/autojump
   # https://rycee.gitlab.io/home-manager/optio/ns.html#opt-programs.autojump.enable
@@ -131,6 +140,8 @@
     #pandoc-drawio-filter
 
     # Other Applications
+    zellij
+    bat # a better cat
     neovim
     vim
     nmap
@@ -174,4 +185,7 @@
     cocoapods
     m-cli # useful macOS CLI commands
   ];
+  home.file = { 
+    ".config/alacritty/alacritty.yml".source = ./alacritty.yml;
+  };
 }

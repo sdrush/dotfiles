@@ -7,6 +7,9 @@
     alias rm="rm -i"
     alias cp="cp -i"
 
+    # Useful default replacement commands
+    alias cat="bat"
+
     # Default to df being human readable
     alias df="df -h"
 
