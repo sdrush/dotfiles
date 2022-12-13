@@ -83,7 +83,7 @@
     git
     gh
     bfg-repo-cleaner
-    go_1_18
+    go
     lua5_4
     nodejs
     nodePackages.npm
@@ -140,8 +140,9 @@
     #pandoc-drawio-filter
 
     # Other Applications
-    zellij
+    zellij # terminal multiplexer
     bat # a better cat
+    grex # Generate regukar expressions from user generated test cases
     neovim
     vim
     nmap
@@ -187,5 +188,6 @@
   ];
   home.file = { 
     ".config/alacritty/alacritty.yml".source = ./alacritty.yml;
+    # ".warp/workflows/gcloud/set_project.yaml".source = ./set_project.yaml;
   };
 }
