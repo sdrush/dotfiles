@@ -4,6 +4,7 @@
   imports = [
     ./modules/navi.nix
     ./modules/starship.nix
+    ./modules/tmux.nix
     ./modules/zsh.nix
   ];
   programs.home-manager.enable = true;
