@@ -144,6 +144,7 @@
     zellij # terminal multiplexer
     bat # a better cat
     grex # Generate regukar expressions from user generated test cases
+    gcalcli # cli for Google Calendar
     neovim
     vim
     nmap

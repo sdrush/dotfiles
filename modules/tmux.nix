@@ -25,8 +25,8 @@
             set -sg repeat-time 600                   # increase repeat timeout
             set -s focus-events on
 
-            set -g prefix2 C-a                        # GNU-Screen compatible prefix
-            bind C-a send-prefix -2
+            set -g prefix2 C-Space                    # Not Screen-compatible, but I like this better
+            bind C-Space send-prefix -2
 
             set -q -g status-utf8 on                  # expect UTF-8 (tmux < 2.2)
             setw -q -g utf8 on
@@ -34,7 +34,7 @@
             set -g history-limit 5000                 # boost history
 
             # edit configuration
-            bind e new-window -n "~/.tmux.conf.local" sh -c '${EDITOR:-vim} ~/.tmux.conf.local && tmux source ~/.tmux.conf && tmux display "~/.tmux.conf sourced"'
+            bind e new-window -n "~/.tmux.conf.local" sh -c '$\{EDITOR:-vim} ~/.tmux.conf.local && tmux source ~/.tmux.conf && tmux display "~/.tmux.conf sourced"'
 
             # reload configuration
             bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
