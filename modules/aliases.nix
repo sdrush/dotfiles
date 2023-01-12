@@ -90,6 +90,9 @@
     alias ".5"="cd ../../../.."
 
     ### Python Related Aliases
-    alias pip="python -m pip'"
+    alias pip="python -m pip"
+
+    ### Other Aliases
+    alias wttr="curl wttr.in"
   '';
 }

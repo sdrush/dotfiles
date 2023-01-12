@@ -90,6 +90,7 @@
     nodePackages.npm
     python310
     python310Packages.numpy
+    python310Packages.pyopenssl
 
     # pipenv # Is this even needed in nix?
     pylint
@@ -121,7 +122,8 @@
     stern
 
     # Cloud stuff
-    google-cloud-sdk
+    (google-cloud-sdk.withExtraComponents [pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin])
+    # google-cloud-sdk
     pulumi-bin
     terraform
     terraformer
@@ -133,7 +135,7 @@
     bitwarden-cli
     lsd
     htop
-    httpie
+    # httpie no worky with python310
 
     # Building a second Brain
     obsidian
