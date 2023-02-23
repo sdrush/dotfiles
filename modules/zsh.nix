@@ -34,6 +34,7 @@
       CLICOLOR = 1;
       # Set up our CLOUD_SDK_HOME for the gcloud cloud cli
       CLOUD_SDK_HOME="${pkgs.google-cloud-sdk}";
+      USE_GKE_GCLOUD_AUTH_PLUGIN="true";
       # Disable fuzzy search for kubectx/kubens
       KUBECTX_IGNORE_FZF = 1;
       # Display red dots whilst waiting for completions
