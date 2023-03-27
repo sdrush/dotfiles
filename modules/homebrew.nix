@@ -34,7 +34,7 @@
     OneNote = 784801555;
     Pages = 409201541;
     "Save to Raindrop.io" = 1549370672;
-    Securid = 318038618;
+    # Securid = 318038618; No longer need
     Slack = 803453959;
   };
 
@@ -66,16 +66,15 @@
     "rancher"
     "raindropio" # bookmark manager
     "raycast" # mac launcher
-    "ringcentral" #Akumin's preferred communications application
     "secretive" # store ssh keys in the secure enclave
-    "securid"
+    # "securid" No longer needed 03232023
     "signal"
     "skype"
     "spotify"
     "steam"
     "ubar"
     # "superhuman" # cool looking gmail client
-    "virtualbox"
+    # "virtualbox" does not work on  arch64
     "visual-studio-code"
     "vnc-viewer"
     "warp"

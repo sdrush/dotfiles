@@ -112,7 +112,7 @@
     # Container Stuff
     docker-compose
     docker-machine
-    docker-machine-hyperkit
+    # docker-machine-hyperkit
     dive
     kubectl
     kubectx #broken with latest nix-pkgs.  Looking at kubie as a replacement so did not look too deeply.

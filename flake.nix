@@ -37,8 +37,8 @@
     # My 'nix-darwin' configs
       
     darwinConfigurations = rec {
-      hyperion = darwinSystem {
-        system = "x86_64-darwin";
+      typhon = darwinSystem {
+        system = "aarch64-darwin";
         modules = attrValues self.darwinModules ++ [ 
           # Main `nix-darwin` config
           ./configuration.nix
