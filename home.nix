@@ -99,7 +99,7 @@
 
     # Shells, utilities, customizations and terminals
     #byobu # need a nix-y way of getting libnewt
-    iterm2
+    # iterm2
     oh-my-zsh
     starship
     terminal-notifier
