@@ -51,7 +51,6 @@
     "dropbox"
     "github"
     "git-credential-manager-core"
-    # "google-chrome" need to uninstall and reinstall via brew
     "google-drive"
     "gpg-suite"
     # "hammerspoon"# Lua Automation engine for macos
@@ -61,13 +60,11 @@
     "lens" # kubernetes tool
     "meld" # file/folder comparison tool
     "numi" # calculator
-    # "obsidian" # open source knowledge base -> migrated to nixpkg version
     "postman"
     "rancher"
     "raindropio" # bookmark manager
     "raycast" # mac launcher
     "secretive" # store ssh keys in the secure enclave
-    # "securid" No longer needed 03232023
     "signal"
     "skype"
     "spotify"
@@ -90,5 +87,6 @@
   # For cli packages that aren't currently available for macOS in `nixpkgs`.Packages should be
   # installed in `../home/default.nix` whenever possible.
   homebrew.brews = [
+    "terminal-notifier"
   ];
 }
