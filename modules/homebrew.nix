@@ -25,7 +25,6 @@
   homebrew.masApps = {
     BitWarden = 1352778147;
     "CopyClip - Clipboard History" = 595191960;
-    # "HP Smart" = 1474276998;
     iMovie = 408981434;
     Keynote = 409183694;
     "Microsoft Remote Desktop" = 1295203466;
@@ -34,8 +33,8 @@
     OneNote = 784801555;
     Pages = 409201541;
     "Save to Raindrop.io" = 1549370672;
-    # Securid = 318038618; No longer need
     Slack = 803453959;
+    Tailscale = 1475387142;
   };
 
   # If an app isn't available in the Mac App Store, or the version in the App Store has
