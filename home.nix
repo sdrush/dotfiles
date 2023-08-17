@@ -53,7 +53,7 @@
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.gh.enable
   programs.gh = {
     enable = true;
-    enableGitCredentialHelper = true;
+    gitCredentialHelper.enable = true;
     package = pkgs.gh;
   };
 

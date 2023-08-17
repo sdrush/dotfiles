@@ -87,5 +87,6 @@
   # installed in `../home/default.nix` whenever possible.
   homebrew.brews = [
     "terminal-notifier"
+    "nitrictech/tap/nitric"
   ];
 }

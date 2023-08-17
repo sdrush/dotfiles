@@ -5,7 +5,7 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     completionInit = "autoload -U compinit && compinit";
     envExtra = "
     export SSH_AUTH_SOCK=/Users/sdrush/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
