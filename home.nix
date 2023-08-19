@@ -108,6 +108,7 @@
     zsh
     zsh-completions
     nix-zsh-completions
+    jira-cli-go
 
     # Container Stuff
     docker-compose
