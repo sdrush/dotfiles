@@ -8,14 +8,15 @@
   homebrew.global.lockfiles = true;
 
   homebrew.taps = [
-    "homebrew/cask"
-    "homebrew/cask-drivers"
+    #"homebrew/cask" Removing based on 'brew doctor' advice
+    #"homebrew/cask-drivers" Removing based on 'brew doctor' advice
     "homebrew/cask-fonts"
     "homebrew/cask-versions"
-    "homebrew/core"
+    #"homebrew/core" Removing based on 'brew doctor' advice
     "homebrew/services"
     "microsoft/git"
     "nrlquaker/createzap"
+    "nitrictech/tap"
   ];
 
   # Prefer installing application from the Mac App Store
@@ -72,6 +73,7 @@
     # "superhuman" # cool looking gmail client
     # "virtualbox" does not work on  arch64
     "visual-studio-code"
+    "vmware-horizon-client"
     "vnc-viewer"
     "warp"
     "zotero"
