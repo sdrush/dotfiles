@@ -49,7 +49,7 @@
       # Zsh Autosuggest strategy using histdb
       # ZSH_AUTOSUGGEST_STRATEGY = "histdb_top_here";
       # Uncomment the following line to disable 'column' command 2048 limit workaround
-      HISTDB_TABULATE_CMD = "(sed -e $'s/\x1f/\t/g')";
+      # HISTDB_TABULATE_CMD = "(sed -e $'s/\x1f/\t/g')";
     };
     zplug = {
       enable = true;

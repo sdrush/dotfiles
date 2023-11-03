@@ -61,6 +61,7 @@
     "meld" # file/folder comparison tool
     "numi" # calculator
     "postman"
+    "prismlauncher"
     "rancher"
     "raindropio" # bookmark manager
     "raycast" # mac launcher
