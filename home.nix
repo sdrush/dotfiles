@@ -6,6 +6,7 @@
     ./modules/starship.nix
     ./modules/tmux.nix
     ./modules/zsh.nix
+    ./git
   ];
   programs.home-manager.enable = true;
   home.stateVersion = "22.05";
@@ -81,8 +82,6 @@
     wget2
 
     # Languages, Language Tools, and Language Packages/Modules
-    git
-    gh
     bfg-repo-cleaner
     go
     lua5_4

@@ -49,7 +49,8 @@
   fonts.fonts = with pkgs; [
      recursive
      (nerdfonts.override { fonts = [ 
-        "FiraCode" 
+        "FiraCode"
+        "Meslo"
       ]; })
    ];
 
