@@ -17,7 +17,7 @@ in {
     extraConfig = {
       # extremely important, otherwise git will attempt to guess a default user identity. see `man git-config` for more details
       user.useConfigOnly = true;
-      init.defaultbranch = "main";
+      init.defaultBranch = "main";
 
       # the `work` identity
       user.work.name = "Shannon Rush";
