@@ -24,6 +24,7 @@
   # Commented apps suffer continual update issue:
   # https://github.com/malob/nixpkgs/issues/9
   homebrew.masApps = {
+    #Authy = 494168017; This is the ipad/iphone version and brew cant manage it
     BitWarden = 1352778147;
     "CopyClip - Clipboard History" = 595191960;
     iMovie = 408981434;
@@ -44,7 +45,7 @@
     "amethyst" # tiling window manager a la xmonad
     # "alacritty" # terminal emulator - maybe a better way to do this with nix
     "anki" # flashcards
-    "authy" # multiplatform token generator
+    "authy" # multiplatform token generator.  
     # "arq" # cloud backups
     # "element" # zerotier replacement
     "discord"
