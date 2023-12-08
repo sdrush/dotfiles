@@ -12,6 +12,17 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     comma.url = "github:nix-community/comma";
+
+    # Python stuff
+    pypi-deps-db = {
+      url = "github:DavHau/pypi-deps-db";
+      flake = false;
+    };
+    mach-nix = {
+      url = "github:DavHau/mach-nix/3.5.0";
+      inputs.pypi-deps-db.follows = "pypi-deps-db";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:

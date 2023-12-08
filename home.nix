@@ -90,6 +90,7 @@
     python310
     python310Packages.numpy
     python310Packages.pyopenssl
+    graphviz
     temurin-jre-bin-17
 
     # pipenv # Is this even needed in nix?
