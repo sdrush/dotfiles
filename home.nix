@@ -113,24 +113,24 @@
 
     # Container Stuff
     docker-compose
-    docker-machine
+    #docker-machine
     # docker-machine-hyperkit
     dive
-    kubectl
-    kubectx #broken with latest nix-pkgs.  Looking at kubie as a replacement so did not look too deeply.
-    kops
-    kubernetes-helm
-    popeye
-    stern
+    kubectl # devshell
+    kubectx # devshell 
+    kops # devshell
+    kubernetes-helm # devshell
+    popeye # devshell
+    stern # devshell
 
     # Cloud stuff
     (google-cloud-sdk.withExtraComponents [pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin])
     # google-cloud-sdk
     # pulumi-bin
-    terraform
-    terraformer
-    terragrunt
-    tflint
+    terraform # devshell
+    terraformer # devshell
+    terragrunt # devshell
+    tflint # devshell
 
     # Useful CLI utilities
     autojump
@@ -163,7 +163,7 @@
     vim
 
     # yubikey related tools and utilities
-    pinentry
+    #pinentry
     pinentry_mac
     yubico-piv-tool
     yubikey-agent

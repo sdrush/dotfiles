@@ -45,7 +45,10 @@
     "amethyst" # tiling window manager a la xmonad
     # "alacritty" # terminal emulator - maybe a better way to do this with nix
     "anki" # flashcards
-    "authy" # multiplatform token generator.  
+    "arc"
+    "beeper"
+    "bitwarden"
+    # "authy" # multiplatform token generator.  
     # "arq" # cloud backups
     # "element" # zerotier replacement
     "discord"
@@ -59,10 +62,14 @@
     "iterm2"
     "keybase"
     "lens" # kubernetes tool
+    "lm-studio" # LLM GUI
     "meld" # file/folder comparison tool
     "numi" # calculator
+    "obsidian"
     "postman"
     "prismlauncher"
+    "proton-drive"
+    "proton-mail"
     "rancher"
     "raindropio" # bookmark manager
     "raycast" # mac launcher
