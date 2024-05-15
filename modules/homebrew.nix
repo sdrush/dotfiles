@@ -45,7 +45,7 @@
     "amethyst" # tiling window manager a la xmonad
     # "alacritty" # terminal emulator - maybe a better way to do this with nix
     "anki" # flashcards
-    "arc"
+    "arc" # my new favorite browser
     "beeper"
     "bitwarden"
     # "authy" # multiplatform token generator.  
@@ -70,6 +70,7 @@
     "prismlauncher"
     "proton-drive"
     "proton-mail"
+    "protonvpn"
     "rancher"
     "raindropio" # bookmark manager
     "raycast" # mac launcher
@@ -80,11 +81,11 @@
     "steam"
     "ubar"
     # "superhuman" # cool looking gmail client
-    # "virtualbox" does not work on  arch64
     "visual-studio-code"
     "vmware-horizon-client"
     "vnc-viewer"
     "warp"
+    "zed"
     "zotero"
     # "yubico-yubikey-manager"
     # "yubico-yubikey-personalization-gui"
