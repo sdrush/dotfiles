@@ -134,7 +134,7 @@
 
     # Useful CLI utilities
     autojump
-    bitwarden-cli
+    # bitwarden-cli 06-03-2024 broken because of use of deprected NIX features
     lsd
     htop
     # httpie no worky with python310
