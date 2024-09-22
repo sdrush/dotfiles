@@ -55,7 +55,7 @@
       enable = true;
       plugins = [
         # Set up our theme
-        { name = "~/.dracula-pro.zsh-theme"; tags = [ from:local as:theme ]; }
+        # { name = "~/.dracula-pro.zsh-theme"; tags = [ from:local as:theme ]; }
 
         # Oh-my-zsh Plugins
         { name = "plugins/aliases"; tags = [ from:oh-my-zsh ]; }

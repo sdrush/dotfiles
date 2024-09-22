@@ -4,8 +4,7 @@
     ./modules/homebrew.nix
     ./modules/aliases.nix
   ];
-  # Nix configuration ------------------------------------------------------------------------------
-
+  # Nix configuration -----------------------------------------------------------------------------
   nix.settings.substituters = [
     "https://cache.nixos.org/"
   ];
@@ -45,8 +44,7 @@
     home = "/Users/sdrush";
   };
   # Fonts
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
      recursive
      (nerdfonts.override { fonts = [ 
         "FiraCode"

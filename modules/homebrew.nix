@@ -54,7 +54,7 @@
     "discord"
     "dropbox"
     "github"
-    "git-credential-manager-core"
+    "git-credential-manager"
     "google-drive"
     "gpg-suite"
     # "hammerspoon"# Lua Automation engine for macos
@@ -70,6 +70,7 @@
     "prismlauncher"
     "proton-drive"
     "proton-mail"
+    "proton-pass"
     "protonvpn"
     "rancher"
     "raindropio" # bookmark manager

@@ -157,7 +157,7 @@
     sops
     speedtest-cli
     sqlite
-    taskwarrior
+    taskwarrior3
     tealdeer
     unbound
     vim
