@@ -18,11 +18,11 @@
       url = "github:DavHau/pypi-deps-db";
       flake = false;
     };
-    mach-nix = {
-      url = "github:DavHau/mach-nix/3.5.0";
-      inputs.pypi-deps-db.follows = "pypi-deps-db";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #mach-nix = {
+    #  url = "github:DavHau/mach-nix/3.5.0";
+    #  inputs.pypi-deps-db.follows = "pypi-deps-db";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:

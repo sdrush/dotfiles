@@ -5,6 +5,7 @@
     ./modules/aliases.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
+  system.stateVersion = 5;
   nix.settings.substituters = [
     "https://cache.nixos.org/"
   ];
