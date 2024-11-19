@@ -37,6 +37,7 @@
     "Save to Raindrop.io" = 1549370672;
     Slack = 803453959;
     Tailscale = 1475387142;
+    PerplexityAI = 6714467650;
   };
 
   # If an app isn't available in the Mac App Store, or the version in the App Store has
