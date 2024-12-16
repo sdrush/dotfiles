@@ -46,11 +46,8 @@
   };
   # Fonts
   fonts.packages = with pkgs; [
-     recursive
-     (nerdfonts.override { fonts = [ 
-        "FiraCode"
-        "Meslo"
-      ]; })
+    (pkgs.nerd-fonts.fira-code)
+    (pkgs.nerd-fonts.meslo-lg)
    ];
 
   # Keyboard
