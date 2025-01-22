@@ -54,6 +54,7 @@
     # "element" # zerotier replacement
     "discord"
     "dropbox"
+    "ghostty"
     "github"
     "git-credential-manager"
     "google-drive"
