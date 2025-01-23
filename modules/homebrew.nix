@@ -8,11 +8,8 @@
   homebrew.global.lockfiles = true;
 
   homebrew.taps = [
-    #"homebrew/cask" Removing based on 'brew doctor' advice
-    #"homebrew/cask-drivers" Removing based on 'brew doctor' advice
     "homebrew/cask-fonts"
     "homebrew/cask-versions"
-    #"homebrew/core" Removing based on 'brew doctor' advice
     "homebrew/services"
     "microsoft/git"
     "nrlquaker/createzap"
@@ -24,7 +21,6 @@
   # Commented apps suffer continual update issue:
   # https://github.com/malob/nixpkgs/issues/9
   homebrew.masApps = {
-    #Authy = 494168017; This is the ipad/iphone version and brew cant manage it
     BitWarden = 1352778147;
     "CopyClip - Clipboard History" = 595191960;
     iMovie = 408981434;
