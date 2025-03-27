@@ -67,10 +67,14 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
-    extensions = [
+    profiles.default.extensions = [
  
     ];
   };
+
+  home.sessionPath = [
+    "/~.rd/bin"
+  ];
 
   home.packages = with pkgs; [
     # Some basic tools and utilities
@@ -87,9 +91,9 @@
     lua5_4
     nodejs
     nodePackages.npm
-    python310
-    python310Packages.numpy
-    python310Packages.pyopenssl
+    python312
+    python312Packages.numpy
+    python312Packages.pyopenssl
     graphviz
     temurin-jre-bin-17
 
@@ -140,7 +144,7 @@
     # httpie no worky with python310
 
     # Building a second Brain
-    obsidian
+    #obsidian 03-07-2025 managed by brew
     pandoc
     #pandoc-drawio-filter
 

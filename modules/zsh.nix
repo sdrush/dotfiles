@@ -66,6 +66,7 @@
         { name = "plugins/kubectl"; tags = [ from:oh-my-zsh ]; }
         { name = "plugins/gcloud"; tags = [ from:oh-my-zsh ]; }
         { name = "plugins/alias-finder"; tags = [ from:oh-my-zsh ]; }
+        
         { name = "plugins/bgnotify"; tags = [ from:oh-my-zsh ]; }
         { name = "lib/*.zsh"; tags = [ from:oh-my-zsh ]; }
 
@@ -73,6 +74,7 @@
         # This is handled by the installed fzf package now
         #{ name = "junegunn/fzf"; tags = [ from:github as:plugin rename-to:fzf "use:'*\$\{(L)$(uname -s)}*amd64*'" ]; }
         #{ name = "junegunn/fzf"; tags = [ ''use:"*.zsh"'' defer:2 ]; }
+        #{ name = ""; tags = []}
         { name = "larkery/zsh-histdb"; tags = [ from:github as:plugin rename-to:histdb "use:'*.zsh'" ]; }
         { name = "skywind3000/z.lua"; tags = [ from:github as:plugin defer:2 ]; }
         { name = "djui/alias-tips"; tags = [ from:github as:plugin]; }

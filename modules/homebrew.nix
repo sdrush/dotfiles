@@ -45,6 +45,8 @@
     "arc" # my new favorite browser
     "beeper"
     "bitwarden"
+    "citrix-workspace"
+    "cursor"
     # "authy" # multiplatform token generator.  
     # "arq" # cloud backups
     # "element" # zerotier replacement
@@ -64,6 +66,7 @@
     "meld" # file/folder comparison tool
     "numi" # calculator
     "obsidian"
+    "ollama"
     "postman"
     "prismlauncher"
     "proton-drive"
