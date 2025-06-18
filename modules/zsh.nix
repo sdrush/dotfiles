@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
     programs.zsh = {
@@ -15,11 +15,9 @@
         export EDITOR='code'
       fi
     ";
-    initExtraBeforeCompInit = ''
+    initContent = lib.mkOrder 550 ''
       fpath+=( /etc/profiles/per-user/shannon.rush/share/zsh/site-functions \
       /etc/profiles/per-user/shannon.rush/share/zsh/vendor-completions )
-    '';
-    initExtra = ''
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     '';
     shellGlobalAliases = {

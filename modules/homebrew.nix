@@ -1,6 +1,7 @@
 { config, lib, ... }:
 
 {
+  system.primaryUser = "sdrush";
   homebrew.enable = true;
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.cleanup = "zap";
@@ -8,8 +9,6 @@
   homebrew.global.lockfiles = true;
 
   homebrew.taps = [
-    "homebrew/cask-fonts"
-    "homebrew/cask-versions"
     "homebrew/services"
     "microsoft/git"
     "nrlquaker/createzap"
@@ -87,6 +86,7 @@
     "vmware-horizon-client"
     "vnc-viewer"
     "warp"
+    "windsurf"
     "zed"
     "zotero"
     # "yubico-yubikey-manager"
