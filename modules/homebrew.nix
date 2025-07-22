@@ -86,6 +86,7 @@
     "vmware-horizon-client"
     "vnc-viewer"
     "warp"
+    "windows-app"
     "windsurf"
     "zed"
     "zotero"

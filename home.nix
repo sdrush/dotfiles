@@ -89,8 +89,7 @@
     bfg-repo-cleaner
     go
     lua5_4
-    nodejs
-    nodePackages.npm
+    nodejs_22
     python312
     python312Packages.numpy
     python312Packages.pyopenssl
@@ -190,7 +189,7 @@
     cachix # adding/managing alternative binary caches hosted by Cachix
     comma # run software without installing it
     niv # easy dependency management for nix projects
-    nodePackages.node2nix
+    # nodePackages.node2nix Commented for testing
 
   ] ++ lib.optionals stdenv.isDarwin [
     cocoapods
