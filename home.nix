@@ -84,6 +84,7 @@
     jq
     yq
     wget2
+    gettext
 
     # Languages, Language Tools, and Language Packages/Modules
     bfg-repo-cleaner
