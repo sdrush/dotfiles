@@ -96,6 +96,7 @@
     python312Packages.pyopenssl
     graphviz
     temurin-jre-bin-17
+    jujutsu
 
     # pipenv # Is this even needed in nix?
     pylint
