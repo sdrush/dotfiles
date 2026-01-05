@@ -14,7 +14,7 @@ in {
 
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       # extremely important, otherwise git will attempt to guess a default user identity. see `man git-config` for more details
       user.useConfigOnly = true;
       init.defaultBranch = "main";
@@ -29,7 +29,7 @@ in {
     };
     # This is optional, as `git identity` will call the `git-identity` script by itself, however
     # setting it up explicitly as an alias gives you autocomplete
-    aliases = {
+    settings.aliases = {
       identity = "! git-identity";
       id = "! git-identity";
     };

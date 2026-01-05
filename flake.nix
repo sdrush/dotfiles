@@ -4,7 +4,7 @@
   inputs = {
     # Nix package sets
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Nix-darwin and home-manager
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -13,98 +13,71 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     comma.url = "github:nix-community/comma";
 
-    # Python stuff
-    pypi-deps-db = {
-      url = "github:DavHau/pypi-deps-db";
-      flake = false;
-    };
-    #mach-nix = {
-    #  url = "github:DavHau/mach-nix/3.5.0";
-    #  inputs.pypi-deps-db.follows = "pypi-deps-db";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    # Flake Parts
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
-  let 
+  outputs = inputs@{ self, darwin, nixpkgs, home-manager, flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "aarch64-darwin" "x86_64-darwin" ];
 
-    inherit (darwin.lib) darwinSystem;
-    inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
+      # 1. Per-System Configuration (Automatic for each system in 'systems')
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        # Automatically sets up formatter
+        formatter = pkgs.nixfmt-rfc-style;
 
-    # Configuration for `nixpkgs`
-    nixpkgsConfig = {
-      # Forgive me RMS, for I have sinned
-      config = { allowUnfree = true; };
-      overlays = attrValues self.overlays ++ singleton (
-        # Sub in x86 version of packages that don't build on Apple Silicon yet
-        final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-          inherit (final.pkgs-x86)
-           ;
-        })
-      );
-    }; 
-  in
-  {
-    # My 'nix-darwin' configs
-      
-    darwinConfigurations = rec {
-      typhon = darwinSystem {
-        system = "aarch64-darwin";
-        modules = attrValues self.darwinModules ++ [ 
-          # Main `nix-darwin` config
-          ./configuration.nix
-          # `home-manager` module
-          home-manager.darwinModules.home-manager
-          {
-            nixpkgs = nixpkgsConfig;
-            # `home-manager` config
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."sdrush" = import ./home.nix;            
-          }
-        ];
-      };
-    };
-
-    # Overlays --------------------------------------------------------------- {{{
-
-    overlays = {
-      # Overlays to add various packages into package set
-        #comma = final: prev: {
-        #  comma = import inputs.comma { inherit (prev) pkgs; };
-        #};  
-
-      # Overlay useful on Macs with Apple Silicon
-        apple-silicon = final: prev: optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-          # Add access to x86 packages if system is running Apple Silicon
-          pkgs-x86 = import inputs.nixpkgs-unstable {
-            system = "x86_64-darwin";
-            inherit (nixpkgsConfig) config;
-          };
-        }; 
-      };
-
-    # My `nix-darwin` modules that are pending upstream, or patched versions waiting on upstream
-    # fixes.
-    darwinModules = {
-      programs-nix-index = 
-        # Additional configuration for `nix-index` to enable `command-not-found` functionality with Fish.
-        { config, lib, pkgs, ... }:
-
-        {
-          config = lib.mkIf config.programs.nix-index.enable {
-            programs.fish.interactiveShellInit = ''
-              function __fish_command_not_found_handler --on-event="fish_command_not_found"
-                ${if config.programs.fish.useBabelfish then ''
-                command_not_found_handle $argv
-                '' else ''
-                ${pkgs.bashInteractive}/bin/bash -c \
-                  "source ${config.progams.nix-index.package}/etc/profile.d/command-not-found.sh; command_not_found_handle $argv"
-                ''}
-              end
-            '';
-            };
+        # Automatically sets up devShells
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            nixfmt-rfc-style
+            deadnix
+            statix
+          ];
         };
+      };
+
+      # 2. Global Configuration
+      flake = {
+        darwinModules = {
+          programs-nix-index = import ./modules/nix-index.nix;
+        };
+
+        darwinConfigurations = 
+          let
+             # Configuration for `nixpkgs` inside darwinConfigurations
+             nixpkgsConfig = {
+               config = { allowUnfree = true; };
+               overlays = nixpkgs.lib.attrValues self.overlays ++ nixpkgs.lib.singleton (
+                  final: prev: (nixpkgs.lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
+                    inherit (final.pkgs-x86);
+                  })
+               );
+             };
+          in
+          {
+            typhon = darwin.lib.darwinSystem {
+              system = "aarch64-darwin";
+              modules = nixpkgs.lib.attrValues self.darwinModules ++ [ 
+                # Main `nix-darwin` config
+                ./configuration.nix
+                # `home-manager` module
+                home-manager.darwinModules.home-manager
+                {
+                  nixpkgs = nixpkgsConfig;
+                  # `home-manager` config
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users."sdrush" = import ./home.nix;            
+                }
+              ];
+            };
+          };
+
+        # Overlays
+        overlays = import ./overlays/default.nix { 
+          inherit inputs; 
+          nixpkgsConfig = { config = { allowUnfree = true; }; };
+        };
+      };
     };
- };
 }

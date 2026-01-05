@@ -40,12 +40,12 @@
   homebrew.casks = [
     "amethyst" # tiling window manager a la xmonad
     # "alacritty" # terminal emulator - maybe a better way to do this with nix
+    "affinity"
     "anki" # flashcards
+    "antigravity"
     "arc" # my new favorite browser
     "beeper"
     "bitwarden"
-    "citrix-workspace"
-    "cursor"
     # "authy" # multiplatform token generator.  
     # "arq" # cloud backups
     # "element" # zerotier replacement
@@ -65,7 +65,7 @@
     "meld" # file/folder comparison tool
     "numi" # calculator
     "obsidian"
-    "ollama"
+    "ollama-app"
     "postman"
     "prismlauncher"
     "proton-drive"
@@ -83,11 +83,10 @@
     "ubar"
     # "superhuman" # cool looking gmail client
     "visual-studio-code"
-    "vmware-horizon-client"
+    # "vmware-horizon-client"
     "vnc-viewer"
     "warp"
-    "windows-app"
-    "windsurf"
+    # "windows-app"
     "zed"
     "zotero"
     # "yubico-yubikey-manager"

@@ -5,7 +5,7 @@
     ./modules/aliases.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
-  system.stateVersion = 5;
+ system.stateVersion = 5;
   nix.settings.substituters = [
     "https://cache.nixos.org/"
   ];
@@ -21,7 +21,7 @@
   nix.extraOptions = ''
     auto-optimise-store = true
     experimental-features = nix-command flakes
-  '' + lib.optionalString (pkgs.system == "x86_64-darwin") ''
+  '' + lib.optionalString (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") ''
     extra-platforms = x86_64-darwin x86_64-linux
   '';
 

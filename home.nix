@@ -134,7 +134,7 @@
     # pulumi-bin
     terraform # devshell
     terraformer # devshell
-    terragrunt # devshell
+    # terragrunt # devshell
     tflint # devshell
 
     # Useful CLI utilities
