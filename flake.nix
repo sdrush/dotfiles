@@ -17,24 +17,52 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = inputs@{ self, darwin, nixpkgs, home-manager, flake-parts, ... }:
+  outputs =
+    inputs@{
+      self,
+      darwin,
+      nixpkgs,
+      home-manager,
+      flake-parts,
+      ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-darwin" "x86_64-darwin" ];
+      systems = [
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
       # 1. Per-System Configuration (Automatic for each system in 'systems')
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-        # Automatically sets up formatter
-        formatter = pkgs.nixfmt-rfc-style;
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          # Automatically sets up formatter
+          formatter = pkgs.nixfmt-rfc-style;
 
-        # Automatically sets up devShells
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            nixfmt-rfc-style
-            deadnix
-            statix
-          ];
+          # Automatically sets up devShells
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              nixfmt-rfc-style
+              deadnix
+              statix
+            ];
+          };
+
+          packages =
+            if system == "aarch64-darwin" then
+              {
+                default = self.darwinConfigurations.typhon.config.system.build.toplevel;
+              }
+            else
+              { };
         };
-      };
 
       # 2. Global Configuration
       flake = {
@@ -42,22 +70,27 @@
           programs-nix-index = import ./modules/nix-index.nix;
         };
 
-        darwinConfigurations = 
+        darwinConfigurations =
           let
-             # Configuration for `nixpkgs` inside darwinConfigurations
-             nixpkgsConfig = {
-               config = { allowUnfree = true; };
-               overlays = nixpkgs.lib.attrValues self.overlays ++ nixpkgs.lib.singleton (
-                  final: prev: (nixpkgs.lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-                    inherit (final.pkgs-x86);
+            # Configuration for `nixpkgs` inside darwinConfigurations
+            nixpkgsConfig = {
+              config = {
+                allowUnfree = true;
+              };
+              overlays =
+                nixpkgs.lib.attrValues self.overlays
+                ++ nixpkgs.lib.singleton (
+                  final: prev:
+                  (nixpkgs.lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
+                    inherit (final.pkgs-x86) ;
                   })
-               );
-             };
+                );
+            };
           in
           {
             typhon = darwin.lib.darwinSystem {
               system = "aarch64-darwin";
-              modules = nixpkgs.lib.attrValues self.darwinModules ++ [ 
+              modules = nixpkgs.lib.attrValues self.darwinModules ++ [
                 # Main `nix-darwin` config
                 ./configuration.nix
                 # `home-manager` module
@@ -67,16 +100,20 @@
                   # `home-manager` config
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
-                  home-manager.users."sdrush" = import ./home.nix;            
+                  home-manager.users."sdrush" = import ./home.nix;
                 }
               ];
             };
           };
 
         # Overlays
-        overlays = import ./overlays/default.nix { 
-          inherit inputs; 
-          nixpkgsConfig = { config = { allowUnfree = true; }; };
+        overlays = import ./overlays/default.nix {
+          inherit inputs;
+          nixpkgsConfig = {
+            config = {
+              allowUnfree = true;
+            };
+          };
         };
       };
     };
