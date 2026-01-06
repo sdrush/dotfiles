@@ -14,7 +14,7 @@
     ./git
   ];
   programs.home-manager.enable = true;
-  home.stateVersion = "22.05";
+  home.stateVersion = "24.11";
 
   # Man pages
   manual.manpages.enable = true;
