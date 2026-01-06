@@ -3,12 +3,12 @@
 {
   imports = [
     ./modules/aliases.nix
+    ./modules/git.nix
     ./modules/navi.nix
     ./modules/packages.nix
     ./modules/starship.nix
     ./modules/tmux.nix
-    ./modules/zsh.nix    
-    ./git
+    ./modules/zsh.nix
   ];
   programs.home-manager.enable = true;
   home.stateVersion = "24.11";
