@@ -67,7 +67,7 @@
       # 2. Global Configuration
       flake = {
         darwinModules = {
-          programs-nix-index = import ./modules/nix-index.nix;
+          
         };
 
         darwinConfigurations =
