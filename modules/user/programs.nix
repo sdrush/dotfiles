@@ -33,6 +33,20 @@
     };
   };
 
+  # Delta: A better git diff
+  # https://github.com/dandavison/delta
+  # https://rycee.gitlab.io/home-manager/options.xhtml#opt-programs.delta.enable
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      line-numbers = true;
+      side-by-side = true;
+      syntax-theme = "Dracula";
+    };
+  };
+
   # Direnv: load and unload environment variables depending on the current directory.
   # https://direnv.net
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.direnv.enable
@@ -49,6 +63,14 @@
     enable = true;
     enableZshIntegration = true;
     icons = "auto";
+  };
+
+  # FD: A simpler, faster find
+  # https://github.com/sharkdp/fd
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.fd.enable
+  programs.fd = {
+    enable = true;
+    hidden = true;
   };
 
   # FZF: Fuzzy search
