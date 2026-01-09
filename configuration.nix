@@ -33,7 +33,6 @@
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [ ];
   environment.variables = { };
-  programs.nix-index.enable = true;
 
   # User(s)
   users.users."${user}" = {

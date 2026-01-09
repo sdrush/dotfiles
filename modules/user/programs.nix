@@ -1,6 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  # Atuin: A better shell history
+  # https://github.com/ellie/atuin
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.atuin.enable
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # Bat: A Better Cat
   # https://github.com/sharkdp/bat
   # https://rycee.gitlab.io/home-manager/options.xhtml#opt-programs.bat.enable
@@ -35,6 +43,8 @@
   };
 
   # EZA: My favorite maintained ls replacement
+  # https://github.com/eza-community/eza
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.eza.enable
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
@@ -87,6 +97,13 @@
     enable = true;
   };
 
+  # Nix Index: A file database for nixpkgs
+  # https://github.com/nix-community/nix-index
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.nix-index.enable
+  programs.nix-index = {
+    enable = true;
+  };
+
   # Ripgrep: Just like grep, only faster
   # https://github.com/BurntSushi/ripgrep
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.ripgrep.enable
@@ -99,6 +116,7 @@
   };
 
   # SSH: Secure Shell
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.ssh.enable
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -133,6 +151,7 @@
   };
 
   # VSCode: Visual Studio Code
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.vscode.enable
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
@@ -140,6 +159,13 @@
 
     ];
   };
+
+# Yazi: Blazing fast terminal manager written in Rust
+# https://github.com/yazi-org/yazi
+# https://rycee.gitlab.io/home-manager/options.html#opt-programs.yazi.enable
+programs.yazi = {
+  enable = true;
+};
 
   # Zellij: Terminal multiplexer
   # https://github.com/zellij-org/zellij
@@ -150,6 +176,8 @@
   };
 
   # Zoxide: Smart cd
+  # https://github.com/ajeetkumar/zoxide
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zoxide.enable
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
