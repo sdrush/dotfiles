@@ -4,13 +4,10 @@
   home.packages = with pkgs; [
     # Some basic tools and utilities
     coreutils
-    direnv
-    nix-direnv
-    jq
-    yq
     wget2
     gettext
     nixfmt-rfc-style
+    yq
 
     # Languages, Language Tools, and Language Packages/Modules
     bfg-repo-cleaner
@@ -29,14 +26,7 @@
 
     # Shells, utilities, customizations and terminals
     byobu
-    oh-my-zsh
-    starship
     terminal-notifier
-    tmux
-    zplug
-    zsh
-    zsh-completions
-    nix-zsh-completions
     jira-cli-go
 
     # Container Stuff
@@ -57,29 +47,20 @@
     tflint # devshell
 
     # Useful CLI utilities
-    autojump
     bitwarden-cli
-    htop
     httpie #no worky with python310
 
     # Building a second Brain
     pandoc
 
     # Other Applications
-    zellij # terminal multiplexer
-    bat # a better cat
     grex # Generate regukar expressions from user generated test cases
     gcalcli # cli for Google Calendar
-    neovim
-    vim
     nmap
     openssh
-    ripgrep
     sops
     speedtest-cli
     sqlite
-    taskwarrior3
-    tealdeer
     unbound
     
     # yubikey related tools and utilities
@@ -104,7 +85,9 @@
     # Some useful nix related tools
     cachix # adding/managing alternative binary caches hosted by Cachix
     comma # run software without installing it
+    nh # Nix Helper
     niv # easy dependency management for nix projects
+    nix-output-monitor # A cleaner build output
 
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
     cocoapods

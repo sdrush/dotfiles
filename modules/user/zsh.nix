@@ -8,8 +8,8 @@
 {
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     completionInit = "autoload -U compinit && compinit";
     envExtra = "

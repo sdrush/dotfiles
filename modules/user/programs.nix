@@ -1,12 +1,28 @@
 { config, pkgs, ... }:
 
 {
-  # Autojump: a cd command that learns.
-  # https://github.com/wting/autojump
-  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.autojump.enable
-  programs.autojump = {
+  # Bat: A Better Cat
+  # https://github.com/sharkdp/bat
+  # https://rycee.gitlab.io/home-manager/options.xhtml#opt-programs.bat.enable
+  programs.bat = {
     enable = true;
-    enableZshIntegration = true;
+    config = {
+      theme = "Dracula"; # or "TwoDark", "Nord", "GitHub"
+      style = "header,grid"; # less clutter than default (which is "full")
+      pager = "less -FR"; # Quit if one screen, and supporting colors
+    };
+  };
+
+  # Btop: A Better Top
+  # https://github.com/aristocratos/btop
+  # https://rycee.gitlab.io/home-manager/options.xhtml#opt-programs.btop.enable
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "dracula";
+      theme_background = false;
+      vim_keys = true;
+    };
   };
 
   # Direnv: load and unload environment variables depending on the current directory.
@@ -16,6 +32,13 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  # EZA: My favorite maintained ls replacement
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    icons = "auto";
   };
 
   # FZF: Fuzzy search
@@ -36,17 +59,77 @@
     package = pkgs.gh;
   };
 
-  # Htop
-  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
-  programs.htop = {
+  # GPG: The GNU Privacy Guard
+  # https://www.gnupgp.org/
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.gpg.enable
+  programs.gpg = {
     enable = true;
-    settings.show_program_path = true;
   };
 
-  # LSD: My favorite ls replacement
-  programs.lsd = {
+  # JQ: JSON processor
+  # https://github.com/stedolan/jq
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.jq.enable
+  programs.jq = {
     enable = true;
-    enableZshIntegration = true;
+  };
+
+  # K9s: The Kubernetes CLI
+  # https://github.com/derailed/k9s
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.k9s.enable
+  programs.k9s = {
+    enable = true;
+  };
+
+  # LazyGit: A better git
+  # https://github.com/jesseduffield/lazygit
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.lazygit.enable
+  programs.lazygit = {
+    enable = true;
+  };
+
+  # Ripgrep: Just like grep, only faster
+  # https://github.com/BurntSushi/ripgrep
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.ripgrep.enable
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--max-columns-preview"
+      "--colors=line:style:bold"
+    ];
+  };
+
+  # SSH: Secure Shell
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      addKeysToAgent = "yes";
+    };
+  };
+
+  # TaskWarrior: The Task List Manager
+  # https://github.com/GothenburgBitFactory/taskwarrior
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.taskwarrior.enable
+  programs.taskwarrior = {
+    enable = true;
+    package = pkgs.taskwarrior3;
+    colorTheme = "dark-256"; 
+  };
+
+  # Tealdeer: A better 'man'
+  # https://github.com/dbrgn/tealdeer
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.tealdeer.enable
+  programs.tealdeer = {
+    enable = true;
+    settings = {
+      display = {
+        compact = false;
+        use_pager = true;
+      };
+      updates = {
+        auto_update = true;
+      };
+    };
   };
 
   # VSCode: Visual Studio Code
@@ -55,6 +138,23 @@
     package = pkgs.vscode;
     profiles.default.extensions = [
 
+    ];
+  };
+
+  # Zellij: Terminal multiplexer
+  # https://github.com/zellij-org/zellij
+  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zellij.enable
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  # Zoxide: Smart cd
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [
+      "--cmd cd" # Replace 'cd' with 'z' (smart jumping)
     ];
   };
 }
