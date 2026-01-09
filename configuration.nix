@@ -1,7 +1,7 @@
 { pkgs, lib, user,... }:
 {
   imports = [
-    ./modules/homebrew.nix
+    ./modules/system/homebrew.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
   system.stateVersion = 5;

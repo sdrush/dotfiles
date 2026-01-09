@@ -2,15 +2,15 @@
 
 {
   imports = [
-    ./modules/aliases.nix
-    ./modules/alacritty.nix
-    ./modules/git.nix
-    ./modules/navi.nix
-    ./modules/packages.nix
-    ./modules/programs.nix
-    ./modules/starship.nix
-    ./modules/tmux.nix
-    ./modules/zsh.nix
+    ./modules/user/aliases.nix
+    ./modules/user/alacritty.nix
+    ./modules/user/git.nix
+    ./modules/user/navi.nix
+    ./modules/user/packages.nix
+    ./modules/user/programs.nix
+    ./modules/user/starship.nix
+    ./modules/user/tmux.nix
+    ./modules/user/zsh.nix
   ];
   programs.home-manager.enable = true;
   home.stateVersion = "24.11";
