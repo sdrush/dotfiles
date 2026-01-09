@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 {
   # I define these aliases here so that I get them regardless of which shell I use.

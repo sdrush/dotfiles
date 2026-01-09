@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   # put a shell script into the nix store
@@ -16,17 +16,22 @@ in {
     enable = true;
     settings = {
       # extremely important, otherwise git will attempt to guess a default user identity. see `man git-config` for more details
-      user.useConfigOnly = true;
       init.defaultBranch = "main";
+      user = {
+        useConfigOnly = true;
 
-      # the `work` identity
-      user.work.name = "Shannon Rush";
-      user.work.email = "shannon.rush@mavenwave.com";
+        # the `work` identity
+        work = {
+          name = "Shannon Rush";
+          email = "shannon.rush@mavenwave.com";
+        };
 
-      # the `personal` identity
-      user.personal.name = "Shannon Rush";
-      user.personal.email = "shannon.rush@gmail.com";
-
+        # the `personal` identity
+        personal = {
+          name = "Shannon Rush";
+          email = "shannon.rush@gmail.com";
+        };
+      };
       # Set up out default editor and diff tools
       core.editor = "code --wait";
       diff.tool = "vscode";

@@ -35,9 +35,6 @@
       # 1. Per-System Configuration (Automatic for each system in 'systems')
       perSystem =
         {
-          config,
-          self',
-          inputs',
           pkgs,
           system,
           ...
@@ -89,9 +86,11 @@
                 {
                   nixpkgs = nixpkgsConfig;
                   # `home-manager` config
-                  home-manager.useGlobalPkgs = true;
-                  home-manager.useUserPackages = true;
-                  home-manager.users."${user}" = import ./home.nix;
+                  home-manager = {
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+                    users."${user}" = import ./home.nix;
+                  };
                 }
               ];
             };

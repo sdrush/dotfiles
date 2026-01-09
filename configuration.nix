@@ -4,16 +4,24 @@
     ./modules/system/homebrew.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
-  system.stateVersion = 5;
-  nix.settings.substituters = [
-    "https://cache.nixos.org/"
-  ];
-  nix.settings.trusted-public-keys = [
-    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-  ];
-  nix.settings.trusted-users = [
-    "@admin"
-  ];
+  system = {
+    stateVersion = 5;
+
+    # Keyboard
+    keyboard.enableKeyMapping = true;
+    keyboard.remapCapsLockToEscape = true;
+  };
+  nix.settings = {
+    substituters = [
+      "https://cache.nixos.org/"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
+    trusted-users = [
+      "@admin"
+    ];
+  };
 
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
@@ -41,13 +49,9 @@
   };
   # Fonts
   fonts.packages = with pkgs; [
-    (pkgs.nerd-fonts.fira-code)
-    (pkgs.nerd-fonts.meslo-lg)
+    nerd-fonts.fira-code
+    nerd-fonts.meslo-lg
   ];
-
-  # Keyboard
-  system.keyboard.enableKeyMapping = true;
-  system.keyboard.remapCapsLockToEscape = true;
 
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
