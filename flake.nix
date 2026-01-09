@@ -66,10 +66,6 @@
 
       # 2. Global Configuration
       flake = {
-        darwinModules = {
-          
-        };
-
         darwinConfigurations =
           let
             # Configuration for `nixpkgs` inside darwinConfigurations
@@ -77,20 +73,13 @@
               config = {
                 allowUnfree = true;
               };
-              overlays =
-                nixpkgs.lib.attrValues self.overlays
-                ++ nixpkgs.lib.singleton (
-                  final: prev:
-                  (nixpkgs.lib.optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-                    inherit (final.pkgs-x86) ;
-                  })
-                );
+              overlays = nixpkgs.lib.attrValues self.overlays;
             };
           in
           {
             typhon = darwin.lib.darwinSystem {
               system = "aarch64-darwin";
-              modules = nixpkgs.lib.attrValues self.darwinModules ++ [
+              modules = [
                 # Main `nix-darwin` config
                 ./configuration.nix
                 # `home-manager` module
