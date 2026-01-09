@@ -3,7 +3,7 @@
 
   inputs = {
     # Nix package sets
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Nix-darwin and home-manager
@@ -21,7 +21,7 @@
     inputs@{
       self,
       darwin,
-      nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       flake-parts,
       ...
@@ -74,7 +74,7 @@
               config = {
                 allowUnfree = true;
               };
-              overlays = nixpkgs.lib.attrValues self.overlays;
+              overlays = nixpkgs-unstable.lib.attrValues self.overlays;
             };
           in
           {
