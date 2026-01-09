@@ -8,6 +8,7 @@
     gettext
     nixfmt-rfc-style
     yq
+    manix
 
     # Languages, Language Tools, and Language Packages/Modules
     bfg-repo-cleaner
@@ -86,8 +87,10 @@
     cachix # adding/managing alternative binary caches hosted by Cachix
     comma # run software without installing it
     nh # Nix Helper
-    niv # easy dependency management for nix projects
     nix-output-monitor # A cleaner build output
+    statix # Linter and suggestions for the nix language
+    deadnix # Find and remove unused code in .nix source files
+    nix-tree # Vizualize the dependency graph (great for debugging size)
 
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
     cocoapods
