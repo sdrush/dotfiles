@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, user,... }:
 {
   imports = [
     ./modules/homebrew.nix
@@ -36,9 +36,9 @@
   programs.nix-index.enable = true;
 
   # User(s)
-  users.users."sdrush" = {
-    name = "sdrush";
-    home = "/Users/sdrush";
+  users.users."${user}" = {
+    name = "${user}";
+    home = "/Users/${user}";
   };
   # Fonts
   fonts.packages = with pkgs; [

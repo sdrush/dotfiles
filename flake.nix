@@ -68,6 +68,7 @@
       flake = {
         darwinConfigurations =
           let
+            user = "sdrush";
             # Configuration for `nixpkgs` inside darwinConfigurations
             nixpkgsConfig = {
               config = {
@@ -79,6 +80,7 @@
           {
             typhon = darwin.lib.darwinSystem {
               system = "aarch64-darwin";
+              specialArgs = { inherit inputs user; };
               modules = [
                 # Main `nix-darwin` config
                 ./configuration.nix
@@ -89,7 +91,7 @@
                   # `home-manager` config
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
-                  home-manager.users."sdrush" = import ./home.nix;
+                  home-manager.users."${user}" = import ./home.nix;
                 }
               ];
             };
