@@ -23,15 +23,12 @@
     graphviz
     temurin-jre-bin-17
     jujutsu
-
-    # pipenv # Is this even needed in nix?
     pylint
     tcl
     tk
 
     # Shells, utilities, customizations and terminals
-    #byobu # need a nix-y way of getting libnewt
-    # iterm2
+    byobu
     oh-my-zsh
     starship
     terminal-notifier
@@ -44,8 +41,6 @@
 
     # Container Stuff
     docker-compose
-    #docker-machine
-    # docker-machine-hyperkit
     dive
     kubectl # devshell
     kubectx # devshell 
@@ -56,23 +51,19 @@
 
     # Cloud stuff
     (google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
-    # google-cloud-sdk
-    # pulumi-bin
     terraform # devshell
     terraformer # devshell
-    # terragrunt # devshell
+    terragrunt # devshell
     tflint # devshell
 
     # Useful CLI utilities
     autojump
-    # bitwarden-cli 06-03-2024 broken because of use of deprected NIX features
+    bitwarden-cli
     htop
-    # httpie no worky with python310
+    httpie #no worky with python310
 
     # Building a second Brain
-    #obsidian 03-07-2025 managed by brew
     pandoc
-    #pandoc-drawio-filter
 
     # Other Applications
     zellij # terminal multiplexer
@@ -92,7 +83,6 @@
     unbound
     
     # yubikey related tools and utilities
-    #pinentry
     pinentry_mac
     yubico-piv-tool
     yubikey-agent
@@ -115,7 +105,6 @@
     cachix # adding/managing alternative binary caches hosted by Cachix
     comma # run software without installing it
     niv # easy dependency management for nix projects
-    # nodePackages.node2nix Commented for testing
 
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
     cocoapods
