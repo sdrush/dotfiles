@@ -59,7 +59,8 @@
     gcalcli # cli for Google Calendar
     nmap
     openssh
-    sops
+    sops # Secure operations
+    age # Secure encryption
     speedtest-cli
     sqlite
     unbound

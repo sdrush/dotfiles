@@ -33,13 +33,13 @@ in {
         };
       };
       # Set up out default editor and diff tools
-      core.editor = "code --wait";
-      diff.tool = "vscode";
-      "difftool \"vscode\"".cmd =
-        "code --wait --diff $LOCAL $REMOTE";
-      merge.tool = "vscode";
-      "mergetool \"vscode\"".cmd =
-        "code --wait $MERGED";
+      core.editor = "agy --wait";
+      diff.tool = "agy";
+      "difftool \"agy\"".cmd =
+        "agy --wait --diff $LOCAL $REMOTE";
+      merge.tool = "agy";
+      "mergetool \"agy\"".cmd =
+        "agy --wait $MERGED";
 
       # Other important settings
       color.ui = "auto";

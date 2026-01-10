@@ -3,6 +3,8 @@ _:
 {
   # I define these aliases here so that I get them regardless of which shell I use.
   programs.zsh.shellAliases = {
+    # Some editor aliases for commands that dont like antigravity as the default editor
+    sops="EDITOR=vi sops";
     # These make it marginally more difficult to shoot myself in the foot
     rm="rm -i";
     cp="cp -i";

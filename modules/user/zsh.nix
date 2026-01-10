@@ -17,7 +17,7 @@
       if [[ -n $SSH_CONNECTION ]]; then
         export EDITOR='vim'
       else
-        export EDITOR='code'
+        export EDITOR='agy'
       fi
     ";
     initContent = lib.mkOrder 550 ''

@@ -18,6 +18,9 @@
 
     # Nix Index
     nix-index-database.url = "github:nix-community/nix-index-database";
+
+    # SOPS-Nix
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
@@ -26,7 +29,6 @@
       darwin,
       flake-parts,
       home-manager,
-      nix-index-database,
       nixpkgs-unstable,
       ...
     }:
@@ -93,7 +95,13 @@
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
-                    users."${user}" = import ./home.nix;
+                    users."${user}" = {
+                      imports = [
+                        ./home.nix
+                        inputs.nix-index-database.homeModules.nix-index
+                        inputs.sops-nix.homeManagerModules.sops
+                      ];
+                    };
                   };
                 }
               ];
