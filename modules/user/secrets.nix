@@ -1,8 +1,8 @@
-_:
+{ inputs, ... }:
 
 {
   sops = {
-    defaultSopsFile = ../../secrets.yaml;
+    defaultSopsFile = inputs.self + "/secrets.yaml";
     age.keyFile = "/Users/sdrush/.config/sops/age/keys.txt";
     
     secrets = {
