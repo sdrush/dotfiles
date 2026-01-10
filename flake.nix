@@ -15,15 +15,19 @@
 
     # Flake Parts
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # Nix Index
+    nix-index-database.url = "github:nix-community/nix-index-database";
   };
 
   outputs =
     inputs@{
       self,
       darwin,
-      nixpkgs-unstable,
-      home-manager,
       flake-parts,
+      home-manager,
+      nix-index-database,
+      nixpkgs-unstable,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {

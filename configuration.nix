@@ -11,28 +11,34 @@
     keyboard.enableKeyMapping = true;
     keyboard.remapCapsLockToEscape = true;
   };
-  nix.settings = {
-    substituters = [
-      "https://cache.nixos.org/"
-    ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    ];
-    trusted-users = [
-      "@admin"
-    ];
+  nix = {
+    optimise.automatic = true;
+    settings = {
+      substituters = [
+        "https://cache.nixos.org/"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      ];
+      trusted-users = [
+        "@admin"
+      ];
+    };
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    ''
+    + lib.optionalString (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") ''
+      extra-platforms = x86_64-darwin x86_64-linux
+    '';
+
+    # Nix automatic garbage collection
+    gc = {
+      automatic = true;
+      interval = { Weekday = 0; Hour = 2; Minute = 0; }; # Every Sunday at 2 AM
+      options = "--delete-older-than 30d";
+    };
   };
-
-  # Enable experimental nix command and flakes
-  # nix.package = pkgs.nixUnstable;
-  nix.extraOptions = ''
-    auto-optimise-store = true
-    experimental-features = nix-command flakes
-  ''
-  + lib.optionalString (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") ''
-    extra-platforms = x86_64-darwin x86_64-linux
-  '';
-
+  
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
