@@ -57,9 +57,11 @@
           # Treefmt configuration
           treefmt = {
             projectRootFile = "flake.nix";
-            programs.nixfmt.enable = true;
-            programs.shfmt.enable = true;
-            programs.prettier.enable = true;
+            programs = {
+              nixfmt.enable = true;
+              shfmt.enable = true;
+              prettier.enable = true;
+            };
             settings.global.excludes = [
               "flake.lock"
               "secrets.yaml"
