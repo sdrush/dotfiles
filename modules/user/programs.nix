@@ -16,7 +16,6 @@
     bat = {
       enable = true;
       config = {
-        theme = "Dracula"; # or "TwoDark", "Nord", "GitHub"
         style = "header,grid"; # less clutter than default (which is "full")
         pager = "less -FR"; # Quit if one screen, and supporting colors
       };
@@ -28,7 +27,6 @@
     btop = {
       enable = true;
       settings = {
-        color_theme = "dracula";
         theme_background = false;
         vim_keys = true;
       };
@@ -44,7 +42,6 @@
         navigate = true;
         line-numbers = true;
         side-by-side = true;
-        syntax-theme = "Dracula";
       };
     };
 

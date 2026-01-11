@@ -2,28 +2,18 @@
   description = "Shannon's Darwin Flake";
 
   inputs = {
-    # Nix package sets
-    # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
+    # nixpkgs.stableurl = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    # Nix-darwin and home-manager
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     comma.url = "github:nix-community/comma";
-
-    # Flake Parts
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    # Nix Index
     nix-index-database.url = "github:nix-community/nix-index-database";
-
-    # SOPS-Nix
     sops-nix.url = "github:Mic92/sops-nix";
-
-    # Treefmt
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs =
@@ -92,13 +82,6 @@
         darwinConfigurations =
           let
             user = "sdrush";
-            # Configuration for `nixpkgs` inside darwinConfigurations
-            nixpkgsConfig = {
-              config = {
-                allowUnfree = true;
-              };
-              overlays = nixpkgs.lib.attrValues self.overlays;
-            };
           in
           {
             typhon = darwin.lib.darwinSystem {
@@ -107,14 +90,21 @@
               modules = [
                 # Main `nix-darwin` config
                 ./configuration.nix
+                ./modules/user/stylix.nix
+                inputs.stylix.darwinModules.stylix
+                {
+                  nixpkgs = {
+                    config.allowUnfree = true;
+                    overlays = nixpkgs.lib.attrValues self.overlays;
+                  };
+                }
                 # `home-manager` module
                 home-manager.darwinModules.home-manager
                 {
-                  nixpkgs = nixpkgsConfig;
-                  # `home-manager` config
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
+                    backupFileExtension = "backup";
                     extraSpecialArgs = { inherit inputs; };
                     users."${user}" = {
                       imports = [
