@@ -29,6 +29,7 @@
     byobu
     terminal-notifier
     jira-cli-go
+    just
 
     # Container Stuff
     docker-compose
