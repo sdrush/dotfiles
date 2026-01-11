@@ -8,6 +8,13 @@
     settings = {
       # Don't print a new line at the start of the prompt
       add_newline = false;
+      git_status = {
+        style = "bold fg:#f7768e";
+        format = "([\\\[$all_status$ahead_behind\\\]]($style)) ";
+        modified = "!";
+        staged = "+";
+        untracked = "?";
+      };
       kubernetes = {
         format = "[$symbol$context\($namespace\)](dimmed green) ";
         disabled = false;
