@@ -7,7 +7,7 @@
     ./modules/user/alacritty.nix
     ./modules/user/git.nix
     ./modules/user/navi.nix
-    ./modules/user/neovim.nix
+    ./modules/user/nixvim.nix
     ./modules/user/programs.nix
     ./modules/user/secrets.nix
     ./modules/user/starship.nix

@@ -15,7 +15,7 @@
     envExtra = "
     export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
       if [[ -n $SSH_CONNECTION ]]; then
-        export EDITOR='vim'
+        export EDITOR='nvim'
       else
         export EDITOR='agy'
       fi

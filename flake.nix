@@ -14,6 +14,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     stylix.url = "github:danth/stylix";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -24,6 +26,8 @@
       home-manager,
       nixpkgs,
       treefmt-nix,
+      stylix,
+      nixvim,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -111,6 +115,7 @@
                         ./home.nix
                         inputs.nix-index-database.homeModules.nix-index
                         inputs.sops-nix.homeManagerModules.sops
+                        inputs.nixvim.homeManagerModules.nixvim
                       ];
                     };
                   };
