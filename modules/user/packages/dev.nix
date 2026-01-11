@@ -19,7 +19,6 @@
 
     # Build tools & Libraries
     autoconf
-    gnupg
     gnutls
     ldns # DNS Library and drill
     ncurses

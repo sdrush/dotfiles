@@ -51,11 +51,11 @@
         }:
         {
           pre-commit = {
-  check.enable = true;
+            check.enable = true;
             settings.hooks = {
-              treefmt.enable = true;    # Runs your current nix fmt/treefmt config
-              statix.enable = true;     # Catch bad Nix patterns
-              deadnix.enable = true;    # Catch unused variables
+              treefmt.enable = true; # Runs your current nix fmt/treefmt config
+              statix.enable = true; # Catch bad Nix patterns
+              deadnix.enable = true; # Catch unused variables
             };
           };
           # Treefmt configuration

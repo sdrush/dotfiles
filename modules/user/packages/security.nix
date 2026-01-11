@@ -7,7 +7,6 @@
     age
     bitwarden-cli
     openssh
-    gnupg # GPG for security keys
 
     # Yubikey tools
     pinentry_mac
