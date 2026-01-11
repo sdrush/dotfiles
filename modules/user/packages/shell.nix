@@ -17,7 +17,6 @@
     nodePackages.prettier
 
     # Nix related tools
-    nh # Nix Helper
     nix-output-monitor # nom
     comma
     nix-tree

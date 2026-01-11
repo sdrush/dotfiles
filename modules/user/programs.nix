@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config,... }:
 
 {
   programs = {
@@ -115,6 +115,16 @@
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.lazygit.enable
     lazygit = {
       enable = true;
+    };
+
+    # NH: Nix Helper
+    # https://github.com/nix-community/nh
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.nh.enable
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 7d --keep 5";
+      flake = "${config.home.homeDirectory}/.dotfiles";
     };
 
     # Nix Index: A file database for nixpkgs
