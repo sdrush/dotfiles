@@ -13,7 +13,7 @@ lint:
     deadnix .
 # Format all Nix files in the repository
 format:
-    nixfmt **/*.nix
+    nix fmt
 # Run flake checks to ensure everything is valid
 check:
     nix flake check

@@ -5,8 +5,8 @@
     enable = true;
     enableZshIntegration = true;
     package = pkgs.starship;
-    settings = { 
-    # Don't print a new line at the start of the prompt
+    settings = {
+      # Don't print a new line at the start of the prompt
       add_newline = false;
       kubernetes = {
         format = "[$symbol$context\($namespace\)](dimmed green) ";

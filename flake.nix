@@ -4,13 +4,13 @@
   inputs = {
     # Nix package sets
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Nix-darwin and home-manager
     darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     comma.url = "github:nix-community/comma";
 
     # Flake Parts
@@ -21,6 +21,9 @@
 
     # SOPS-Nix
     sops-nix.url = "github:Mic92/sops-nix";
+
+    # Treefmt
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs =
@@ -29,10 +32,14 @@
       darwin,
       flake-parts,
       home-manager,
-      nixpkgs-unstable,
+      nixpkgs,
+      treefmt-nix,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        treefmt-nix.flakeModule
+      ];
       systems = [
         "aarch64-darwin"
         "x86_64-darwin"
@@ -43,18 +50,29 @@
         {
           pkgs,
           system,
+          config,
           ...
         }:
         {
-          # Automatically sets up formatter
-          formatter = pkgs.nixfmt-rfc-style;
-
+          # Treefmt configuration
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+            programs.shfmt.enable = true;
+            programs.prettier.enable = true;
+            settings.global.excludes = [
+              "flake.lock"
+              "secrets.yaml"
+              "poetry.lock"
+            ];
+          };
           # Automatically sets up devShells
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
               nixfmt-rfc-style
               deadnix
               statix
+              config.treefmt.build.wrapper
             ];
           };
 
@@ -77,7 +95,7 @@
               config = {
                 allowUnfree = true;
               };
-              overlays = nixpkgs-unstable.lib.attrValues self.overlays;
+              overlays = nixpkgs.lib.attrValues self.overlays;
             };
           in
           {

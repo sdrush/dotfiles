@@ -38,15 +38,15 @@
     # https://github.com/dandavison/delta
     # https://rycee.gitlab.io/home-manager/options.xhtml#opt-programs.delta.enable
     delta = {
-    enable = true;
-    enableGitIntegration = true;
-    options = {
-      navigate = true;
-      line-numbers = true;
-      side-by-side = true;
-      syntax-theme = "Dracula";
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        navigate = true;
+        line-numbers = true;
+        side-by-side = true;
+        syntax-theme = "Dracula";
+      };
     };
-  };
 
     # Direnv: load and unload environment variables depending on the current directory.
     # https://direnv.net
@@ -154,7 +154,7 @@
     taskwarrior = {
       enable = true;
       package = pkgs.taskwarrior3;
-      colorTheme = "dark-256"; 
+      colorTheme = "dark-256";
     };
 
     # Tealdeer: A better 'man'

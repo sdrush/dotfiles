@@ -46,7 +46,7 @@ _:
       "arc" # my new favorite browser
       "beeper"
       "bitwarden"
-      # "authy" # multiplatform token generator.  
+      # "authy" # multiplatform token generator.
       # "arq" # cloud backups
       # "element" # zerotier replacement
       "discord"

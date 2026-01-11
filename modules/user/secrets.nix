@@ -4,7 +4,7 @@
   sops = {
     defaultSopsFile = inputs.self + "/secrets.yaml";
     age.keyFile = "/Users/sdrush/.config/sops/age/keys.txt";
-    
+
     secrets = {
       # We'll add real secrets here soon!
       "test_secret" = { };

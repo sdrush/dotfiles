@@ -1,4 +1,9 @@
-{ pkgs, lib, user,... }:
+{
+  pkgs,
+  lib,
+  user,
+  ...
+}:
 {
   imports = [
     ./modules/system/homebrew.nix
@@ -34,11 +39,15 @@
     # Nix automatic garbage collection
     gc = {
       automatic = true;
-      interval = { Weekday = 0; Hour = 2; Minute = 0; }; # Every Sunday at 2 AM
+      interval = {
+        Weekday = 0;
+        Hour = 2;
+        Minute = 0;
+      }; # Every Sunday at 2 AM
       options = "--delete-older-than 30d";
     };
   };
-  
+
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
