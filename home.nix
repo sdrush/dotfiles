@@ -2,12 +2,12 @@
 
 {
   imports = [
+    ./modules/user/packages
     ./modules/user/aliases.nix
     ./modules/user/alacritty.nix
     ./modules/user/git.nix
     ./modules/user/navi.nix
     ./modules/user/neovim.nix
-    ./modules/user/packages.nix
     ./modules/user/programs.nix
     ./modules/user/secrets.nix
     ./modules/user/starship.nix

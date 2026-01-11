@@ -71,7 +71,7 @@
           # Automatically sets up devShells
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
-              nixfmt-rfc-style
+              nixfmt
               deadnix
               statix
               config.treefmt.build.wrapper
