@@ -2,7 +2,7 @@
   description = "Shannon's Darwin Flake";
 
   inputs = {
-    # nixpkgs.stableurl = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
+    # nixpkgs.stable.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +16,8 @@
     stylix.url = "github:danth/stylix";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -26,10 +28,12 @@
       home-manager,
       nixpkgs,
       treefmt-nix,
+      git-hooks,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
+        git-hooks.flakeModule
         treefmt-nix.flakeModule
       ];
       systems = [
@@ -46,6 +50,14 @@
           ...
         }:
         {
+          pre-commit = {
+  check.enable = true;
+            settings.hooks = {
+              treefmt.enable = true;    # Runs your current nix fmt/treefmt config
+              statix.enable = true;     # Catch bad Nix patterns
+              deadnix.enable = true;    # Catch unused variables
+            };
+          };
           # Treefmt configuration
           treefmt = {
             projectRootFile = "flake.nix";
@@ -62,6 +74,7 @@
           };
           # Automatically sets up devShells
           devShells.default = pkgs.mkShell {
+            shellHook = config.pre-commit.installationScript;
             packages = with pkgs; [
               nixfmt
               deadnix
@@ -113,7 +126,7 @@
                         ./home.nix
                         inputs.nix-index-database.homeModules.nix-index
                         inputs.sops-nix.homeManagerModules.sops
-                        inputs.nixvim.homeManagerModules.nixvim
+                        inputs.nixvim.homeModules.nixvim
                       ];
                     };
                   };

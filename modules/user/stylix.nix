@@ -6,8 +6,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
 
     image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/zhifree/wallpapers/main/minimalistic/tokyo-night.png";
-      sha256 = "sha256-RndK3t7yV2VshwF+3XUeOn1M9X9S5B9m6x2Z4vXy3X4=";
+      url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/wallpapers/nix-wallpaper-dracula.png";
+      sha256 = "sha256-SykeFJXCzkeaxw06np0QkJCK28e0k30PdY8ZDVcQnh4=";
     };
 
     fonts = {
