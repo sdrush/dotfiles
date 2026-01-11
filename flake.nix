@@ -26,8 +26,6 @@
       home-manager,
       nixpkgs,
       treefmt-nix,
-      stylix,
-      nixvim,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
