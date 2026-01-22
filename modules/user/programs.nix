@@ -80,6 +80,13 @@
       package = pkgs.fzf;
     };
 
+    # Gemini CLI: The Gemini command line interface
+    # https://github.com/withfig/gemini-client
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.gemini-client.enable
+    gemini-cli = {
+      enable = true;
+    };
+
     # GH: The github cli
     # https://cli.github.com/
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.gh.enable
