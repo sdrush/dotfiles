@@ -7,6 +7,7 @@
 {
   imports = [
     ./modules/system/homebrew.nix
+    ./modules/system/macos.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
   system = {
@@ -35,17 +36,6 @@
     + lib.optionalString (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") ''
       extra-platforms = x86_64-darwin x86_64-linux
     '';
-
-    # Nix automatic garbage collection
-    gc = {
-      automatic = true;
-      interval = {
-        Weekday = 0;
-        Hour = 2;
-        Minute = 0;
-      }; # Every Sunday at 2 AM
-      options = "--delete-older-than 30d";
-    };
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.

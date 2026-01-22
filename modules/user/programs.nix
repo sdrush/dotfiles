@@ -123,6 +123,7 @@
     nh = {
       enable = true;
       clean.enable = true;
+      clean.dates = "weekly";
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "${config.home.homeDirectory}/.dotfiles";
     };

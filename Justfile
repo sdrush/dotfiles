@@ -19,7 +19,7 @@ check:
     nix flake check
 # Garbage collect and delete old generations using nh (keeps last 7 days)
 gc:
-    nh clean all --keep 7
+    sudo nh clean all --keep 7
 # Build the latest flake without applying it
 build:
     nom build .
