@@ -210,7 +210,7 @@
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.zellij.enable
     zellij = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = false;
     };
 
     # Zoxide: Smart cd
