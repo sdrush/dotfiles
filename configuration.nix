@@ -2,12 +2,16 @@
   pkgs,
   lib,
   user,
+  inputs,
   ...
 }:
 {
   imports = [
     ./modules/system/homebrew.nix
     ./modules/system/macos.nix
+    ./modules/system/nix.nix
+    ./modules/system/users.nix
+    ./modules/system/fonts.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
   system = {
@@ -16,26 +20,6 @@
     # Keyboard
     keyboard.enableKeyMapping = true;
     keyboard.remapCapsLockToEscape = true;
-  };
-  nix = {
-    optimise.automatic = true;
-    settings = {
-      substituters = [
-        "https://cache.nixos.org/"
-      ];
-      trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      ];
-      trusted-users = [
-        "@admin"
-      ];
-    };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    ''
-    + lib.optionalString (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") ''
-      extra-platforms = x86_64-darwin x86_64-linux
-    '';
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -47,18 +31,6 @@
   environment.systemPackages = with pkgs; [ ];
   environment.variables = { };
 
-  # User(s)
-  users.users."${user}" = {
-    name = "${user}";
-    home = "/Users/${user}";
-  };
-  # Fonts
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-    nerd-fonts.meslo-lg
-  ];
-
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
-
 }
