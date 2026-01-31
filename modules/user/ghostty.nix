@@ -14,11 +14,21 @@
 
     settings = {
       # Performance & Appearance
-      window-opacity = 0.87;
-      window-decoration = true; # Use native window decorations on macOS
+      background-opacity = 0.87;
+      background-blur = true;
+      window-padding-x = 10;
+      window-padding-y = 10;
+      window-decoration = true;
+
+      # macOS Integration
+      macos-option-as-alt = true;
 
       # Integration
       shell-integration = "detect";
+
+      # Interaction
+      mouse-hide-while-typing = true;
+      copy-on-select = true;
 
       # Use Stylix for theming (it should pick up the Tokyo Night Storm automatically)
     };
