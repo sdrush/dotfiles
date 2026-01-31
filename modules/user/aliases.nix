@@ -12,8 +12,13 @@ _:
     # Useful default replacement commands
     cat = "bat";
 
-    # Default to df being human readable
-    df = "df -h";
+    # Default to modern alternatives
+    df = "duf";
+    du = "dust";
+    ps = "procs";
+    dig = "doggo";
+    ping = "gping";
+    sed = "sd";
 
     # Some useful Terraform aliases
     tf = "terraform";

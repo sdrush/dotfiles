@@ -16,6 +16,16 @@
     shfmt
     nodePackages.prettier
 
+    # Modern CLI Alternatives
+    duf # Disk Usage Free (df replacement)
+    dust # Disk Usage (du replacement)
+    procs # Process viewer (ps replacement)
+    fastfetch # System info (neofetch alternative)
+    sd # Intuitive find & replace (sed alternative)
+    choose # Human-friendly cut/awk alternative
+    doggo # Modern DNS client (dig alternative)
+    gping # Ping with a graph
+
     # Nix related tools
     nix-output-monitor # nom
     comma

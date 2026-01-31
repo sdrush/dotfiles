@@ -24,6 +24,25 @@
       fpath+=( /etc/profiles/per-user/${config.home.username}/share/zsh/site-functions \
       /etc/profiles/per-user/${config.home.username}/share/zsh/vendor-completions )
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+      # fzf-tab configuration
+      # disable sort when completing `git checkout`
+      zstyle ':completion:*:git-checkout:*' sort false
+      # set descriptions format to enable group support
+      # NOTE: don't use escape sequences here, fzf-tab will handle them for you
+      zstyle ':completion:*:descriptions' format '[%d]'
+      # set list-colors to enable filename colorizing
+      zstyle ':completion:*' list-colors ""
+      # preview directory's content with eza when completing cd
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+      # switch group using `<` and `>`
+      zstyle ':fzf-tab:*' switch-group '<' '>'
+
+      # zsh-history-substring-search bindings
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+      bindkey -M vicmd 'k' history-substring-search-up
+      bindkey -M vicmd 'j' history-substring-search-down
     '';
     shellGlobalAliases = {
       #Global Aliases
@@ -118,11 +137,17 @@
           ];
         }
         {
-          name = "skywind3000/z.lua";
+          name = "Aloxaf/fzf-tab";
           tags = [
             "from:github"
             "as:plugin"
-            "defer:2"
+          ];
+        }
+        {
+          name = "zsh-users/zsh-history-substring-search";
+          tags = [
+            "from:github"
+            "as:plugin"
           ];
         }
         {
