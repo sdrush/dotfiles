@@ -39,7 +39,6 @@ _:
     # limitiations, e.g., Transmit, install the Homebrew Cask.
     casks = [
       "amethyst" # tiling window manager a la xmonad
-      # "alacritty" # terminal emulator - maybe a better way to do this with nix
       "affinity"
       "anki" # flashcards
       "antigravity"

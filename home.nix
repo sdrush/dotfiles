@@ -4,7 +4,7 @@
   imports = [
     ./modules/user/packages
     ./modules/user/aliases.nix
-    ./modules/user/alacritty.nix
+    ./modules/user/ghostty.nix
     ./modules/user/git.nix
     ./modules/user/navi.nix
     ./modules/user/nixvim.nix
