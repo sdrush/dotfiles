@@ -5,13 +5,29 @@
   ...
 }:
 
+let
+  zsh-defer = pkgs.fetchFromGitHub {
+    owner = "romkatv";
+    repo = "zsh-defer";
+    rev = "master";
+    sha256 = "sha256-MFlvAnPCknSgkW3RFA8pfxMZZS/JbyF3aMsJj9uHHVU=";
+  };
+in
 {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    # Skip the slow compaudit check and use a cache file
+    completionInit = ''
+      autoload -U compinit
+      if [[ -n ''${ZDOTDIR:-''$HOME}/.zcompdump(#qN.m-1) ]]; then
+        compinit -u -C
+      else
+        compinit -u
+      fi
+    '';
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    completionInit = "autoload -U compinit && compinit";
     envExtra = "
     export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
       if [[ -n $SSH_CONNECTION ]]; then
@@ -19,31 +35,49 @@
       else
         export EDITOR='agy'
       fi
+
+      # Performance tweaks
+      export ZSH_DISABLE_COMPFIX=\"true\"
     ";
-    initContent = lib.mkOrder 550 ''
-      fpath+=( /etc/profiles/per-user/${config.home.username}/share/zsh/site-functions \
-      /etc/profiles/per-user/${config.home.username}/share/zsh/vendor-completions )
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-      # fzf-tab configuration
-      # disable sort when completing `git checkout`
-      zstyle ':completion:*:git-checkout:*' sort false
-      # set descriptions format to enable group support
-      # NOTE: don't use escape sequences here, fzf-tab will handle them for you
-      zstyle ':completion:*:descriptions' format '[%d]'
-      # set list-colors to enable filename colorizing
-      zstyle ':completion:*' list-colors ""
-      # preview directory's content with eza when completing cd
-      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-      # switch group using `<` and `>`
-      zstyle ':fzf-tab:*' switch-group '<' '>'
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        # Mock compaudit - saves ~25ms auditing the Nix store
+        compaudit() { return 0 }
 
-      # zsh-history-substring-search bindings
-      bindkey '^[[A' history-substring-search-up
-      bindkey '^[[B' history-substring-search-down
-      bindkey -M vicmd 'k' history-substring-search-up
-      bindkey -M vicmd 'j' history-substring-search-down
-    '';
+        source ${zsh-defer}/zsh-defer.plugin.zsh
+      '')
+      (lib.mkOrder 500 ''
+        fpath+=( /etc/profiles/per-user/${config.home.username}/share/zsh/site-functions \
+        /etc/profiles/per-user/${config.home.username}/share/zsh/vendor-completions )
+
+        # Defer the slow vi-mode
+        zsh-defer source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+        # fzf-tab configuration
+        zstyle ':completion:*:git-checkout:*' sort false
+        zstyle ':completion:*:descriptions' format '[%d]'
+        zstyle ':completion:*' list-colors ""
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+        zstyle ':fzf-tab:*' switch-group '<' '>'
+
+        # zsh-history-substring-search bindings
+        bindkey '^[[A' history-substring-search-up
+        bindkey '^[[B' history-substring-search-down
+        bindkey -M vicmd 'k' history-substring-search-up
+        bindkey -M vicmd 'j' history-substring-search-down
+      '')
+      (lib.mkOrder 900 ''
+        # Lazy load heavy OMZ plugins
+        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/brew/brew.plugin.zsh"
+        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh"
+        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gcloud/gcloud.plugin.zsh"
+        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/direnv/direnv.plugin.zsh"
+        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/httpie/httpie.plugin.zsh"
+        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh"
+        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/aliases/aliases.plugin.zsh"
+      '')
+    ];
     shellGlobalAliases = {
       #Global Aliases
       L = "| less";
@@ -76,15 +110,8 @@
     oh-my-zsh = {
       enable = true;
       plugins = [
-        "aliases"
-        "brew"
-        "direnv"
         "git"
-        "httpie"
-        "kubectl"
-        "gcloud"
         "alias-finder"
-        "bgnotify"
       ];
     };
     plugins = [

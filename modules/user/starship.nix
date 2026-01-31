@@ -25,7 +25,7 @@
         when = "[ 'task +in +PENDING count' == '0' ] && exit 1 || exit 0 ";
         command = "task +in +PENDING count";
         format = "$symbol[$output]($style) ";
-        shell = "['zsh', '-d', '-f', '-i'] ";
+        # shell = "['zsh', '-d', '-f', '-i'] ";
         symbol = "📥 ";
         style = "bold fg:green";
       };
