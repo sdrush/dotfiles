@@ -10,7 +10,6 @@
     manix
 
     # Shell Tools
-    byobu
     terminal-notifier
     just
     shfmt
@@ -25,7 +24,6 @@
     choose # Human-friendly cut/awk alternative
     doggo # Modern DNS client (dig alternative)
     gping # Ping with a graph
-    topgrade # Universal updater
     nvd # Nix version diff
 
     # Nix related tools

@@ -18,7 +18,6 @@ _:
     ps = "procs";
     dig = "doggo";
     ping = "gping";
-    sed = "sd";
     http = "xh";
 
     # Some useful Terraform aliases

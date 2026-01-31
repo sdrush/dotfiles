@@ -28,7 +28,10 @@ search query:
     nh search {{query}}
 # Show differences between the current system and the new flake
 diff:
-    nix store diff-closures /run/current-system .
+    nvd diff /run/current-system $(nix build --no-link --print-out-paths .)
+# Update everything: nix flake, homebrew, and local dotfiles
+update-all:
+    topgrade
 # Show the history of Nix generations
 history:
     nix-env --list-generations --profile /nix/var/nix/profiles/system

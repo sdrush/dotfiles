@@ -15,7 +15,6 @@
       nmap
       speedtest-cli
       unbound
-      httpie
       xh # Faster httpie alternative
 
       # SQLite

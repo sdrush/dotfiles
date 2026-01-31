@@ -129,9 +129,11 @@
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.nh.enable
     nh = {
       enable = true;
-      clean.enable = true;
-      clean.dates = "weekly";
-      clean.extraArgs = "--keep-since 7d --keep 5";
+      clean = {
+        enable = true;
+        dates = "weekly";
+        extraArgs = "--keep-since 7d --keep 5";
+      };
       flake = "${config.home.homeDirectory}/.dotfiles";
     };
 
@@ -211,6 +213,27 @@
     zellij = {
       enable = true;
       enableZshIntegration = false;
+    };
+
+    # Topgrade: Universal updater
+    # https://github.com/topgrade-rs/topgrade
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.topgrade.enable
+    topgrade = {
+      enable = true;
+      settings = {
+        commands = {
+          "Nix Darwin Rebuild" = "just rebuild";
+        };
+        misc = {
+          disable = [
+            "nix_helper"
+            "home_manager"
+            "shell"
+            "node"
+            "gcloud"
+          ];
+        };
+      };
     };
 
     # Zoxide: Smart cd
