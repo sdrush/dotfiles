@@ -2,7 +2,7 @@
 default:
     @just --list
 # Rebuild and switch the Darwin system using Nix Helper (nh)
-rebuild:
+rebuild: format lint
     nh darwin switch .
 # Update all flake inputs to their latest versions
 update:

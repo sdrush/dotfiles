@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+_:
 
 {
   # Ghostty: A GPU-accelerated terminal emulator

@@ -25,9 +25,11 @@
     doggo # Modern DNS client (dig alternative)
     gping # Ping with a graph
     nvd # Nix version diff
+    viddy # Modern watch replacement
 
     # Nix related tools
     nix-output-monitor # nom
+    nix-melt # Flake input explorer
     comma
     nix-tree
     cachix # adding/managing alternative binary caches hosted by Cachix
