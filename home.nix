@@ -11,6 +11,7 @@
     ./modules/user/programs.nix
     ./modules/user/secrets.nix
     ./modules/user/starship.nix
+    ./modules/user/stylix.nix
     ./modules/user/tmux.nix
     ./modules/user/zsh.nix
   ];
