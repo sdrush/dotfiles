@@ -73,94 +73,46 @@
       # Uncomment the following line to disable 'column' command 2048 limit workaround
       # HISTDB_TABULATE_CMD = "(sed -e $'s/\x1f/\t/g')";
     };
-    zplug = {
+    oh-my-zsh = {
       enable = true;
       plugins = [
-        # Set up our theme
-        # { name = "~/.dracula-pro.zsh-theme"; tags = [ from:local as:theme ]; }
-
-        # Oh-my-zsh Plugins
-        {
-          name = "plugins/aliases";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "plugins/brew";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "plugins/direnv";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "plugins/git";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "plugins/httpie";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "plugins/kubectl";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "plugins/gcloud";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "plugins/alias-finder";
-          tags = [ "from:oh-my-zsh" ];
-        }
-
-        {
-          name = "plugins/bgnotify";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        {
-          name = "lib/*.zsh";
-          tags = [ "from:oh-my-zsh" ];
-        }
-
-        # ZPlug GitHub Modules
-        # This is handled by the installed fzf package now
-        #{ name = "junegunn/fzf"; tags = [ from:github as:plugin rename-to:fzf "use:'*\$\{(L)$(uname -s)}*amd64*'" ]; }
-        #{ name = "junegunn/fzf"; tags = [ ''use:"*.zsh"'' defer:2 ]; }
-        #{ name = ""; tags = []}
-        {
-          name = "larkery/zsh-histdb";
-          tags = [
-            "from:github"
-            "as:plugin"
-            "rename-to:histdb"
-            "use:'*.zsh'"
-          ];
-        }
-        {
-          name = "Aloxaf/fzf-tab";
-          tags = [
-            "from:github"
-            "as:plugin"
-          ];
-        }
-        {
-          name = "zsh-users/zsh-history-substring-search";
-          tags = [
-            "from:github"
-            "as:plugin"
-          ];
-        }
-        {
-          name = "djui/alias-tips";
-          tags = [
-            "from:github"
-            "as:plugin"
-          ];
-        }
-
-        # ZPlug Local Modules
-        # { name = "\${HOME}/.nix-profile/google-cloud-sdk"; tags = [ from:local "use:'*.zsh.inc'" defer:2 ]; }
+        "aliases"
+        "brew"
+        "direnv"
+        "git"
+        "httpie"
+        "kubectl"
+        "gcloud"
+        "alias-finder"
+        "bgnotify"
       ];
     };
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+      {
+        name = "zsh-histdb";
+        src = pkgs.zsh-histdb;
+        file = "share/zsh-histdb/sqlite-history.zsh";
+      }
+      {
+        name = "zsh-history-substring-search";
+        src = pkgs.zsh-history-substring-search;
+        file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
+      }
+      {
+        name = "zsh-autopair";
+        src = pkgs.zsh-autopair;
+        file = "share/zsh-autopair/autopair.zsh";
+      }
+      {
+        name = "zsh-you-should-use";
+        src = pkgs.zsh-you-should-use;
+        file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+      }
+    ];
   };
 }

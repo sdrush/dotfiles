@@ -19,6 +19,7 @@ _:
     dig = "doggo";
     ping = "gping";
     sed = "sd";
+    http = "xh";
 
     # Some useful Terraform aliases
     tf = "terraform";
