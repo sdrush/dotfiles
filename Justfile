@@ -44,3 +44,11 @@ explore:
 # Run a full store optimization to save space
 optimize:
     nix-store --optimize
+
+# Edit repository secrets using SOPS
+secrets:
+    sops secrets.yaml
+
+# List all deep-dive documentation guides
+docs:
+    @ls -1 docs/*.md | xargs -n 1 basename
