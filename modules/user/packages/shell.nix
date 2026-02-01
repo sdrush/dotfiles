@@ -30,6 +30,8 @@
     # Nix related tools
     nix-output-monitor # nom
     nix-melt # Flake input explorer
+    devenv
+    tenv # Terraform/OpenTofu version manager
     comma
     nix-tree
     cachix # adding/managing alternative binary caches hosted by Cachix
