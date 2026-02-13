@@ -37,5 +37,13 @@ _:
     ".3" = "cd ../../";
     ".4" = "cd ../../../";
     ".5" = "cd ../../../..";
+
+    # m-cli (macOS management)
+    mac-net = "m network";
+    mac-sys = "m system";
+    mac-batt = "m battery";
+    mac-vol = "m volume";
+    mac-display = "m display";
+    mac-dnf = "m do-not-disturb";
   };
 }

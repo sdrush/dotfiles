@@ -9,7 +9,6 @@ in
   # let's add the gitIdentity script to the path as well
   home.packages = with pkgs; [
     gitIdentity
-    fzf
   ];
 
   programs.git = {

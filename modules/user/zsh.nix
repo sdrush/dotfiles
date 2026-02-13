@@ -34,7 +34,7 @@ in
     '';
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    envExtra = "
+    envExtra = lib.mkOrder 0 "
       export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
       if [[ -n $SSH_CONNECTION ]]; then
         export EDITOR='nvim'
@@ -44,19 +44,19 @@ in
 
       # Performance tweaks
       export ZSH_DISABLE_COMPFIX=\"true\"
+
+      # Initialize Homebrew
+      if [[ -f /opt/homebrew/bin/brew ]]; then
+        eval \"$(/opt/homebrew/bin/brew shellenv)\"
+      elif [[ -f /usr/local/bin/brew ]]; then
+        eval \"$(/usr/local/bin/brew shellenv)\"
+      fi
     ";
 
     initContent = lib.mkMerge [
       (lib.mkBefore ''
         # Mock compaudit - saves ~25ms auditing the Nix store
         compaudit() { return 0 }
-
-        # Initialize Homebrew
-        if [[ -f /opt/homebrew/bin/brew ]]; then
-          eval "$(/opt/homebrew/bin/brew shellenv)"
-        elif [[ -f /usr/local/bin/brew ]]; then
-          eval "$(/usr/local/bin/brew shellenv)"
-        fi
 
         source ${zsh-defer}/zsh-defer.plugin.zsh
       '')
@@ -128,7 +128,6 @@ in
       enable = true;
       plugins = [
         "git"
-        "alias-finder"
       ];
     };
     plugins = [

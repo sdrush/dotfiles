@@ -7,7 +7,6 @@ _:
     onActivation.autoUpdate = true;
     onActivation.cleanup = "zap";
     global.brewfile = true;
-    global.lockfiles = true;
     taps = [
       "homebrew/services"
       "microsoft/git"
