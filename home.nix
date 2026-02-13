@@ -14,14 +14,16 @@
     ./modules/user/stylix.nix
     ./modules/user/tmux.nix
     ./modules/user/zsh.nix
+    ./modules/user/abbr.nix
   ];
   programs.home-manager.enable = true;
+  home.sessionPath = [
+    "/opt/homebrew/bin"
+    "/usr/local/bin"
+    "$HOME/.rd/bin"
+  ];
   home.stateVersion = "24.11";
 
   # Man pages
   manual.manpages.enable = true;
-
-  home.sessionPath = [
-    "/~.rd/bin"
-  ];
 }

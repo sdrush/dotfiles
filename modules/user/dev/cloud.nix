@@ -11,6 +11,7 @@
     pkgs.k9s
     pkgs.kops
     pkgs.popeye
+    pkgs.lazydocker
     # terraform/terragrunt are handled via tenv (global)
     # but we can ensure they are available in scripts
   ];

@@ -7,6 +7,7 @@
     python312
     graphviz
     jujutsu
+    git-absorb
     pylint
     tcl
     tk

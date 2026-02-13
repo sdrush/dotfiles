@@ -32,6 +32,13 @@
       };
     };
 
+    # Carapace: Multi-shell completion
+    # https://github.com/carapace-sh/carapace-bin
+    carapace = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     # Delta: A better git diff
     # https://github.com/dandavison/delta
     # https://rycee.gitlab.io/home-manager/options.xhtml#opt-programs.delta.enable

@@ -29,6 +29,7 @@ _:
       # Interaction
       mouse-hide-while-typing = true;
       copy-on-select = true;
+      desktop-notifications = true;
 
       # Use Stylix for theming (it should pick up the Tokyo Night Storm automatically)
     };

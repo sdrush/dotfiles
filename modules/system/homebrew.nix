@@ -78,6 +78,7 @@ _:
       "signal"
       "skype"
       "spotify"
+      "stats"
       "steam"
       "ubar"
       # "superhuman" # cool looking gmail client

@@ -20,6 +20,7 @@
     dust # Disk Usage (du replacement)
     procs # Process viewer (ps replacement)
     fastfetch # System info (neofetch alternative)
+    onefetch # Git repository info
     sd # Intuitive find & replace (sed alternative)
     choose # Human-friendly cut/awk alternative
     doggo # Modern DNS client (dig alternative)

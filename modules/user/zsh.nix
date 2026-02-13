@@ -12,6 +12,12 @@ let
     rev = "master";
     sha256 = "sha256-MFlvAnPCknSgkW3RFA8pfxMZZS/JbyF3aMsJj9uHHVU=";
   };
+  zsh-notify = pkgs.fetchFromGitHub {
+    owner = "marzocchi";
+    repo = "zsh-notify";
+    rev = "master";
+    sha256 = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
+  };
 in
 {
   programs.zsh = {
@@ -29,7 +35,7 @@ in
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     envExtra = "
-    export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+      export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
       if [[ -n $SSH_CONNECTION ]]; then
         export EDITOR='nvim'
       else
@@ -44,6 +50,13 @@ in
       (lib.mkBefore ''
         # Mock compaudit - saves ~25ms auditing the Nix store
         compaudit() { return 0 }
+
+        # Initialize Homebrew
+        if [[ -f /opt/homebrew/bin/brew ]]; then
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+        elif [[ -f /usr/local/bin/brew ]]; then
+          eval "$(/usr/local/bin/brew shellenv)"
+        fi
 
         source ${zsh-defer}/zsh-defer.plugin.zsh
       '')
@@ -69,13 +82,17 @@ in
       '')
       (lib.mkOrder 900 ''
         # Lazy load heavy OMZ plugins
-        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/brew/brew.plugin.zsh"
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh"
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gcloud/gcloud.plugin.zsh"
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/direnv/direnv.plugin.zsh"
-        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/httpie/httpie.plugin.zsh"
-        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh"
-        zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/aliases/aliases.plugin.zsh"
+
+        # zsh-notify Ghostty workaround
+        # The plugin checks for iTerm.app or Apple_Terminal during sourcing.
+        # We temporarily spoof it so it loads correctly.
+        local OLD_TP="$TERM_PROGRAM"
+        export TERM_PROGRAM="iTerm.app"
+        source ${zsh-notify}/notify.plugin.zsh
+        export TERM_PROGRAM="$OLD_TP"
       '')
     ];
     shellGlobalAliases = {
@@ -103,7 +120,7 @@ in
       # History command time stamp format
       HIST_STAMPS = "mm/dd/yyyy";
       # Zsh Autosuggest strategy using histdb
-      # ZSH_AUTOSUGGEST_STRATEGY = "histdb_top_here";
+      ZSH_AUTOSUGGEST_STRATEGY = "histdb_top_here";
       # Uncomment the following line to disable 'column' command 2048 limit workaround
       # HISTDB_TABULATE_CMD = "(sed -e $'s/\x1f/\t/g')";
     };
@@ -139,6 +156,11 @@ in
         name = "zsh-you-should-use";
         src = pkgs.zsh-you-should-use;
         file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+      }
+      {
+        name = "zsh-abbr";
+        src = pkgs.zsh-abbr;
+        file = "share/zsh/zsh-abbr/zsh-abbr.zsh";
       }
     ];
   };

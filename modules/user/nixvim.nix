@@ -50,10 +50,36 @@ _:
         action = "<cmd>Neotree toggle<CR>";
         options.desc = "Toggle Explorer";
       }
+
+      # Trouble (Diagnostics)
+      {
+        mode = "n";
+        key = "<leader>xx";
+        action = "<cmd>Trouble diagnostics toggle<CR>";
+        options.desc = "Project Diagnostics";
+      }
+      {
+        mode = "n";
+        key = "<leader>xw";
+        action = "<cmd>Trouble diagnostics toggle filter.buf=0<CR>";
+        options.desc = "Buffer Diagnostics";
+      }
     ];
 
     # Plugins
     plugins = {
+      # Helper for keybindings
+      which-key.enable = true;
+
+      # Pretty diagnostics
+      trouble.enable = true;
+
+      # Git signs in gutter
+      gitsigns.enable = true;
+
+      # Highlight TODO, FIXME, etc.
+      todo-comments.enable = true;
+
       # Advanced syntax highlighting
       treesitter.enable = true;
 
