@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -18,10 +18,13 @@
   ];
   programs.home-manager.enable = true;
   home.sessionPath = [
+    "$HOME/.rd/bin"
+  ]
+  ++ lib.optionals pkgs.stdenv.isDarwin [
     "/opt/homebrew/bin"
     "/usr/local/bin"
-    "$HOME/.rd/bin"
   ];
+
   home.stateVersion = "24.11";
 
   # Man pages

@@ -34,24 +34,28 @@ in
     '';
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    envExtra = lib.mkOrder 0 "
-      export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      if [[ -n $SSH_CONNECTION ]]; then
-        export EDITOR='nvim'
-      else
-        export EDITOR='agy'
-      fi
+    envExtra = lib.mkOrder 0 (
+      ''
+        if [[ -n $SSH_CONNECTION ]]; then
+          export EDITOR='nvim'
+        else
+          export EDITOR='agy'
+        fi
 
-      # Performance tweaks
-      export ZSH_DISABLE_COMPFIX=\"true\"
+        # Performance tweaks
+        export ZSH_DISABLE_COMPFIX="true"
+      ''
+      + lib.optionalString pkgs.stdenv.isDarwin ''
+        export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
-      # Initialize Homebrew
-      if [[ -f /opt/homebrew/bin/brew ]]; then
-        eval \"$(/opt/homebrew/bin/brew shellenv)\"
-      elif [[ -f /usr/local/bin/brew ]]; then
-        eval \"$(/usr/local/bin/brew shellenv)\"
-      fi
-    ";
+        # Initialize Homebrew
+        if [[ -f /opt/homebrew/bin/brew ]]; then
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+        elif [[ -f /usr/local/bin/brew ]]; then
+          eval "$(/usr/local/bin/brew shellenv)"
+        fi
+      ''
+    );
 
     initContent = lib.mkMerge [
       (lib.mkBefore ''
@@ -112,11 +116,15 @@ in
       KUBECTX_IGNORE_FZF = 1;
       # Display red dots whilst waiting for completions
       COMPLETION_WAITING_DOTS = "true";
-      # Work around macos's stupid broken ssh-agent
-      SSH_AUTH_SOCK = "/usr/local/var/run/yubikey-agent.sock";
       # Disable marking untracked files as dirty.
       # Major speed improvement for git status on large repos
       DISABLE_UNTRACKED_FILES_DIRTY = "true";
+    }
+    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      # Work around macos's stupid broken ssh-agent
+      SSH_AUTH_SOCK = "/usr/local/var/run/yubikey-agent.sock";
+    }
+    // {
       # History command time stamp format
       HIST_STAMPS = "mm/dd/yyyy";
       # Zsh Autosuggest strategy using histdb

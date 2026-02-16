@@ -1,4 +1,4 @@
-_:
+{ pkgs, lib, ... }:
 
 {
   # I define these aliases here so that I get them regardless of which shell I use.
@@ -37,7 +37,8 @@ _:
     ".3" = "cd ../../";
     ".4" = "cd ../../../";
     ".5" = "cd ../../../..";
-
+  }
+  // lib.optionalAttrs pkgs.stdenv.isDarwin {
     # m-cli (macOS management)
     mac-net = "m network";
     mac-sys = "m system";

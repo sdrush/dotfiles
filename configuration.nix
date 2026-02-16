@@ -4,11 +4,11 @@
 }:
 {
   imports = [
-    ./modules/system/homebrew.nix
-    ./modules/system/macos.nix
-    ./modules/system/nix.nix
-    ./modules/system/users.nix
-    ./modules/system/fonts.nix
+    ./modules/darwin/homebrew.nix
+    ./modules/darwin/macos.nix
+    ./modules/darwin/nix.nix
+    ./modules/darwin/users.nix
+    ./modules/darwin/fonts.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
   system = {
