@@ -85,6 +85,7 @@ _:
       # "vmware-horizon-client"
       "vnc-viewer"
       "warp"
+      "wifiman"
       # "windows-app"
       "zed"
       "zotero"
