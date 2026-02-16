@@ -39,7 +39,7 @@
       cachix # adding/managing alternative binary caches hosted by Cachix
       statix # Linter and suggestions for the nix language
       deadnix # Find and remove unused code in .nix source files
-      nixfmt # Format nix files
+      nixfmt-rfc-style # Format nix files
     ]
     ++ lib.optionals pkgs.stdenv.isDarwin [
       terminal-notifier

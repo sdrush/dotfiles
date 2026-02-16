@@ -4,7 +4,8 @@
   home.packages = with pkgs; [
     # Languages, Language Tools, and Language Packages/Modules
     bfg-repo-cleaner
-    python312
+    uv # Fast Python package installer and resolver
+    python312 # Global interpreter
     graphviz
     jujutsu
     git-absorb

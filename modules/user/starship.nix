@@ -32,6 +32,8 @@
       gcloud = {
         format = "on [$symbol$account(\($project@$region\))]($style) ";
         symbol = "☁️ ";
+        disabled = false; # Set to true to disable, but better to keep enabled if installed
+        detect_env_vars = [ "GOOGLE_APPLICATION_CREDENTIALS" ];
         region_aliases = {
           us-central1 = "usc1";
           us-east1 = "use1";
