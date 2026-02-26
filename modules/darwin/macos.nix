@@ -29,12 +29,10 @@ _:
       TrackpadRightClick = true; # Enable two-finger right click
     };
 
-    # Custom preferences (e.g., Screencapture location)
-    CustomUserPreferences = {
-      "com.apple.screencapture" = {
-        location = "~/Desktop/Screenshots";
-        type = "png";
-      };
+    # Screencapture settings
+    screencapture = {
+      location = "~/Desktop/Screenshots";
+      type = "png";
     };
   };
 }

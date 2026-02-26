@@ -46,8 +46,6 @@ in
         export ZSH_DISABLE_COMPFIX="true"
       ''
       + lib.optionalString pkgs.stdenv.isDarwin ''
-        export SSH_AUTH_SOCK=/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-
         # Initialize Homebrew
         if [[ -f /opt/homebrew/bin/brew ]]; then
           eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -63,6 +61,22 @@ in
         compaudit() { return 0 }
 
         source ${zsh-defer}/zsh-defer.plugin.zsh
+
+        # SSH agent configuration
+        export AGENT_SOCK_SECRETIVE="/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+        export AGENT_SOCK_YUBIKEY="/usr/local/var/run/yubikey-agent.sock"
+
+        ss-secretive() {
+          export SSH_AUTH_SOCK="$AGENT_SOCK_SECRETIVE"
+          echo "SSH Agent: Secretive (Enclave)"
+        }
+        ss-yubikey() {
+          export SSH_AUTH_SOCK="$AGENT_SOCK_YUBIKEY"
+          echo "SSH Agent: YubiKey"
+        }
+
+        # Set default
+        ss-secretive
       '')
       (lib.mkOrder 500 ''
         fpath+=( /etc/profiles/per-user/${config.home.username}/share/zsh/site-functions \
@@ -119,10 +133,6 @@ in
       # Disable marking untracked files as dirty.
       # Major speed improvement for git status on large repos
       DISABLE_UNTRACKED_FILES_DIRTY = "true";
-    }
-    // lib.optionalAttrs pkgs.stdenv.isDarwin {
-      # Work around macos's stupid broken ssh-agent
-      SSH_AUTH_SOCK = "/usr/local/var/run/yubikey-agent.sock";
     }
     // {
       # History command time stamp format
