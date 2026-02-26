@@ -1,4 +1,4 @@
-_:
+{ pkgs, ... }:
 
 {
   # Ghostty: A GPU-accelerated terminal emulator
@@ -10,7 +10,7 @@ _:
     # We use the package from nixpkgs.
     # On macOS, we install the binary via Homebrew Cask because the Nixpkgs
     # version is currently unsupported on aarch64-darwin.
-    package = null;
+    package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
 
     settings = {
       # Performance & Appearance

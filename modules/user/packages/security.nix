@@ -9,7 +9,7 @@
     openssh
 
     # Yubikey tools
-    pinentry_mac
+    (if pkgs.stdenv.isDarwin then pinentry_mac else pinentry-curses)
     yubico-piv-tool
     yubikey-agent
     yubikey-manager

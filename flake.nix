@@ -44,6 +44,7 @@
       systems = [
         "aarch64-darwin"
         "x86_64-darwin"
+        "x86_64-linux"
       ];
 
       # 1. Per-System Configuration (Automatic for each system in 'systems')
@@ -139,6 +140,36 @@
               ];
             };
           };
+
+        systemConfigs = { };
+
+        homeConfigurations = {
+          "sdrush@APOLLO" = home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+              overlays = builtins.attrValues self.overlays;
+            };
+            modules = [
+              ./home.nix
+              inputs.nix-index-database.homeModules.nix-index
+              inputs.sops-nix.homeManagerModules.sops
+              inputs.nixvim.homeModules.nixvim
+              inputs.stylix.homeModules.stylix
+              (
+                { lib, ... }:
+                {
+                  home = {
+                    username = "sdrush";
+                    homeDirectory = lib.mkForce "/home/sdrush";
+                    stateVersion = "24.11";
+                  };
+                }
+              )
+            ];
+            extraSpecialArgs = { inherit inputs; };
+          };
+        };
 
         # Overlays
         overlays = import ./overlays/default.nix {

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -14,7 +14,7 @@
     tk
 
     # Build tools & Libraries (Keeping a few that are commonly used by CLI tools themselves)
-    ncurses
+    (lib.lowPrio ncurses)
     readline
   ];
 }

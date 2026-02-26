@@ -212,6 +212,7 @@
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.yazi.enable
     yazi = {
       enable = true;
+      shellWrapperName = "yy";
     };
 
     # Zellij: Terminal multiplexer
