@@ -20,10 +20,5 @@
     opacity = {
       terminal = 0.87;
     };
-
-    targets = {
-      gtk.enable = !pkgs.stdenv.isLinux;
-      gnome.enable = !pkgs.stdenv.isLinux;
-    };
   };
 }

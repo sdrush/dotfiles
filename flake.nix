@@ -152,6 +152,8 @@
             };
             modules = [
               ./home.nix
+              ./modules/user/stylix.nix
+              ./modules/user/stylix-linux.nix
               inputs.nix-index-database.homeModules.nix-index
               inputs.sops-nix.homeManagerModules.sops
               inputs.nixvim.homeModules.nixvim
