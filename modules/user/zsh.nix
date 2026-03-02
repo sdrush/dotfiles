@@ -104,13 +104,19 @@ in
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gcloud/gcloud.plugin.zsh"
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/direnv/direnv.plugin.zsh"
 
-        # zsh-notify Ghostty workaround
-        # The plugin checks for iTerm.app or Apple_Terminal during sourcing.
-        # We temporarily spoof it so it loads correctly.
-        local OLD_TP="$TERM_PROGRAM"
-        export TERM_PROGRAM="iTerm.app"
-        source ${zsh-notify}/notify.plugin.zsh
-        export TERM_PROGRAM="$OLD_TP"
+        # zsh-notify
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+          # The plugin checks for iTerm.app or Apple_Terminal during sourcing.
+          # We temporarily spoof it so it loads correctly.
+          local OLD_TP="$TERM_PROGRAM"
+          export TERM_PROGRAM="iTerm.app"
+          source ${zsh-notify}/notify.plugin.zsh
+          export TERM_PROGRAM="$OLD_TP"
+        elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+          # On Linux, zsh-notify uses 'notify-send' if available.
+          # We don't need to spoof TERM_PROGRAM for Linux backends.
+          source ${zsh-notify}/notify.plugin.zsh
+        fi
       '')
     ];
     shellGlobalAliases = {

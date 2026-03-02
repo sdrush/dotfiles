@@ -1,46 +1,85 @@
 # Default task: list all recipes
 default:
     @just --list
-# Rebuild and switch the Darwin system using Nix Helper (nh)
+
+## System Detection
+os := `uname -s`
+
+# Rebuild and switch the system configuration
 rebuild: format lint
-    nh darwin switch .
+    @if [ "{{os}}" = "Darwin" ]; then \
+        echo "Updating Darwin system..."; \
+        nh darwin switch .; \
+    else \
+        echo "Updating Home Manager configuration..."; \
+        nh home switch .; \
+    fi
+
 # Update all flake inputs to their latest versions
 update:
     nix flake update
+
 # Check for Nix syntax and common issues
 lint:
     statix check .
     deadnix .
+
 # Format all Nix files in the repository
 format:
     nix fmt
+
 # Run flake checks to ensure everything is valid
 check:
     nix flake check
+
 # Garbage collect and delete old generations using nh (keeps last 7 days)
 gc:
     sudo nh clean all --keep 7
+
 # Build the latest flake without applying it
 build:
     nom build .
+
 # Search for a package in nixpkgs using nh
 search query:
     nh search {{query}}
+
 # Show differences between the current system and the new flake
 diff:
-    nvd diff /run/current-system $(nix build --no-link --print-out-paths .)
+    @if [ "{{os}}" = "Darwin" ]; then \
+        nvd diff /run/current-system $(nix build --no-link --print-out-paths .); \
+    else \
+        nvd diff $(readlink -f ~/.local/state/nix/profiles/home-manager) $(nix build --no-link --print-out-paths .); \
+    fi
+
 # Update everything: nix flake, homebrew, and local dotfiles
 update-all:
     topgrade
+
 # Show the history of Nix generations
 history:
-    nix-env --list-generations --profile /nix/var/nix/profiles/system
+    @if [ "{{os}}" = "Darwin" ]; then \
+        nix-env --list-generations --profile /nix/var/nix/profiles/system; \
+    else \
+        nix-env --list-generations --profile ~/.local/state/nix/profiles/home-manager; \
+    fi
+
 # Quickly rollback to the previous generation
 rollback:
-    sudo /nix/var/nix/profiles/system/bin/switch-to-configuration rollback
+    @if [ "{{os}}" = "Darwin" ]; then \
+        sudo /nix/var/nix/profiles/system/bin/switch-to-configuration rollback; \
+    else \
+        home-manager generations | head -n 2 | tail -n 1 | awk '{print $NF}' | xargs -I {} sh -c "{}/activate"; \
+    fi
+
 # Explore the dependency graph of the current system (interactive)
 explore:
-    nix-tree /run/current-system
+    @if [ "{{os}}" = "Darwin" ]; then \
+        nix-tree /run/current-system; \
+    else \
+        nix-tree $(readlink -f ~/.local/state/nix/profiles/home-manager); \
+    fi
+
 # Run a full store optimization to save space
 optimize:
     nix-store --optimize

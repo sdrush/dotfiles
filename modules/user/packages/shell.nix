@@ -43,5 +43,8 @@
     ]
     ++ lib.optionals pkgs.stdenv.isDarwin [
       terminal-notifier
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      libnotify
     ];
 }
