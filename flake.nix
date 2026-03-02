@@ -23,6 +23,8 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -140,6 +142,37 @@
               ];
             };
           };
+
+        nixosConfigurations = {
+          nixos = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+            modules = [
+              inputs.nixos-wsl.nixosModules.default
+              ./hosts/nixos/configuration.nix
+              {
+                nixpkgs.config.allowUnfree = true;
+              }
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = { inherit inputs; };
+                  users.sdrush = {
+                    imports = [
+                      ./home.nix
+                      inputs.nix-index-database.homeModules.nix-index
+                      inputs.sops-nix.homeManagerModules.sops
+                      inputs.nixvim.homeModules.nixvim
+                      inputs.stylix.homeModules.stylix
+                    ];
+                  };
+                };
+              }
+            ];
+          };
+        };
 
         systemConfigs = { };
 

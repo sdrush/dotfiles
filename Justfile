@@ -10,6 +10,9 @@ rebuild: format lint
     @if [ "{{os}}" = "Darwin" ]; then \
         echo "Updating Darwin system..."; \
         nh darwin switch .; \
+    elif [ -e /etc/NIXOS ]; then \
+        echo "Updating NixOS system..."; \
+        sudo nixos-rebuild switch --flake .#nixos; \
     else \
         echo "Updating Home Manager configuration..."; \
         nh home switch .; \
