@@ -9,13 +9,13 @@ let
   zsh-defer = pkgs.fetchFromGitHub {
     owner = "romkatv";
     repo = "zsh-defer";
-    rev = "master";
+    rev = "53a26e279434e357597116743cb5f190e442dfc2";
     sha256 = "sha256-MFlvAnPCknSgkW3RFA8pfxMZZS/JbyF3aMsJj9uHHVU=";
   };
   zsh-notify = pkgs.fetchFromGitHub {
     owner = "marzocchi";
     repo = "zsh-notify";
-    rev = "master";
+    rev = "9c1dac830b58e7275916bc2675d0335017df8ed";
     sha256 = "sha256-ovmnl+V1B7J/yav0ep4qVqlZOD3Ex8sfrkC92dXPLFI=";
   };
 in
