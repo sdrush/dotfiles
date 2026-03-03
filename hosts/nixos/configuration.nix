@@ -12,6 +12,9 @@
   # Enable zsh for the user
   programs.zsh.enable = true;
 
+  # Enable D-Bus for HM activation in WSL
+  services.dbus.enable = true;
+
   # Enable nix-ld to run unpatched binaries (another requirement for VS Code)
   programs.nix-ld.enable = true;
 

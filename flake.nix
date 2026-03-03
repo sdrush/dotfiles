@@ -98,6 +98,24 @@
               }
             else
               { };
+
+          checks =
+            let
+              # Helper to filter checks by system
+              platformChecks =
+                if system == "aarch64-darwin" then
+                  {
+                    darwin-typhon = self.darwinConfigurations.typhon.config.system.build.toplevel;
+                  }
+                else if system == "x86_64-linux" then
+                  {
+                    nixos-wsl = self.nixosConfigurations.nixos.config.system.build.toplevel;
+                    home-apollo = self.homeConfigurations."sdrush@APOLLO".activationPackage;
+                  }
+                else
+                  { };
+            in
+            platformChecks // { inherit (config.pre-commit) check; };
         };
 
       # 2. Global Configuration
@@ -150,11 +168,14 @@
             modules = [
               inputs.nixos-wsl.nixosModules.default
               ./hosts/nixos/configuration.nix
-              {
-                nixpkgs.config.allowUnfree = true;
-              }
+              inputs.stylix.nixosModules.stylix
+              ./modules/user/stylix.nix
               home-manager.nixosModules.home-manager
               {
+                nixpkgs = {
+                  config.allowUnfree = true;
+                  overlays = nixpkgs.lib.attrValues self.overlays;
+                };
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
@@ -165,7 +186,6 @@
                       inputs.nix-index-database.homeModules.nix-index
                       inputs.sops-nix.homeManagerModules.sops
                       inputs.nixvim.homeModules.nixvim
-                      inputs.stylix.homeModules.stylix
                     ];
                   };
                 };

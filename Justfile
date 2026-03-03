@@ -8,14 +8,24 @@ os := `uname -s`
 # Rebuild and switch the system configuration
 rebuild: format lint
     @if [ "{{os}}" = "Darwin" ]; then \
-        echo "Updating Darwin system..."; \
-        nh darwin switch .; \
+        if command -v nh >/dev/null; then \
+            echo "Updating Darwin system with nh..."; \
+            nh darwin switch .; \
+        else \
+            echo "Updating Darwin system with darwin-rebuild..."; \
+            darwin-rebuild switch --flake .; \
+        fi \
     elif [ -e /etc/NIXOS ]; then \
         echo "Updating NixOS system..."; \
         sudo nixos-rebuild switch --flake .#nixos; \
     else \
-        echo "Updating Home Manager configuration..."; \
-        nh home switch .; \
+        if command -v nh >/dev/null; then \
+            echo "Updating Home Manager configuration with nh..."; \
+            nh home switch .; \
+        else \
+            echo "Updating Home Manager configuration..."; \
+            home-manager switch --flake .; \
+        fi \
     fi
 
 # Update all flake inputs to their latest versions
@@ -49,10 +59,13 @@ search query:
 
 # Show differences between the current system and the new flake
 diff:
+    @if ! command -v nvd >/dev/null; then echo "nvd not found. Install it for diff support."; exit 1; fi
     @if [ "{{os}}" = "Darwin" ]; then \
         nvd diff /run/current-system $(nix build --no-link --print-out-paths .); \
     else \
-        nvd diff $(readlink -f ~/.local/state/nix/profiles/home-manager) $(nix build --no-link --print-out-paths .); \
+        TARGET_PROFILE=$(readlink -f ~/.local/state/nix/profiles/home-manager || echo ""); \
+        if [ -z "$TARGET_PROFILE" ]; then echo "Home Manager profile not found."; exit 1; fi; \
+        nvd diff $$TARGET_PROFILE $(nix build --no-link --print-out-paths .); \
     fi
 
 # Update everything: nix flake, homebrew, and local dotfiles

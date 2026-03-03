@@ -40,6 +40,9 @@
   # Disable dconf on Linux to avoid DBus issues in WSL
   dconf.settings = lib.mkIf pkgs.stdenv.isLinux (lib.mkForce { });
 
+  # Disable user unit reloading on Linux to avoid DBus activation errors in headless WSL
+  systemd.user.startServices = lib.mkIf pkgs.stdenv.isLinux false;
+
   # Man pages
   manual.manpages.enable = true;
 }
