@@ -115,7 +115,7 @@
                 else
                   { };
             in
-            platformChecks // { inherit (config.pre-commit) check; };
+            platformChecks;
         };
 
       # 2. Global Configuration
