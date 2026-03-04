@@ -42,6 +42,11 @@ in
           export EDITOR='agy'
         fi
 
+        # Source Cachix token from sops-nix template
+        if [[ -f "${config.sops.templates."cachix-token".path}" ]]; then
+          source "${config.sops.templates."cachix-token".path}"
+        fi
+
         # Performance tweaks
         export ZSH_DISABLE_COMPFIX="true"
       ''

@@ -134,6 +134,7 @@
                 # Main `nix-darwin` config
                 ./configuration.nix
                 ./modules/user/stylix.nix
+                ./modules/system/cachix.nix
                 inputs.stylix.darwinModules.stylix
                 {
                   nixpkgs = {
@@ -172,6 +173,7 @@
               ./hosts/nixos/configuration.nix
               inputs.stylix.nixosModules.stylix
               ./modules/user/stylix.nix
+              ./modules/system/cachix.nix
               home-manager.nixosModules.home-manager
               {
                 nixpkgs = {
@@ -200,6 +202,7 @@
           default = inputs.system-manager.lib.makeSystemConfig {
             modules = [
               ./modules/linux/system.nix
+              ./modules/system/cachix.nix
             ];
           };
         };

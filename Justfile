@@ -102,7 +102,7 @@ optimize:
 
 # Edit repository secrets using SOPS
 secrets:
-    sops secrets.yaml
+    EDITOR=vim sops secrets.yaml
 
 # List all deep-dive documentation guides
 docs:

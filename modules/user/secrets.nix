@@ -6,8 +6,14 @@
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 
     secrets = {
-      # We'll add real secrets here soon!
       "test_secret" = { };
+      "cachix_auth_token" = { };
+    };
+
+    templates."cachix-token" = {
+      content = ''
+        export CACHIX_AUTH_TOKEN=${config.sops.placeholder.cachix_auth_token}
+      '';
     };
   };
 
