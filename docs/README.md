@@ -1,8 +1,20 @@
 # Knowledge Base 🧠📚
 
-A collection of deep-dive guides for managing this dotfile repository.
+## 🧩 Feature Guides
 
-## 🔑 Security & Secrets
+Detailed documentation on the repository's core functionality:
+
+- [**Platforms & OS Support**](features/platforms.md)
+- [**Shell & Commands**](features/shell.md)
+- [**Modern CLI Toolbelt**](features/cli-tools.md)
+- [**Development Personas**](features/development.md)
+- [**Editor Configurations**](features/editors.md)
+- [**Workflow & Automation**](features/workflow.md)
+- [**Theming & Visuals**](features/theming.md)
+
+## 🧠 Knowledge Base
+
+Deep-dive guides for core maintenance tasks:
 
 - **[Secret Management](secrets.md)**: How to use SOPS, manage `age` keys, and handle encrypted values safely.
 
