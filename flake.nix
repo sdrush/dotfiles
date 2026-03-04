@@ -221,7 +221,14 @@
               ./home.nix
               ./modules/user/stylix.nix
               ./modules/user/stylix-linux.nix
+              ./modules/system/cachix.nix
               ./modules/system/security.nix
+              (
+                { pkgs, ... }:
+                {
+                  nix.package = pkgs.nix;
+                }
+              )
               inputs.nix-index-database.homeModules.nix-index
               inputs.sops-nix.homeManagerModules.sops
               inputs.nixvim.homeModules.nixvim
