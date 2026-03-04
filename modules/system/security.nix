@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  options,
+  ...
+}:
 
 {
   options.dotfiles.security.verifiedFetches.enable = lib.mkOption {
@@ -7,7 +12,7 @@
     description = "Enable the experimental verified-fetches Nix feature.";
   };
 
-  config = {
+  config = lib.mkIf (options ? nix) {
     nix.settings.experimental-features = lib.optional config.dotfiles.security.verifiedFetches.enable "verified-fetches";
   };
 }
