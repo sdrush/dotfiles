@@ -1,0 +1,242 @@
+# Alphabetized baseline whitelist for vulnix
+# vulnix requires section headers in the format: ["package-name"]
+
+["Diff"]
+cve = ["CVE-2024-13278"]
+comment = "Baseline"
+
+["ShellCheck"]
+cve = ["CVE-2021-28794"]
+comment = "Baseline"
+
+["ada"]
+cve = ["CVE-2024-9410"]
+comment = "Baseline"
+
+["async"]
+cve = ["CVE-2021-43138"]
+comment = "Baseline"
+
+["avahi"]
+cve = ["CVE-2021-26720", "CVE-2025-68468", "CVE-2025-68471", "CVE-2026-24401", "CVE-2025-59529", "CVE-2025-68276"]
+comment = "Baseline"
+
+["binutils"]
+cve = ["CVE-2025-3198", "CVE-2025-8224", "CVE-2025-8225", "CVE-2025-1153", "CVE-2025-5244", "CVE-2025-5245", "CVE-2025-0840"]
+comment = "Baseline"
+
+["busybox"]
+cve = ["CVE-2025-60876", "CVE-2025-46394"]
+comment = "Baseline"
+
+["bytes"]
+cve = ["CVE-2026-25541"]
+comment = "Baseline"
+
+["clang"]
+cve = ["CVE-2024-7883"]
+comment = "Baseline"
+
+["cryptography"]
+cve = ["CVE-2026-26007"]
+comment = "Baseline"
+
+["cups"]
+cve = ["CVE-2022-26691"]
+comment = "Baseline"
+
+["curl"]
+cve = ["CVE-2022-32221", "CVE-2022-27781", "CVE-2022-27782", "CVE-2023-28319", "CVE-2022-27776", "CVE-2022-32206", "CVE-2022-43552", "CVE-2023-28320", "CVE-2023-28321", "CVE-2022-35252", "CVE-2023-28322"]
+comment = "Baseline"
+
+["dash"]
+cve = ["CVE-2024-21485"]
+comment = "Baseline"
+
+["dbus"]
+cve = ["CVE-2022-42010", "CVE-2022-42011", "CVE-2022-42012"]
+comment = "Baseline"
+
+["ffmpeg"]
+cve = ["CVE-2023-51795", "CVE-2023-51791", "CVE-2023-51793", "CVE-2023-51794", "CVE-2023-51798", "CVE-2023-51797", "CVE-2025-22921", "CVE-2025-25468", "CVE-2025-25469", "CVE-2023-51796", "CVE-2025-12343"]
+comment = "Baseline"
+
+["fontforge"]
+cve = ["CVE-2025-15276", "CVE-2025-15277", "CVE-2025-15278"]
+comment = "Baseline"
+
+["gcc"]
+cve = ["CVE-2021-37322", "CVE-2023-4039"]
+comment = "Baseline"
+
+["giflib"]
+cve = ["CVE-2024-45993"]
+comment = "Baseline"
+
+["git"]
+cve = ["CVE-2022-36882", "CVE-2022-30947", "CVE-2022-36883", "CVE-2022-38663", "CVE-2021-21684", "CVE-2022-36884"]
+comment = "Baseline"
+
+["glibc"]
+cve = ["CVE-2026-0861", "CVE-2025-15281", "CVE-2026-0915"]
+comment = "Baseline"
+
+["go"]
+cve = ["CVE-2025-68121", "CVE-2025-4674", "CVE-2025-61732", "CVE-2025-61731", "CVE-2025-58187", "CVE-2025-58188", "CVE-2025-61723", "CVE-2025-61726", "CVE-2025-61729", "CVE-2025-47907", "CVE-2025-68119", "CVE-2025-47906", "CVE-2025-61727", "CVE-2025-61728", "CVE-2025-0913", "CVE-2025-47912", "CVE-2025-58185", "CVE-2025-58189", "CVE-2025-61724", "CVE-2025-61730", "CVE-2023-49292", "CVE-2025-22873"]
+comment = "Baseline - includes bootstrap versions"
+
+["gzip"]
+cve = ["CVE-2022-1271"]
+comment = "Baseline"
+
+["hedgehog"]
+cve = ["CVE-2021-4276"]
+comment = "Baseline"
+
+["imagemagick"]
+cve = ["CVE-2026-25965", "CVE-2026-25794", "CVE-2026-24481", "CVE-2026-24485", "CVE-2026-25985", "CVE-2026-25989", "CVE-2026-25967", "CVE-2026-25968", "CVE-2026-25897", "CVE-2026-25898", "CVE-2026-25982", "CVE-2026-26284", "CVE-2026-25971", "CVE-2026-26066", "CVE-2026-26283", "CVE-2026-25966", "CVE-2026-25797", "CVE-2026-24484", "CVE-2026-25637", "CVE-2026-25638", "CVE-2026-25795", "CVE-2026-25796", "CVE-2026-25798", "CVE-2026-25799", "CVE-2026-25969", "CVE-2026-25970", "CVE-2026-25983", "CVE-2026-25986", "CVE-2026-25987", "CVE-2026-25988", "CVE-2026-26983", "CVE-2026-25576", "CVE-2026-27798", "CVE-2026-27799"]
+comment = "Baseline"
+
+["jbig2dec"]
+cve = ["CVE-2023-46361"]
+comment = "Baseline"
+
+["jose"]
+cve = ["CVE-2023-50967", "CVE-2024-28176"]
+comment = "Baseline"
+
+["lapack"]
+cve = ["CVE-2021-4048"]
+comment = "Baseline"
+
+["libheif"]
+cve = ["CVE-2025-68431"]
+comment = "Baseline"
+
+["libmemcached"]
+cve = ["CVE-2023-27478"]
+comment = "Baseline"
+
+["libmicrohttpd"]
+cve = ["CVE-2025-59777", "CVE-2025-62689"]
+comment = "Baseline"
+
+["libmpeg2"]
+cve = ["CVE-2022-37416"]
+comment = "Baseline"
+
+["libsndfile"]
+cve = ["CVE-2025-52194", "CVE-2024-50613", "CVE-2024-50612", "CVE-2025-56226"]
+comment = "Baseline"
+
+["memcached"]
+cve = ["CVE-2022-26635"]
+comment = "Baseline"
+
+["mercurial"]
+cve = ["CVE-2022-43410"]
+comment = "Baseline"
+
+["mupdf"]
+cve = ["CVE-2026-25556"]
+comment = "Baseline"
+
+["musl"]
+cve = ["CVE-2025-26519"]
+comment = "Baseline"
+
+["network"]
+cve = ["CVE-2021-35047", "CVE-2021-35049", "CVE-2021-35048", "CVE-2022-24388", "CVE-2022-24389", "CVE-2022-24390", "CVE-2022-24391", "CVE-2022-24392", "CVE-2022-24393", "CVE-2022-24394", "CVE-2021-35050", "CVE-2022-0486", "CVE-2022-0997"]
+comment = "Baseline"
+
+["ninja"]
+cve = ["CVE-2021-4336"]
+comment = "Baseline"
+
+["nix"]
+cve = ["CVE-2024-27297"]
+comment = "Baseline"
+
+["oh-my-zsh"]
+cve = ["CVE-2021-3727"]
+comment = "Baseline"
+
+["openexr"]
+cve = ["CVE-2025-12495", "CVE-2025-12839", "CVE-2025-12840", "CVE-2025-64182", "CVE-2025-64181", "CVE-2025-64183", "CVE-2026-26981"]
+comment = "Baseline"
+
+["orc"]
+cve = ["CVE-2025-47436"]
+comment = "Baseline"
+
+["pip"]
+cve = ["CVE-2021-3572", "CVE-2023-5752"]
+comment = "Baseline"
+
+["python"]
+cve = ["CVE-2022-48565", "CVE-2024-49050", "CVE-2024-9287", "CVE-2025-49714", "CVE-2022-0391", "CVE-2022-45061", "CVE-2022-48560", "CVE-2023-24329", "CVE-2023-36632", "CVE-2024-6232", "CVE-2024-7592", "CVE-2025-13836", "CVE-2022-26488", "CVE-2021-3733", "CVE-2022-48564", "CVE-2021-23336", "CVE-2022-48566", "CVE-2025-6075", "CVE-2025-13837", "CVE-2023-40217", "CVE-2025-12084", "CVE-2025-12781"]
+comment = "Baseline"
+
+["rubygems"]
+cve = ["CVE-2022-36073"]
+comment = "Baseline"
+
+["safe"]
+cve = ["CVE-2022-38164", "CVE-2022-47524", "CVE-2021-40835", "CVE-2021-40834", "CVE-2021-44751", "CVE-2022-28868", "CVE-2022-28869", "CVE-2022-28870", "CVE-2022-28872", "CVE-2022-28873", "CVE-2021-33594", "CVE-2021-33595", "CVE-2021-33596", "CVE-2022-38163"]
+comment = "Baseline"
+
+["sassc"]
+cve = ["CVE-2022-43357"]
+comment = "Baseline"
+
+["setuptools"]
+cve = ["CVE-2025-47273", "CVE-2022-40897"]
+comment = "Baseline"
+
+["stringbuilder"]
+cve = ["CVE-2024-21524"]
+comment = "Baseline"
+
+["subversion"]
+cve = ["CVE-2021-21698", "CVE-2022-29046", "CVE-2022-29048"]
+comment = "Baseline"
+
+["systemd"]
+cve = ["CVE-2023-26604", "CVE-2021-33910", "CVE-2022-3821", "CVE-2025-4598"]
+comment = "Baseline"
+
+["vault"]
+cve = ["CVE-2024-2048", "CVE-2021-27400", "CVE-2023-6337", "CVE-2025-6037", "CVE-2023-0620", "CVE-2023-0665", "CVE-2025-6014", "CVE-2024-8365", "CVE-2021-3024", "CVE-2021-38554", "CVE-2022-41316", "CVE-2023-25000", "CVE-2025-4166", "CVE-2023-24999", "CVE-2023-2121", "CVE-2025-6011", "CVE-2021-41802"]
+comment = "Baseline"
+
+["warp"]
+cve = ["CVE-2022-4428", "CVE-2022-2225", "CVE-2023-2754", "CVE-2023-1862", "CVE-2025-0651", "CVE-2023-0652", "CVE-2023-1412", "CVE-2022-3320", "CVE-2022-3512", "CVE-2022-2145", "CVE-2022-4457", "CVE-2023-0238", "CVE-2023-0654"]
+comment = "Baseline"
+
+["websockets"]
+cve = ["CVE-2021-33880"]
+comment = "Baseline"
+
+["wheel"]
+cve = ["CVE-2022-40898"]
+comment = "Baseline"
+
+["word-wrap"]
+cve = ["CVE-2023-26115"]
+comment = "Baseline"
+
+["yaml"]
+cve = ["CVE-2022-3064", "CVE-2021-4235"]
+comment = "Baseline"
+
+["yarn"]
+cve = ["CVE-2025-8262", "CVE-2025-9308"]
+comment = "Baseline"
+
+["yasm"]
+cve = ["CVE-2021-33454", "CVE-2021-33455", "CVE-2021-33456", "CVE-2021-33457", "CVE-2021-33458", "CVE-2021-33459", "CVE-2021-33460", "CVE-2021-33461", "CVE-2021-33462", "CVE-2021-33463", "CVE-2021-33464", "CVE-2021-33465", "CVE-2021-33466", "CVE-2021-33467", "CVE-2021-33468", "CVE-2023-30402", "CVE-2023-31972", "CVE-2023-31973", "CVE-2023-31974", "CVE-2023-51258", "CVE-2023-31975"]
+comment = "Baseline"
+
+["zlib"]
+cve = ["CVE-2022-37434", "CVE-2023-45853", "CVE-2026-22184", "CVE-2023-6992", "CVE-2026-27171"]
+comment = "Baseline"

@@ -22,19 +22,10 @@ jobs:
       - name: Run flake checks
         run: nix flake check -L
 
-  vulnerability-scan:
+  security-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: cachix/install-nix-action@08dcb3a5e62fa31e2da3d490afc4176ef55ecd72 # v30
-      - name: OSV-Scanner
-        run: nix shell nixpkgs#osv-scanner -c osv-scanner --lockfile flake.lock
-
-  vulnix:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: cachix/install-nix-action@08dcb3a5e62fa31e2da3d490afc4176ef55ecd72 # v30
-      - name: Vulnix
-        run: |
-          nix shell nixpkgs#vulnix -c vulnix --flake .#default
+      - name: Security Audit
+        run: nix shell nixpkgs#just -c just security-scan

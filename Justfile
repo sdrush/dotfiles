@@ -45,6 +45,10 @@ format:
 check:
     nix flake check
 
+# Audit the system for known vulnerabilities using vulnix
+security-scan:
+    @nix shell nixpkgs#vulnix -c vulnix --whitelist whitelist.toml $(nix path-info --derivation .#nixosConfigurations.nixos.config.system.build.toplevel)
+
 # Garbage collect and delete old generations using nh (keeps last 7 days)
 gc:
     sudo nh clean all --keep 7
