@@ -23,6 +23,9 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+
+    system-manager.url = "github:numtide/system-manager";
+    system-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -193,7 +196,13 @@
           };
         };
 
-        systemConfigs = { };
+        systemConfigs = {
+          default = inputs.system-manager.lib.makeSystemConfig {
+            modules = [
+              ./modules/linux/system.nix
+            ];
+          };
+        };
 
         homeConfigurations = {
           "sdrush@APOLLO" = home-manager.lib.homeManagerConfiguration {
