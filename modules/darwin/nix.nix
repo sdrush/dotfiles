@@ -22,12 +22,14 @@
       trusted-users = [
         "@admin"
       ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ]
+      ++ lib.optional (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") "extra-platforms";
+    }
+    // lib.optionalAttrs (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") {
+      extra-platforms = "x86_64-darwin x86_64-linux";
     };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    ''
-    + lib.optionalString (pkgs.stdenv.hostPlatform.system == "x86_64-darwin") ''
-      extra-platforms = x86_64-darwin x86_64-linux
-    '';
   };
 }
