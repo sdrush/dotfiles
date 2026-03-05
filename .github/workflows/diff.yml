@@ -39,6 +39,15 @@ jobs:
 
   nvd-diff-linux:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: "NixOS"
+            flake_attr: "nixosConfigurations.nixos.config.system.build.toplevel"
+            comment_tag: "nvd-diff-nixos"
+          - name: "Generic Linux (system-manager)"
+            flake_attr: "systemConfigs.default"
+            comment_tag: "nvd-diff-generic-linux"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -51,15 +60,15 @@ jobs:
             accept-flake-config = true
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Build base system (main)
-        run: nix build github:${{ github.repository }}/${{ github.base_ref }}#nixosConfigurations.nixos.config.system.build.toplevel --out-link result-main || true
+        run: nix build github:${{ github.repository }}/${{ github.base_ref }}#${{ matrix.flake_attr }} --out-link result-main || true
 
       - name: Build PR system (current)
-        run: nix build .#nixosConfigurations.nixos.config.system.build.toplevel --out-link result-pr || true
+        run: nix build .#${{ matrix.flake_attr }} --out-link result-pr || true
 
       - name: Diff closures with nvd
         run: |
           nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
-          echo "### 🐧 Linux Closure Diff (NixOS)" > pr-comment.txt
+          echo "### 🐧 Linux Closure Diff (${{ matrix.name }})" > pr-comment.txt
           echo "\`\`\`" >> pr-comment.txt
           cat nvd-diff.txt >> pr-comment.txt
           echo "\`\`\`" >> pr-comment.txt
@@ -68,5 +77,5 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: pr-comment.txt
-          comment_tag: nvd-diff-linux
+          comment_tag: ${{ matrix.comment_tag }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
