@@ -66,6 +66,9 @@
               treefmt.enable = true; # Runs your current nix fmt/treefmt config
               statix.enable = true; # Catch bad Nix patterns
               deadnix.enable = true; # Catch unused variables
+              detect-private-keys.enable = true; # Prevent committing secrets
+              shellcheck.enable = true; # Lint shell scripts
+              commitizen.enable = true; # Enforce conventional commits
             };
           };
           # Treefmt configuration
