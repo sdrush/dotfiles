@@ -10,17 +10,18 @@ Our shell environment is tuned for **instant reactivity** and **high productivit
 
 ## ⌨️ Zsh Abbreviations (`zsh-abbr`)
 
-Instead of standard aliases, we use **Abbreviations**. As you type, the short command expands into the full version. 
+Instead of standard aliases, we use **Abbreviations**. As you type, the short command expands into the full version.
 
-*Benefit: You get the speed of short commands, but your history and screen show the clear, full command.*
+_Benefit: You get the speed of short commands, but your history and screen show the clear, full command._
 
 ### Notable Abbreviations:
+
 - **Git**: `gst` (status), `ga` (add), `gc` (commit), `gp` (push), `gl` (pull).
 - **Terraform**: `tfp` (plan), `tfa` (apply), `tfi` (init).
 - **Workflow**: `reborn` (just rebuild), `dotcfg` (edit dotfiles).
 - **Productivity**: `myip` (public IP), `wttr` (weather).
 
-*See `modules/user/abbr.nix` for the full list.*
+_See `modules/user/abbr.nix` for the full list._
 
 ## 📂 Navigation & History
 
@@ -31,6 +32,7 @@ Instead of standard aliases, we use **Abbreviations**. As you type, the short co
 ## 🎨 Terminal: Ghostty
 
 We use **Ghostty**, a GPU-accelerated terminal.
+
 - **Stylix Support**: Automatically themed to match your system.
 - **Blur & Opacity**: Configured for a premium "Glassmorphism" look.
 - **macOS Native**: Uses local Homebrew on Darwin for maximum stability while maintaining Nix-based configuration.

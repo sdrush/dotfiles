@@ -8,12 +8,12 @@ Located in `modules/user/dev/`, these modules provide the essential toolchains f
 
 ### Available Personas
 
-| Persona | Module | Core Tools |
-| :--- | :--- | :--- |
-| **Cloud** | `cloud.nix` | GCloud (with GKE auth), Kubectl, Helm, Stern, K9s. |
-| **Go** | `go.nix` | Go toolchain, golangci-lint, delve. |
-| **Node** | `node.nix` | Node.js 22, NPM, Yarn, PNPM, Typescript. |
-| **Python** | `python.nix` | Python 3.12, Poetry, UV, and data libraries. |
+| Persona    | Module       | Core Tools                                         |
+| :--------- | :----------- | :------------------------------------------------- |
+| **Cloud**  | `cloud.nix`  | GCloud (with GKE auth), Kubectl, Helm, Stern, K9s. |
+| **Go**     | `go.nix`     | Go toolchain, golangci-lint, delve.                |
+| **Node**   | `node.nix`   | Node.js 22, NPM, Yarn, PNPM, Typescript.           |
+| **Python** | `python.nix` | Python 3.12, Poetry, UV, and data libraries.       |
 
 ## 🚀 Direnv & Nix-Direnv
 
@@ -45,8 +45,9 @@ Then run `direnv allow` to have the environment activate automatically when you 
 ## 🛠️ Secret Management
 
 We use **[sops-nix](https://github.com/Mic92/sops-nix)** for secure, encrypted secret management.
+
 - **Hardware-backed**: Integrates with Yubikeys (PIV/OpenPGP).
 - **Format**: Secrets are stored in `secrets.yaml` and decrypted on-the-fly into the Nix store.
 - **Workflow**: Use `just secrets` to edit your configuration safely.
 
-*See [Documentation: Secret Management](../secrets.md) for a deep dive.*
+_See [Documentation: Secret Management](../secrets.md) for a deep dive._

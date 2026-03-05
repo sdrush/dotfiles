@@ -13,16 +13,16 @@ The core of our workflow. Running `just rebuild` does more than just switch your
 
 ## 📋 Common Recipes
 
-| Recipe | Description |
-| :--- | :--- |
-| `just rebuild` | Format, lint, and apply the latest changes. |
-| `just update` | Update all flake inputs to their latest versions. |
-| `just gc` | Garbage collect old Nix generations (keeps last 7 days). |
-| `just security-scan` | (NixOS only) Scan your system for known vulnerabilities. |
-| `just diff` | Show the exact changes (packages/versions) before applying. |
-| `just history` | Show the history of your machine's generations. |
-| `just rollback` | Instantly revert to the previous working generation. |
-| `just secrets` | Edit encrypted SOPS secrets using your system editor. |
+| Recipe               | Description                                                 |
+| :------------------- | :---------------------------------------------------------- |
+| `just rebuild`       | Format, lint, and apply the latest changes.                 |
+| `just update`        | Update all flake inputs to their latest versions.           |
+| `just gc`            | Garbage collect old Nix generations (keeps last 7 days).    |
+| `just security-scan` | (NixOS only) Scan your system for known vulnerabilities.    |
+| `just diff`          | Show the exact changes (packages/versions) before applying. |
+| `just history`       | Show the history of your machine's generations.             |
+| `just rollback`      | Instantly revert to the previous working generation.        |
+| `just secrets`       | Edit encrypted SOPS secrets using your system editor.       |
 
 ## 🛡️ Automated Quality Controls
 

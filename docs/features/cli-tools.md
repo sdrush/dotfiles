@@ -4,17 +4,17 @@ We've replaced many aging coreutils with modern, faster, and more feature-rich a
 
 ## 📋 Core Replacements
 
-| Command | Tool | Why? |
-| :--- | :--- | :--- |
-| `ls` | **eza** | Icons, git status integration, better colors. |
-| `cat` | **bat** | Syntax highlighting, line numbers, git integration. |
-| `find` | **fd** | 10x faster, ignores `.gitignore` by default. |
-| `grep` | **rg** | (ripgrep) The fastest search tool in existence. |
-| `top` | **btop** | GPU support, mouse interaction, beautiful visuals. |
-| `watch` | **viddy** | Time-traveling history and diffing. |
-| `du` | **dust** | Instant visual breakdown of disk space. |
-| `df` | **duf** | User-friendly disk usage table. |
-| `env` | **direnv** | Automatically load/unload project environments on `cd`. |
+| Command | Tool       | Why?                                                    |
+| :------ | :--------- | :------------------------------------------------------ |
+| `ls`    | **eza**    | Icons, git status integration, better colors.           |
+| `cat`   | **bat**    | Syntax highlighting, line numbers, git integration.     |
+| `find`  | **fd**     | 10x faster, ignores `.gitignore` by default.            |
+| `grep`  | **rg**     | (ripgrep) The fastest search tool in existence.         |
+| `top`   | **btop**   | GPU support, mouse interaction, beautiful visuals.      |
+| `watch` | **viddy**  | Time-traveling history and diffing.                     |
+| `du`    | **dust**   | Instant visual breakdown of disk space.                 |
+| `df`    | **duf**    | User-friendly disk usage table.                         |
+| `env`   | **direnv** | Automatically load/unload project environments on `cd`. |
 
 ## 🔍 Discovery & Interaction
 

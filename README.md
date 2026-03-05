@@ -18,6 +18,7 @@ These dotfiles provide a consistent, lightning-fast experience across every mach
 For deep-dive guides on the specific features and workflows, visit the **[Documentation Hub](docs/README.md)**:
 
 ### 🧩 Core Features
+
 - [**Platforms & OS Support**](docs/features/platforms.md): Darwin, NixOS, and WSL integration.
 - [**Shell & Commands**](docs/features/shell.md): Zsh performance, abbreviations, and Ghostty.
 - [**Modern CLI Toolbelt**](docs/features/cli-tools.md): Catalog of modern coreutil replacements.
@@ -27,6 +28,7 @@ For deep-dive guides on the specific features and workflows, visit the **[Docume
 - [**Theming & Visuals**](docs/features/theming.md): Stylix and terminal aesthetics.
 
 ### 🧠 Knowledge Base
+
 - [**Secret Management**](docs/secrets.md): Encrypted configs with SOPS and Yubikeys.
 - [**Bootstrapping Guide**](docs/bootstrapping.md): Setting up a new machine from scratch.
 

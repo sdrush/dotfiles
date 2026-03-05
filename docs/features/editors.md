@@ -13,6 +13,7 @@ Our Neovim configuration is built entirely in Nix via **[Nixvim](https://github.
 - **Theming**: Automatically themed via Stylix to match the system.
 
 ### Key Keybindings:
+
 - `<leader>ff`: Find Files
 - `<leader>fg`: Live Grep
 - `<leader>e`: Toggle Explorer
