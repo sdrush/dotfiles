@@ -206,6 +206,13 @@
               ./modules/linux/system.nix
               ./modules/system/cachix.nix
               ./modules/system/security.nix
+              (
+                { pkgs, ... }:
+                {
+                  nixpkgs.hostPlatform = "x86_64-linux";
+                  nix.package = pkgs.nix;
+                }
+              )
             ];
           };
         };

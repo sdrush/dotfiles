@@ -51,7 +51,7 @@ _:
       "dropbox"
       "ghostty"
       "github"
-      "git-credential-manager"
+      # "git-credential-manager" # Fails to install because of read only git config
       "google-drive"
       "gpg-suite"
       # "hammerspoon"# Lua Automation engine for macos

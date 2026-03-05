@@ -9,6 +9,7 @@ in
   # let's add the gitIdentity script to the path as well
   home.packages = with pkgs; [
     gitIdentity
+    git-credential-manager
   ];
 
   programs.git = {
