@@ -25,6 +25,7 @@ For deep-dive guides on the specific features and workflows, visit the **[Docume
 - [**Development Personas**](docs/features/development.md): Reproducible environments for Go, Python, Node, and Cloud.
 - [**Editor Configurations**](docs/features/editors.md): Nixvim and VSCode setup.
 - [**Workflow & Automation**](docs/features/workflow.md): Using the `Justfile` and auto-rebuilds.
+- [**PR Workflow Guide**](docs/features/pr-workflow.md): Safe configuration updates via Pull Requests and code reviews.
 - [**Theming & Visuals**](docs/features/theming.md): Stylix and terminal aesthetics.
 
 ### 🧠 Knowledge Base

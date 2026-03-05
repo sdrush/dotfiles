@@ -1,0 +1,72 @@
+name: Nix Flake Diff
+on:
+  pull_request:
+
+permissions:
+  pull-requests: write
+
+jobs:
+  nvd-diff-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build base system (main)
+        run: nix build github:${{ github.repository }}/${{ github.base_ref }}#darwinConfigurations.typhon.system --out-link result-main || true
+
+      - name: Build PR system (current)
+        run: nix build .#darwinConfigurations.typhon.system --out-link result-pr || true
+
+      - name: Diff closures with nvd
+        run: |
+          nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
+          echo "### 🍏 macOS Closure Diff (Typhon)" > pr-comment.txt
+          echo "\`\`\`" >> pr-comment.txt
+          cat nvd-diff.txt >> pr-comment.txt
+          echo "\`\`\`" >> pr-comment.txt
+
+      - name: Comment on PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: pr-comment.txt
+          comment_tag: nvd-diff-macos
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  nvd-diff-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            trusted-users = root
+            accept-flake-config = true
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Build base system (main)
+        run: nix build github:${{ github.repository }}/${{ github.base_ref }}#nixosConfigurations.nixos.config.system.build.toplevel --out-link result-main || true
+
+      - name: Build PR system (current)
+        run: nix build .#nixosConfigurations.nixos.config.system.build.toplevel --out-link result-pr || true
+
+      - name: Diff closures with nvd
+        run: |
+          nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
+          echo "### 🐧 Linux Closure Diff (NixOS)" > pr-comment.txt
+          echo "\`\`\`" >> pr-comment.txt
+          cat nvd-diff.txt >> pr-comment.txt
+          echo "\`\`\`" >> pr-comment.txt
+
+      - name: Comment on PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: pr-comment.txt
+          comment_tag: nvd-diff-linux
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
