@@ -118,7 +118,7 @@ docs:
 why-depends pkg:
     @if [ "{{os}}" = "Darwin" ]; \
     then \
-        nix why-depends .#darwinConfigurations.typhon.system nixpkgs#{{pkg}}; \
+        nix why-depends .#darwinConfigurations.typhon.system nixpkgs#{{pkg}}.out; \
     else \
-        nix why-depends .#nixosConfigurations.nixos.config.system.build.toplevel nixpkgs#{{pkg}}; \
+        nix why-depends .#nixosConfigurations.nixos.config.system.build.toplevel nixpkgs#{{pkg}}.out; \
     fi
