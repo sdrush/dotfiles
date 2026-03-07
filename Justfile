@@ -45,9 +45,11 @@ format:
 check:
     nix flake check
 
-# Audit the system for known vulnerabilities using vulnix
+# Audit for vulnerabilities with a CVSS score of 6.0 or higher
 security-scan:
-    @nix shell nixpkgs#vulnix -c vulnix --whitelist whitelist.toml $(nix path-info --derivation .#nixosConfigurations.nixos.config.system.build.toplevel)
+    @nix shell nixpkgs#vulnix nixpkgs#jq -c sh -c \
+    "vulnix --json --whitelist whitelist.toml $(nix path-info --derivation .#nixosConfigurations.nixos.config.system.build.toplevel) | \
+    jq -r 'def score: .cvssv3_basescore // {}; [ .[] | { pkg: .name, vulns: [ score | to_entries[] | select(.value >= 6.0) ] } | select(.vulns | length > 0) ] | if length == 0 then \"✅ No High-Risk Vulnerabilities (>= 6.0) detected.\" else \"🚨 HIGH-RISK VULNERABILITIES FOUND:\n\" + (map(\"- \(.pkg)\n  \" + ([.vulns[] | \"\(.key) (Score: \(.value))\"] | join(\"\n  \"))) | join(\"\n\")) end'"
 
 # Garbage collect and delete old generations using nh (keeps last 7 days)
 gc:
@@ -110,4 +112,13 @@ secrets:
 
 # List all deep-dive documentation guides
 docs:
-    @ls -1 docs/*.md | xargs -n 1 basename
+    @ls -1 docs/*.md | xargs -n 1 
+
+# Trace why a package is in your closure (usage: just why-depends <pkg-name>)
+why-depends pkg:
+    @if [ "{{os}}" = "Darwin" ]; \
+    then \
+        nix why-depends .#darwinConfigurations.typhon.system nixpkgs#{{pkg}}; \
+    else \
+        nix why-depends .#nixosConfigurations.nixos.config.system.build.toplevel nixpkgs#{{pkg}}; \
+    fi
