@@ -85,16 +85,8 @@
               "poetry.lock"
             ];
           };
-          # Automatically sets up devShells
-          devShells.default = pkgs.mkShell {
-            shellHook = config.pre-commit.installationScript;
-            packages = with pkgs; [
-              nixfmt
-              deadnix
-              statix
-              config.treefmt.build.wrapper
-            ];
-          };
+          # Automatically sets up devShells using your dev persona directory
+          devShells.default = import ./modules/user/dev/shell.nix { inherit pkgs config; };
 
           packages =
             if system == "aarch64-darwin" then
