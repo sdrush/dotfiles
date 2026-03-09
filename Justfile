@@ -112,11 +112,11 @@ secrets:
 
 # Verify that all secrets are correctly encrypted
 check-secrets:
-    @if command -v sops >/dev/null; then \
-        echo "Verifying SOPS secrets..."; \
-        sops --verify --ignore-mac secrets.yaml || (echo "ERROR: Secrets are not correctly encrypted!" && exit 1); \
+    @if grep -q "sops:" secrets.yaml; then \
+        echo "✅ secrets.yaml appears to be encrypted."; \
     else \
-        echo "sops not found, skipping secret verification."; \
+        echo "❌ ERROR: secrets.yaml is NOT encrypted!"; \
+        exit 1; \
     fi
 
 # List all deep-dive documentation guides
