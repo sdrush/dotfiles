@@ -69,6 +69,14 @@
               detect-private-keys.enable = true; # Prevent committing secrets
               shellcheck.enable = true; # Lint shell scripts
               commitizen.enable = true; # Enforce conventional commits
+              actionlint.enable = true; # Lint GitHub Actions
+              gitleaks = {
+                enable = true;
+                name = "Gitleaks";
+                entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --staged --config .gitleaks.toml";
+                files = "^.*$";
+                pass_filenames = false;
+              };
             };
           };
           # Treefmt configuration

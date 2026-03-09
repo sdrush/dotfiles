@@ -6,7 +6,7 @@ default:
 os := `uname -s`
 
 # Rebuild and switch the system configuration
-rebuild: format lint
+rebuild: format lint check-secrets
     @if [ "{{os}}" = "Darwin" ]; then \
         if command -v nh >/dev/null; then \
             echo "Updating Darwin system with nh..."; \
@@ -109,6 +109,15 @@ optimize:
 # Edit repository secrets using SOPS
 secrets:
     EDITOR=vim sops secrets.yaml
+
+# Verify that all secrets are correctly encrypted
+check-secrets:
+    @if command -v sops >/dev/null; then \
+        echo "Verifying SOPS secrets..."; \
+        sops --verify --ignore-mac secrets.yaml || (echo "ERROR: Secrets are not correctly encrypted!" && exit 1); \
+    else \
+        echo "sops not found, skipping secret verification."; \
+    fi
 
 # List all deep-dive documentation guides
 docs:

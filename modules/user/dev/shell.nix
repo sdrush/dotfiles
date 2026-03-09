@@ -11,6 +11,9 @@ pkgs.mkShell {
     nixfmt
     deadnix
     statix
+    shellcheck
+    actionlint
+    pre-commit
     config.treefmt.build.wrapper
 
     # Security Diet: Tools moved from modules/user/packages/dev.nix

@@ -1,0 +1,11 @@
+# Gitleaks configuration
+# https://github.com/gitleaks/gitleaks
+
+[allowlist]
+description = "Global allowlist"
+paths = [
+    "secrets.yaml",
+    "flake.lock",
+    "poetry.lock",
+    "whitelist.toml"
+]

@@ -22,6 +22,8 @@ jobs:
       - uses: DeterminateSystems/flake-checker-action@main
       - name: Run flake checks
         run: nix flake check -L
+      - name: Lint GitHub Actions
+        run: nix shell nixpkgs#actionlint -c actionlint
 
   security-audit:
     runs-on: ubuntu-latest
