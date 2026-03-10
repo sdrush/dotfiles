@@ -212,7 +212,11 @@
               (
                 { pkgs, ... }:
                 {
-                  nixpkgs.hostPlatform = "x86_64-linux";
+                  nixpkgs = {
+                    hostPlatform = "x86_64-linux";
+                    overlays = builtins.attrValues self.overlays;
+                    config.allowUnfree = true;
+                  };
                   nix.package = pkgs.nix;
                 }
               )
@@ -259,14 +263,21 @@
         };
 
         # Overlays
-        overlays = import ./overlays/default.nix {
-          inherit inputs;
-          nixpkgsConfig = {
-            config = {
-              allowUnfree = true;
+        overlays =
+          let
+            # Load the existing set of overlays
+            defaultOverlays = import ./overlays/default.nix {
+              inherit inputs;
+              nixpkgsConfig = {
+                config.allowUnfree = true;
+              };
             };
+          in
+          defaultOverlays
+          // {
+            # Add the new minimal overlay to the set
+            minimal = import ./overlays/minimal.nix { };
           };
-        };
       };
     };
 }
