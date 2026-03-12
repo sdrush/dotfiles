@@ -1,13 +1,11 @@
 {
   pkgs,
-  lib,
   ...
 }:
 {
   nixpkgs.hostPlatform = "x86_64-linux";
 
   nix = {
-    package = lib.mkDefault pkgs.nix;
     settings = {
       experimental-features = [
         "nix-command"

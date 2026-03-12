@@ -41,6 +41,22 @@
       git-hooks,
       ...
     }:
+    let
+      # Define overlays in a local let block to avoid self-referential recursion
+      allOverlays =
+        let
+          defaultOverlays = import ./overlays/default.nix {
+            inherit inputs;
+            nixpkgsConfig = {
+              config.allowUnfree = true;
+            };
+          };
+        in
+        defaultOverlays
+        // {
+          minimal = import ./overlays/minimal.nix { };
+        };
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         git-hooks.flakeModule
@@ -143,7 +159,7 @@
                 {
                   nixpkgs = {
                     config.allowUnfree = true;
-                    overlays = nixpkgs.lib.attrValues self.overlays;
+                    overlays = builtins.attrValues allOverlays;
                   };
                 }
                 # `home-manager` module
@@ -183,7 +199,7 @@
               {
                 nixpkgs = {
                   config.allowUnfree = true;
-                  overlays = nixpkgs.lib.attrValues self.overlays;
+                  overlays = builtins.attrValues allOverlays;
                 };
                 home-manager = {
                   useGlobalPkgs = true;
@@ -209,17 +225,13 @@
               ./modules/linux/system.nix
               ./modules/system/cachix.nix
               ./modules/system/security.nix
-              (
-                { pkgs, ... }:
-                {
-                  nixpkgs = {
-                    hostPlatform = "x86_64-linux";
-                    overlays = builtins.attrValues self.overlays;
-                    config.allowUnfree = true;
-                  };
-                  nix.package = pkgs.nix;
-                }
-              )
+              (_: {
+                nixpkgs = {
+                  hostPlatform = "x86_64-linux";
+                  overlays = builtins.attrValues allOverlays;
+                  config.allowUnfree = true;
+                };
+              })
             ];
           };
         };
@@ -229,7 +241,7 @@
             pkgs = import nixpkgs {
               system = "x86_64-linux";
               config.allowUnfree = true;
-              overlays = builtins.attrValues self.overlays;
+              overlays = builtins.attrValues allOverlays;
             };
             modules = [
               ./home.nix
@@ -263,21 +275,7 @@
         };
 
         # Overlays
-        overlays =
-          let
-            # Load the existing set of overlays
-            defaultOverlays = import ./overlays/default.nix {
-              inherit inputs;
-              nixpkgsConfig = {
-                config.allowUnfree = true;
-              };
-            };
-          in
-          defaultOverlays
-          // {
-            # Add the new minimal overlay to the set
-            minimal = import ./overlays/minimal.nix { };
-          };
+        overlays = allOverlays;
       };
     };
 }

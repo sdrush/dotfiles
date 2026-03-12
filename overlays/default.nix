@@ -2,13 +2,13 @@
 
 {
   # Overlays to add various packages into package set
-  comma = _: prev: {
-    comma = inputs.comma.packages.${prev.stdenv.system or "x86_64-linux"}.default;
+  comma = final: _: {
+    comma = inputs.comma.packages.${final.system}.default;
   };
   # Overlay useful on Macs with Apple Silicon
   apple-silicon =
-    _: prev:
-    inputs.nixpkgs.lib.optionalAttrs ((prev.stdenv.system or null) == "aarch64-darwin") {
+    final: _:
+    inputs.nixpkgs.lib.optionalAttrs (final.system == "aarch64-darwin") {
       # Add access to x86 packages if system is running Apple Silicon
       pkgs-x86 = import inputs.nixpkgs {
         system = "x86_64-darwin";

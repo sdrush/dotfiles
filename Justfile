@@ -75,8 +75,13 @@ check:
 
 # Audit for vulnerabilities with a CVSS score of 6.0 or higher
 security-scan:
-    @nix shell nixpkgs#vulnix nixpkgs#jq -c sh -c \
-    "vulnix --json --whitelist whitelist.toml $(nix path-info --derivation {{target}}) | \
+    @DERIVATION=$(nix path-info --derivation {{target}} 2>/tmp/security-scan-error.txt) || { \
+        echo "🚨 ERROR: Could not evaluate target {{target}}."; \
+        cat /tmp/security-scan-error.txt; \
+        exit 1; \
+    }; \
+    nix shell nixpkgs#vulnix nixpkgs#jq -c sh -c \
+    "vulnix --json --whitelist whitelist.toml $DERIVATION | \
     jq -r 'def score: .cvssv3_basescore // {}; [ .[] | { pkg: .name, vulns: [ score | to_entries[] | select(.value >= 6.0) ] } | select(.vulns | length > 0) ] | if length == 0 then \"✅ No High-Risk Vulnerabilities (>= 6.0) detected.\" else \"🚨 HIGH-RISK VULNERABILITIES FOUND:\n\" + (map(\"- \(.pkg)\n  \" + ([.vulns[] | \"\(.key) (Score: \(.value))\"] | join(\"\n  \"))) | join(\"\n\")) end'"
 
 # Garbage collect and delete old generations using nh (keeps last 7 days)
