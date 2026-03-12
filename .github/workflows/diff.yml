@@ -51,13 +51,26 @@ jobs:
 
       - name: Diff closures with nvd
         run: |
-          nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
-          {
-            echo "### ${{ matrix.symbol }} ${{ matrix.name }} Closure Diff"
-            echo "\`\`\`"
-            cat nvd-diff.txt
-            echo "\`\`\`"
-          } > pr-comment.txt
+          if [ -L result-main ] && [ -L result-pr ]; then
+            nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
+            {
+              echo "### ${{ matrix.symbol }} ${{ matrix.name }} Closure Diff"
+              echo "\`\`\`"
+              cat nvd-diff.txt
+              echo "\`\`\`"
+            } > pr-comment.txt
+          elif [ -L result-pr ]; then
+            {
+              echo "### ${{ matrix.symbol }} ${{ matrix.name }} Closure Diff"
+              echo "⚠️ Could not compare to base branch (${{ github.base_ref }}). The base system may be failing to build."
+              echo "The PR system built successfully."
+            } > pr-comment.txt
+          else
+             {
+              echo "### ${{ matrix.symbol }} ${{ matrix.name }} Closure Diff"
+              echo "❌ PR system failed to build. See logs for details."
+            } > pr-comment.txt
+          fi
 
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@v2

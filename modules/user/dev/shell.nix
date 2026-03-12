@@ -24,5 +24,8 @@ pkgs.mkShell {
     pylint
     tcl
     tk
+    vulnix
+    jq
+    nvd
   ];
 }

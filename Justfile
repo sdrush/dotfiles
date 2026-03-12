@@ -10,7 +10,11 @@ target := if os == "Darwin" {
 } else if is_nixos == "true" {
     ".#nixosConfigurations." + host + ".config.system.build.toplevel"
 } else {
-    ".#homeConfigurations.\"" + user + "@" + host + "\".activationPackage"
+    if user == "runner" {
+        ".#systemConfigs.default"
+    } else {
+        ".#homeConfigurations.\"" + user + "@" + host + "\".activationPackage"
+    }
 }
 
 current_system := if os == "Darwin" {
