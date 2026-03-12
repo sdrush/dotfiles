@@ -9,6 +9,7 @@
     ./modules/darwin/nix.nix
     ./modules/darwin/users.nix
     ./modules/darwin/fonts.nix
+    ./modules/darwin/yubikey.nix
   ];
   # Nix configuration -----------------------------------------------------------------------------
   system = {

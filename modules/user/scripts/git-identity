@@ -26,5 +26,14 @@ DEBUG set +x
 git config user.name "$(git config user.${ID}.name)"
 git config user.email "$(git config user.${ID}.email)"
 
+# Set signing key if present
+SIGNING_KEY=$(git config user.${ID}.signingkey)
+if [ -n "$SIGNING_KEY" ]; then
+    git config user.signingkey "$SIGNING_KEY"
+    echo "Signing Key: Configured (YubiKey)"
+else
+    git config --unset user.signingkey 2>/dev/null || true
+fi
+
 echo "Name: $(git config user.name)"
 echo "Email: $(git config user.email)"

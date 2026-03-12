@@ -57,6 +57,10 @@ lint:
     statix check .
     deadnix .
 
+# Lint GitHub Actions
+lint-actions:
+    actionlint
+
 # Format all Nix files in the repository
 format:
     nix fmt

@@ -20,18 +20,18 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Run formatting check
-        run: nix shell nixpkgs#just -c just format
+        run: nix develop --command just format
         if: matrix.os == 'ubuntu-latest'
 
       - name: Lint GitHub Actions
-        run: nix shell nixpkgs#actionlint -c actionlint
-        if: matrix.os == 'ubuntu-latest' # Only need to lint once
+        run: nix develop --command just lint-actions
+        if: matrix.os == 'ubuntu-latest'
 
       - name: Run linting
-        run: nix shell nixpkgs#just -c just lint
+        run: nix develop --command just lint
 
       - name: Run flake checks
-        run: nix shell nixpkgs#just -c just check
+        run: nix develop --command just check
 
   security-audit:
     runs-on: ubuntu-latest

@@ -69,7 +69,7 @@ in
 
         # SSH agent configuration
         export AGENT_SOCK_SECRETIVE="/Users/${config.home.username}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
-        export AGENT_SOCK_YUBIKEY="/usr/local/var/run/yubikey-agent.sock"
+        export AGENT_SOCK_YUBIKEY="/Users/${config.home.username}/.ssh/yubikey-agent.sock"
 
         ss-secretive() {
           export SSH_AUTH_SOCK="$AGENT_SOCK_SECRETIVE"
