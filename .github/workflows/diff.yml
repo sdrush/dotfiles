@@ -25,10 +25,12 @@ jobs:
       - name: Diff closures with nvd
         run: |
           nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
-          echo "### 🍏 macOS Closure Diff (Typhon)" > pr-comment.txt
-          echo "\`\`\`" >> pr-comment.txt
-          cat nvd-diff.txt >> pr-comment.txt
-          echo "\`\`\`" >> pr-comment.txt
+          {
+            echo "### 🍏 macOS Closure Diff (Typhon)"
+            echo "\`\`\`"
+            cat nvd-diff.txt
+            echo "\`\`\`"
+          } > pr-comment.txt
 
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@v2
@@ -68,10 +70,12 @@ jobs:
       - name: Diff closures with nvd
         run: |
           nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
-          echo "### 🐧 Linux Closure Diff (${{ matrix.name }})" > pr-comment.txt
-          echo "\`\`\`" >> pr-comment.txt
-          cat nvd-diff.txt >> pr-comment.txt
-          echo "\`\`\`" >> pr-comment.txt
+          {
+            echo "### 🐧 Linux Closure Diff (${{ matrix.name }})"
+            echo "\`\`\`"
+            cat nvd-diff.txt
+            echo "\`\`\`"
+          } > pr-comment.txt
 
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@v2

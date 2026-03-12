@@ -4,15 +4,23 @@ host := `hostname -s`
 user := `id -un`
 is_nixos := `if [ -e /etc/NIXOS ]; then echo "true"; else echo "false"; fi`
 
-# 5. Define the dynamic target
-# This logic replaces host-specific checks in individual recipes
+# Define common paths and targets
 target := if os == "Darwin" {
     ".#darwinConfigurations." + host + ".system"
 } else if is_nixos == "true" {
-    ".#nixosConfigurations.nixos.config.system.build.toplevel"
+    ".#nixosConfigurations." + host + ".config.system.build.toplevel"
 } else {
     ".#homeConfigurations.\"" + user + "@" + host + "\".activationPackage"
 }
+
+current_system := if os == "Darwin" {
+    "/run/current-system"
+} else if is_nixos == "true" {
+    "/run/current-system"
+} else {
+    "~/.local/state/nix/profiles/home-manager"
+}
+
 # Default task: list all recipes
 default:
     @just --list
@@ -27,9 +35,9 @@ rebuild: format lint check-secrets
             echo "Updating Darwin system with darwin-rebuild..."; \
             darwin-rebuild switch --flake .; \
         fi \
-    elif [ -e /etc/NIXOS ]; then \
+    elif [ "{{is_nixos}}" = "true" ]; then \
         echo "Updating NixOS system..."; \
-        sudo nixos-rebuild switch --flake .#nixos; \
+        sudo nixos-rebuild switch --flake .#{{host}}; \
     else \
         if command -v nh >/dev/null; then \
             echo "Updating Home Manager configuration with nh..."; \
@@ -78,13 +86,9 @@ search query:
 # Show differences between the current system and the new flake
 diff:
     @if ! command -v nvd >/dev/null; then echo "nvd not found. Install it for diff support."; exit 1; fi
-    @if [ "{{os}}" = "Darwin" ]; then \
-        nvd diff /run/current-system $(nix build --no-link --print-out-paths .); \
-    else \
-        TARGET_PROFILE=$(readlink -f ~/.local/state/nix/profiles/home-manager || echo ""); \
-        if [ -z "$TARGET_PROFILE" ]; then echo "Home Manager profile not found."; exit 1; fi; \
-        nvd diff $$TARGET_PROFILE $(nix build --no-link --print-out-paths .); \
-    fi
+    @CURRENT_PATH=$(readlink -f {{current_system}} || echo ""); \
+    if [ -z "$CURRENT_PATH" ]; then echo "Current system profile not found."; exit 1; fi; \
+    nvd diff $CURRENT_PATH $(nix build --no-link --print-out-paths {{target}})
 
 # Update everything: nix flake, homebrew, and local dotfiles
 update-all:
@@ -92,27 +96,23 @@ update-all:
 
 # Show the history of Nix generations
 history:
-    @if [ "{{os}}" = "Darwin" ]; then \
-        nix-env --list-generations --profile /nix/var/nix/profiles/system; \
-    else \
-        nix-env --list-generations --profile ~/.local/state/nix/profiles/home-manager; \
-    fi
+    @nix-env --list-generations --profile {{current_system}}
 
 # Quickly rollback to the previous generation
 rollback:
     @if [ "{{os}}" = "Darwin" ]; then \
         sudo /nix/var/nix/profiles/system/bin/switch-to-configuration rollback; \
+    elif [ "{{is_nixos}}" = "true" ]; then \
+        sudo nixos-rebuild rollback; \
     else \
         home-manager generations | head -n 2 | tail -n 1 | awk '{print $NF}' | xargs -I {} sh -c "{}/activate"; \
     fi
 
 # Explore the dependency graph of the current system (interactive)
 explore:
-    @if [ "{{os}}" = "Darwin" ]; then \
-        nix-tree /run/current-system; \
-    else \
-        nix-tree $(readlink -f ~/.local/state/nix/profiles/home-manager); \
-    fi
+    @CURRENT_PATH=$(readlink -f {{current_system}} || echo ""); \
+    if [ -z "$CURRENT_PATH" ]; then echo "Current system profile not found."; exit 1; fi; \
+    nix-tree $CURRENT_PATH
 
 # Run a full store optimization to save space
 optimize:
@@ -137,9 +137,4 @@ docs:
 
 # Trace why a package is in your closure (usage: just why-depends <pkg-name>)
 why-depends pkg:
-    @if [ "{{os}}" = "Darwin" ]; \
-    then \
-        nix why-depends .#darwinConfigurations.typhon.system nixpkgs#{{pkg}}.out; \
-    else \
-        nix why-depends .#nixosConfigurations.nixos.config.system.build.toplevel nixpkgs#{{pkg}}.out; \
-    fi
+    nix why-depends {{target}} nixpkgs#{{pkg}}.out
