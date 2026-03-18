@@ -3,18 +3,28 @@
 let
   # put a shell script into the nix store
   gitIdentity = pkgs.writeShellScriptBin "git-identity" (builtins.readFile ./scripts/git-identity);
+  gitSshSign = pkgs.writeShellScriptBin "git-ssh-sign" (builtins.readFile ./scripts/git-ssh-sign);
+  yubikeyPublicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHtmxQwSqNg05UQR6AnkT+4aaFEUg4Nc1ISwq/UlmUSH3jB5v0h7YOw+Vi02O+TgVdWGL8IbM2jD7fBq+T6ltq8=";
 in
 {
-  # we will use the excellent fzf in our `git-identity` script, so let's make sure it's available
-  # Let's add the gitIdentity script to the path as well
-  home.packages = with pkgs; [
-    gitIdentity
-    git-credential-manager
-  ];
+  home = {
+    # we will use the excellent fzf in our `git-identity` script, so let's make sure it's available
+    # Let's add the gitIdentity script to the path as well
+    packages = with pkgs; [
+      gitIdentity
+      gitSshSign
+      git-credential-manager
+    ];
 
-  # Write the YubiKey public key to a file for Git to use as a signing key
-  home.file.".ssh/yubikey.pub".text =
-    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHtmxQwSqNg05UQR6AnkT+4aaFEUg4Nc1ISwq/UlmUSH3jB5v0h7YOw+Vi02O+TgVdWGL8IbM2jD7fBq+T6ltq8=";
+    # Write the YubiKey public key to a file for Git to use as a signing key
+    file.".ssh/yubikey.pub".text = yubikeyPublicKey;
+
+    # Allowed signers for verification
+    file.".ssh/allowed_signers".text = ''
+      shannon.rush@mavenwave.com ${yubikeyPublicKey}
+      shannon.rush@gmail.com ${yubikeyPublicKey}
+    '';
+  };
 
   programs.git = {
     enable = true;
@@ -28,21 +38,22 @@ in
         work = {
           name = "Shannon Rush";
           email = "shannon.rush@mavenwave.com";
-          signingKey = "~/.ssh/yubikey.pub";
+          signingKey = "/Users/sdrush/.ssh/yubikey.pub";
         };
 
         # the `personal` identity
         personal = {
           name = "Shannon Rush";
           email = "shannon.rush@gmail.com";
-          signingKey = "~/.ssh/yubikey.pub";
+          signingKey = "/Users/sdrush/.ssh/yubikey.pub";
         };
       };
 
       # Commit Signing
       commit.gpgsign = true;
       gpg.format = "ssh";
-      "gpg \"ssh\"".program = "/usr/bin/ssh-keygen";
+      "gpg \"ssh\"".program = "${gitSshSign}/bin/git-ssh-sign";
+      "gpg \"ssh\"".allowedSignersFile = "~/.ssh/allowed_signers";
 
       # Set up out default editor and diff tools
       core.editor = "agy --wait";

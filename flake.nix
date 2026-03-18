@@ -41,22 +41,6 @@
       git-hooks,
       ...
     }:
-    let
-      # Define overlays in a local let block to avoid self-referential recursion
-      allOverlays =
-        let
-          defaultOverlays = import ./overlays/default.nix {
-            inherit inputs;
-            nixpkgsConfig = {
-              config.allowUnfree = true;
-            };
-          };
-        in
-        defaultOverlays
-        // {
-          minimal = import ./overlays/minimal.nix { };
-        };
-    in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         git-hooks.flakeModule
@@ -148,7 +132,10 @@
           {
             typhon = darwin.lib.darwinSystem {
               system = "aarch64-darwin";
-              specialArgs = { inherit inputs user; };
+              specialArgs = {
+                inherit inputs user;
+                comma = inputs.comma.packages.aarch64-darwin.default;
+              };
               modules = [
                 # Main `nix-darwin` config
                 ./configuration.nix
@@ -159,7 +146,7 @@
                 {
                   nixpkgs = {
                     config.allowUnfree = true;
-                    overlays = builtins.attrValues allOverlays;
+                    overlays = [ (import ./overlays/minimal.nix { }) ];
                   };
                 }
                 # `home-manager` module
@@ -169,7 +156,10 @@
                     useGlobalPkgs = true;
                     useUserPackages = true;
                     backupFileExtension = "backup";
-                    extraSpecialArgs = { inherit inputs; };
+                    extraSpecialArgs = {
+                      inherit inputs;
+                      comma = inputs.comma.packages.aarch64-darwin.default;
+                    };
                     users."${user}" = {
                       imports = [
                         ./home.nix
@@ -187,7 +177,10 @@
         nixosConfigurations = {
           nixos = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            specialArgs = { inherit inputs; };
+            specialArgs = {
+              inherit inputs;
+              comma = inputs.comma.packages.x86_64-linux.default;
+            };
             modules = [
               inputs.nixos-wsl.nixosModules.default
               ./hosts/nixos/configuration.nix
@@ -199,12 +192,15 @@
               {
                 nixpkgs = {
                   config.allowUnfree = true;
-                  overlays = builtins.attrValues allOverlays;
+                  overlays = [ (import ./overlays/minimal.nix { }) ];
                 };
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs; };
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    comma = inputs.comma.packages.x86_64-linux.default;
+                  };
                   users.sdrush = {
                     imports = [
                       ./home.nix
@@ -228,7 +224,7 @@
               (_: {
                 nixpkgs = {
                   hostPlatform = "x86_64-linux";
-                  overlays = builtins.attrValues allOverlays;
+                  overlays = [ (import ./overlays/minimal.nix { }) ];
                   config.allowUnfree = true;
                 };
               })
@@ -241,7 +237,7 @@
             pkgs = import nixpkgs {
               system = "x86_64-linux";
               config.allowUnfree = true;
-              overlays = builtins.attrValues allOverlays;
+              overlays = [ (import ./overlays/minimal.nix { }) ];
             };
             modules = [
               ./home.nix
@@ -270,12 +266,17 @@
                 }
               )
             ];
-            extraSpecialArgs = { inherit inputs; };
+            extraSpecialArgs = {
+              inherit inputs;
+              comma = inputs.comma.packages.x86_64-linux.default;
+            };
           };
         };
 
         # Overlays
-        overlays = allOverlays;
+        overlays = {
+          minimal = import ./overlays/minimal.nix { };
+        };
       };
     };
 }

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Wrapper to ensure Git signing always uses the YubiKey agent regardless of shell environment
+export SSH_AUTH_SOCK="$HOME/.ssh/yubikey-agent.sock"
+ssh-keygen "$@"
