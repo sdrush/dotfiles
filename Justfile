@@ -54,12 +54,11 @@ update:
 
 # Check for Nix syntax and common issues
 lint:
-    statix check .
-    deadnix .
+    @nix shell nixpkgs#statix nixpkgs#deadnix -c sh -c "statix check . && deadnix ."
 
 # Format all Nix files in the repository
 format:
-    nix fmt
+    @nix fmt
 
 # Run flake checks to ensure everything is valid
 check:
