@@ -64,7 +64,7 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           extra-conf: |
-            trusted-users = root
+            trusted-users = root runner
             accept-flake-config = true
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
@@ -84,9 +84,9 @@ jobs:
           nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
           {
             echo "### ${{ matrix.symbol }} Linux Closure Diff (${{ matrix.name }})"
-            echo " \` \` \` "
+            echo "\`\`\`"
             cat nvd-diff.txt
-            echo " \` \` \` "
+            echo "\`\`\`"
           } > pr-comment.txt
 
       - name: Comment on PR
