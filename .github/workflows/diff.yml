@@ -6,26 +6,56 @@ permissions:
   pull-requests: write
 
 jobs:
-  nvd-diff:
+  nvd-diff-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build base system (main)
+        run: nix build github:${{ github.repository }}/${{ github.base_ref }}#darwinConfigurations.typhon.system --out-link result-main || true
+
+      - name: Build PR system (current)
+        run: nix build .#darwinConfigurations.typhon.system --out-link result-pr || true
+
+      - name: Diff closures with nvd
+        run: |
+          nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
+          {
+            echo "### 🍏 macOS Closure Diff (Typhon)"
+            echo "\`\`\`"
+            cat nvd-diff.txt
+            echo "\`\`\`"
+          } > pr-comment.txt
+
+      - name: Comment on PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: pr-comment.txt
+          comment_tag: nvd-diff-macos
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  nvd-diff-linux:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-          - name: "macOS (Typhon)"
-            os: macos-latest
-            flake_attr: "darwinConfigurations.typhon.system"
-            comment_tag: "nvd-diff-macos"
-            symbol: "🍏"
           - name: "NixOS"
-            os: ubuntu-latest
             flake_attr: "nixosConfigurations.nixos.config.system.build.toplevel"
             comment_tag: "nvd-diff-nixos"
             symbol: "🐧"
           - name: "Generic Linux (system-manager)"
-            os: ubuntu-latest
             flake_attr: "systemConfigs.default"
             comment_tag: "nvd-diff-generic-linux"
             symbol: "🐧"
-    runs-on: ${{ matrix.os }}
+          - name: "Ubuntu (Home Manager)"
+            flake_attr: 'homeConfigurations."shannonrush@USPP03-69295902".activationPackage'
+            comment_tag: "nvd-diff-ubuntu"
+            symbol: "🐧"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,7 +64,7 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           extra-conf: |
-            trusted-users = root
+            trusted-users = root runner
             accept-flake-config = true
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
@@ -53,7 +83,7 @@ jobs:
         run: |
           nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
           {
-            echo "### ${{ matrix.symbol }} ${{ matrix.name }} Closure Diff"
+            echo "### ${{ matrix.symbol }} Linux Closure Diff (${{ matrix.name }})"
             echo "\`\`\`"
             cat nvd-diff.txt
             echo "\`\`\`"
