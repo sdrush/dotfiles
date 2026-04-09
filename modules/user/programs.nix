@@ -200,7 +200,7 @@
     # VSCode: Visual Studio Code
     # https://rycee.gitlab.io/home-manager/options.html#opt-programs.vscode.enable
     vscode = {
-      enable = true;
+      enable = !pkgs.stdenv.isLinux;
       package = pkgs.vscode;
       profiles.default.extensions = [
 
