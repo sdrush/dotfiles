@@ -1,6 +1,6 @@
 # Run our global detections for os/hostname/etc.
 os := `uname -s`
-host := `hostname -s`
+host := `uname -n`
 user := `id -un`
 is_nixos := `if [ -e /etc/NIXOS ]; then echo "true"; else echo "false"; fi`
 
@@ -66,9 +66,9 @@ check:
     nix flake check
 
 # Audit for vulnerabilities with a CVSS score of 6.0 or higher
-security-scan:
+security-scan scan_target=target:
     @nix shell nixpkgs#vulnix nixpkgs#jq -c sh -c \
-    "vulnix --json --whitelist whitelist.toml $(nix path-info --derivation {{target}}) | \
+    "vulnix --json --whitelist whitelist.toml $(nix path-info --derivation {{scan_target}}) | \
     jq -r 'def score: .cvssv3_basescore // {}; [ .[] | { pkg: .name, vulns: [ score | to_entries[] | select(.value >= 6.0) ] } | select(.vulns | length > 0) ] | if length == 0 then \"✅ No High-Risk Vulnerabilities (>= 6.0) detected.\" else \"🚨 HIGH-RISK VULNERABILITIES FOUND:\n\" + (map(\"- \(.pkg)\n  \" + ([.vulns[] | \"\(.key) (Score: \(.value))\"] | join(\"\n  \"))) | join(\"\n\")) end'"
 
 # Garbage collect and delete old generations using nh (keeps last 7 days)

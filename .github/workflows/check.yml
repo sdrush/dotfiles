@@ -52,4 +52,4 @@ jobs:
           name: sdrush
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Security Audit
-        run: nix shell nixpkgs#just -c just security-scan
+        run: nix shell nixpkgs#just -c just security-scan ".#nixosConfigurations.nixos.config.system.build.toplevel"
