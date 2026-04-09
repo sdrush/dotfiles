@@ -42,9 +42,12 @@ rebuild: format lint check-secrets
         if command -v nh >/dev/null; then \
             echo "Updating Home Manager configuration with nh..."; \
             nh home switch .; \
-        else \
+        elif command -v home-manager >/dev/null; then \
             echo "Updating Home Manager configuration..."; \
             home-manager switch --flake .; \
+        else \
+            echo "Home Manager not found. Bootstrapping with nix run..."; \
+            nix run home-manager -- switch --flake .#{{user}}@{{host}}; \
         fi \
     fi
 
