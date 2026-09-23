@@ -4,7 +4,7 @@
   inputs = {
     # nixpkgs.stable.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/72b1d820cb0149b40a35aa077b4b6d60cd1b23c3"; # nixpkgs-unstable
-    darwin.url = "github:lnl7/nix-darwin/52d061516108769656a8bd9c6e811c677ec5b462"; # master
+    darwin.url = "github:lnl7/nix-darwin/c3e90c89649b07d1a96e4b9dd6cd0d6e44b91a74"; # nix-darwin-26.05
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/924e61f5c2aeab38504028078d7091077744ab17";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -221,13 +221,6 @@
               ./modules/linux/system.nix
               ./modules/system/cachix.nix
               ./modules/system/security.nix
-              (_: {
-                nixpkgs = {
-                  hostPlatform = "x86_64-linux";
-                  overlays = [ (import ./overlays/minimal.nix { }) ];
-                  config.allowUnfree = true;
-                };
-              })
             ];
           };
         };
@@ -240,15 +233,15 @@
               overlays = [ (import ./overlays/minimal.nix { }) ];
             };
             modules = [
-              ./home.nix
+              # ./home.nix
               ./modules/user/stylix.nix
               ./modules/user/stylix-linux.nix
               ./modules/system/cachix.nix
-              ./modules/system/security.nix
+              # ./modules/system/security.nix
               (
-                { pkgs, ... }:
+                { pkgs, lib, ... }:
                 {
-                  nix.package = pkgs.nix;
+                  nix.package = lib.mkForce pkgs.nix;
                 }
               )
               inputs.nix-index-database.homeModules.nix-index

@@ -12,7 +12,7 @@
     description = "Enable the experimental verified-fetches Nix feature.";
   };
 
-  config = lib.mkIf (options ? nix) {
+  config = lib.mkIf (lib.hasAttr "nix" options) {
     nix.settings.experimental-features = lib.optional config.dotfiles.security.verifiedFetches.enable "verified-fetches";
   };
 }

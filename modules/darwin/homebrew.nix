@@ -8,7 +8,6 @@ _:
     onActivation.cleanup = "zap";
     global.brewfile = true;
     taps = [
-      "homebrew/services"
       "microsoft/git"
       "nrlquaker/createzap"
       "nitrictech/tap"
@@ -83,7 +82,7 @@ _:
       # "superhuman" # cool looking gmail client
       "visual-studio-code"
       # "vmware-horizon-client"
-      "vnc-viewer"
+      "realvnc-connect-viewer"
       "warp"
       "wifiman"
       # "windows-app"

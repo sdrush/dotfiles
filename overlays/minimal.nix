@@ -15,12 +15,9 @@ _: _final: prev: {
   # Strip libjxl: Must use overrideAttrs because it doesn't
   # expose openexrSupport as a top-level function argument.
   libjxl = prev.libjxl.overrideAttrs (oldAttrs: {
-    buildInputs =
-      (oldAttrs.buildInputs or [ ])
-      ++ (
-        # We filter out openexr from the list of inputs
-        builtins.filter (pkg: (pkg.pname or "") != "openexr") oldAttrs.buildInputs
-      );
+    buildInputs = builtins.filter (p: (p.pname or p.name or "") != "openexr") (
+      oldAttrs.buildInputs or [ ]
+    );
     # Also disable any explicit cmake flags if they exist
     cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
       "-DJPEGXL_ENABLE_OPENEXR=OFF"
