@@ -5,7 +5,7 @@
 }:
 
 {
-  config = lib.mkIf (options ? nix) {
+  config = lib.mkIf (lib.hasAttr "nix" options) {
     nix.settings = {
       extra-substituters = [
         "https://sdrush.cachix.org"

@@ -13,9 +13,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/nix-installer-action@v16
+        with:
+          extra-conf: |
+            trusted-users = root runner
+            accept-flake-config = true
       - uses: DeterminateSystems/magic-nix-cache-action@main
-
       - name: Build base system (main)
         run: nix build github:${{ github.repository }}/${{ github.base_ref }}#darwinConfigurations.typhon.system --out-link result-main || true
 
@@ -61,7 +64,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/nix-installer-action@v16
         with:
           extra-conf: |
             trusted-users = root runner
@@ -81,13 +84,26 @@ jobs:
 
       - name: Diff closures with nvd
         run: |
-          nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
-          {
-            echo "### ${{ matrix.symbol }} Linux Closure Diff (${{ matrix.name }})"
-            echo "\`\`\`"
-            cat nvd-diff.txt
-            echo "\`\`\`"
-          } > pr-comment.txt
+          if [ -L result-main ] && [ -L result-pr ]; then
+            nix run nixpkgs#nvd -- diff result-main result-pr > nvd-diff.txt || true
+            {
+              echo "### ${{ matrix.symbol }} Linux Closure Diff (${{ matrix.name }})"
+              echo "\`\`\`"
+              cat nvd-diff.txt
+              echo "\`\`\`"
+            } > pr-comment.txt
+          elif [ -L result-pr ]; then
+            {
+              echo "### ${{ matrix.symbol }} Linux Closure Diff (${{ matrix.name }})"
+              echo "⚠️ Could not compare to base branch (${{ github.base_ref }}). The base system may be failing to build."
+              echo "The PR system built successfully."
+            } > pr-comment.txt
+          else
+            {
+              echo "### ${{ matrix.symbol }} Linux Closure Diff (${{ matrix.name }})"
+              echo "❌ PR system failed to build. See logs for details."
+            } > pr-comment.txt
+          fi
 
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@v2

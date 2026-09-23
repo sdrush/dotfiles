@@ -14,6 +14,7 @@ pkgs.mkShell {
     shellcheck
     actionlint
     pre-commit
+    just
     config.treefmt.build.wrapper
 
     # Security Diet: Tools moved from modules/user/packages/dev.nix
@@ -23,5 +24,8 @@ pkgs.mkShell {
     pylint
     tcl
     tk
+    vulnix
+    jq
+    nvd
   ];
 }
