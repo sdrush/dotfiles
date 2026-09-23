@@ -8,11 +8,15 @@ jobs:
   check:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-15]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v16
+        with:
+          extra-conf: |
+            trusted-users = root runner
+            accept-flake-config = true
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v15
         with:
@@ -20,28 +24,32 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Run formatting check
-        run: nix develop --command just format
+        run: nix shell nixpkgs#just nixpkgs#treefmt -c just format
         if: matrix.os == 'ubuntu-latest'
 
       - name: Lint GitHub Actions
-        run: nix develop --command just lint-actions
+        run: nix shell nixpkgs#just -c just lint-actions
         if: matrix.os == 'ubuntu-latest'
 
       - name: Run linting
-        run: nix develop --command just lint
+        run: nix shell nixpkgs#just nixpkgs#statix nixpkgs#deadnix -c just lint
 
       - name: Run flake checks
-        run: nix develop --command just check
+        run: nix shell nixpkgs#just -c just check
 
   security-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v16
+        with:
+          extra-conf: |
+            trusted-users = root runner
+            accept-flake-config = true
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: cachix/cachix-action@v15
         with:
           name: sdrush
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Security Audit
-        run: nix develop --command just security-scan
+        run: nix shell nixpkgs#just -c just security-scan ".#nixosConfigurations.nixos.config.system.build.toplevel"

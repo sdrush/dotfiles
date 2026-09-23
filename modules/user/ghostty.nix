@@ -8,9 +8,15 @@
     enable = true;
     # Ghostty has excellent Nix support and will be automatically added to your Applications.
     # We use the package from nixpkgs.
-    # On macOS, we install the binary via Homebrew Cask because the Nixpkgs
-    # version is currently unsupported on aarch64-darwin.
-    package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
+    # On Linux/WSL, we disable the package to avoid heavy GUI dependencies (webkitgtk).
+    # On macOS, we install via Homebrew Cask, so we set this to null.
+    package = if pkgs.stdenv.isDarwin || pkgs.stdenv.isLinux then null else pkgs.ghostty;
+
+    # If the package is null, we must disable these integrations to avoid Home Manager assertions.
+    installBatSyntax = false;
+    installVimSyntax = false;
+    # systemd integration is only relevant on Linux
+    systemd.enable = false;
 
     settings = {
       # Performance & Appearance

@@ -116,6 +116,7 @@
                   {
                     nixos-wsl = self.nixosConfigurations.nixos.config.system.build.toplevel;
                     home-apollo = self.homeConfigurations."sdrush@APOLLO".activationPackage;
+                    home-ubuntu = self.homeConfigurations."shannonrush@USPP03-69295902".activationPackage;
                   }
                 else
                   { };
@@ -263,6 +264,42 @@
               inherit inputs;
               comma = inputs.comma.packages.x86_64-linux.default;
             };
+          };
+
+          "shannonrush@USPP03-69295902" = home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+              overlays = builtins.attrValues self.overlays;
+            };
+            modules = [
+              ./home.nix
+              ./modules/user/stylix.nix
+              ./modules/user/stylix-linux.nix
+              ./modules/system/cachix.nix
+              ./modules/system/security.nix
+              (
+                { pkgs, ... }:
+                {
+                  nix.package = pkgs.nix;
+                }
+              )
+              inputs.nix-index-database.homeModules.nix-index
+              inputs.sops-nix.homeManagerModules.sops
+              inputs.nixvim.homeModules.nixvim
+              inputs.stylix.homeModules.stylix
+              (
+                { lib, ... }:
+                {
+                  home = {
+                    username = "shannonrush";
+                    homeDirectory = lib.mkForce "/home/shannonrush";
+                    stateVersion = "24.11";
+                  };
+                }
+              )
+            ];
+            extraSpecialArgs = { inherit inputs; };
           };
         };
 
