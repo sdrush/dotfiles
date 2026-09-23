@@ -299,7 +299,10 @@
                 }
               )
             ];
-            extraSpecialArgs = { inherit inputs; };
+            extraSpecialArgs = {
+              inherit inputs;
+              comma = inputs.comma.packages.x86_64-linux.default;
+            };
           };
         };
 
